@@ -1,0 +1,2798 @@
+<!doctype html>
+<!-- This site was created in Webflow. https://webflow.com --><!-- Last Published: Tue Apr 21 2026 16:14:04 GMT+0000 (Coordinated Universal Time) -->
+<html
+    data-wf-domain="coverly-template.webflow.io"
+    data-wf-page="684f91df71b424da63a64dea"
+    data-wf-site="684f91df71b424da63a64df2"
+    lang="en"
+>
+    <head>
+        <meta charset="utf-8" />
+        <link
+            href="https://cdn.prod.website-files.com"
+            rel="preconnect"
+            crossorigin="anonymous"
+        />
+        <title>Home V1 - Webflow HTML website template</title>
+        <meta
+            content="Coverly is a modern Webflow template. Customize it to match your brand and create a unique, professional experience in minutes."
+            name="description"
+        />
+        <meta
+            content="Home V1 - Webflow HTML website template"
+            property="og:title"
+        />
+        <meta
+            content="Coverly is a modern Webflow template. Customize it to match your brand and create a unique, professional experience in minutes."
+            property="og:description"
+        />
+        <meta
+            content="Home V1 - Webflow HTML website template"
+            name="twitter:title"
+        />
+        <meta
+            content="Coverly is a modern Webflow template. Customize it to match your brand and create a unique, professional experience in minutes."
+            name="twitter:description"
+        />
+        <meta property="og:type" content="website" />
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Webflow" name="generator" />
+        <link
+            href="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/css/coverly-template.webflow.shared.df85c18f3.css"
+            rel="stylesheet"
+            type="text/css"
+            integrity="sha384-34XBjzdGnEqMlz4Xvv+pKEfpL2/8SSBfRrHKqgaL3sg4S6NaZ/w9Hpa9UTV9wBVV"
+            crossorigin="anonymous"
+        />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link
+            href="https://fonts.gstatic.com"
+            rel="preconnect"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+            type="text/javascript"
+        ></script>
+        <script type="text/javascript">
+            WebFont.load({
+                google: {
+                    families: [
+                        "Inter:300,400,500,600,700",
+                        "Lora:300,400,500,600,700",
+                    ],
+                },
+            });
+        </script>
+        <script type="text/javascript">
+            !(function (o, c) {
+                var n = c.documentElement,
+                    t = " w-mod-";
+                ((n.className += t + "js"),
+                    ("ontouchstart" in o ||
+                        (o.DocumentTouch && c instanceof DocumentTouch)) &&
+                        (n.className += t + "touch"));
+            })(window, document);
+        </script>
+        <link
+            href="https://cdn.prod.website-files.com/665687d713145087b3ce1703/665a4535765980c07e93225b_Group%202942.png"
+            rel="shortcut icon"
+            type="image/x-icon"
+        />
+        <link
+            href="https://cdn.prod.website-files.com/665687d713145087b3ce1703/665a45115482c06bb38d0091_Group%202940.png"
+            rel="apple-touch-icon"
+        />
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const menuButton = document.querySelector(".menu"); // Use the class of the element that toggles the menu
+                const overlay = document.querySelector(".nav_overlay");
+
+                if (menuButton && overlay) {
+                    overlay.style.pointerEvents = "auto"; // Make sure the overlay is clickable
+                    overlay.addEventListener("click", function () {
+                        menuButton.click(); // Simulates a menu click to close it
+                    });
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="page-wrapper">
+            <div class="global-styles w-embed">
+                <style>
+                    /* Make text look crisper and more legible in all browsers */
+                    body {
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        font-smoothing: antialiased;
+                        text-rendering: optimizeLegibility;
+                    }
+
+                    /* Focus state style for keyboard navigation for the focusable elements */
+                    *[tabindex]:focus-visible,
+                    input[type="file"]:focus-visible {
+                        outline: 0.125rem solid #4d65ff;
+                        outline-offset: 0.125rem;
+                    }
+
+                    /* Set color style to inherit */
+                    .inherit-color * {
+                        color: inherit;
+                    }
+
+                    /* Get rid of top margin on first element in any rich text element */
+                    .w-richtext > :not(div):first-child,
+                    .w-richtext > div:first-child > :first-child {
+                        margin-top: 0 !important;
+                    }
+
+                    /* Get rid of bottom margin on last element in any rich text element */
+                    .w-richtext > :last-child,
+                    .w-richtext ol li:last-child,
+                    .w-richtext ul li:last-child {
+                        margin-bottom: 0 !important;
+                    }
+
+                    /* Make sure containers never lose their center alignment */
+                    .container-medium,
+                    .container-small,
+                    .container-large {
+                        margin-right: auto !important;
+                        margin-left: auto !important;
+                    }
+
+                    /* 
+Make the following elements inherit typography styles from the parent and not have hardcoded values. 
+Important: You will not be able to style for example "All Links" in Designer with this CSS applied.
+Uncomment this CSS to use it in the project. Leave this message for future hand-off.
+*/
+                    /*
+a,
+.w-input,
+.w-select,
+.w-tab-link,
+.w-nav-link,
+.w-dropdown-btn,
+.w-dropdown-toggle,
+.w-dropdown-link {
+  color: inherit;
+  text-decoration: inherit;
+  font-size: inherit;
+}
+*/
+
+                    /* Apply "..." after 3 lines of text */
+                    .text-style-3lines {
+                        display: -webkit-box;
+                        overflow: hidden;
+                        -webkit-line-clamp: 3;
+                        -webkit-box-orient: vertical;
+                    }
+
+                    /* Apply "..." after 2 lines of text */
+                    .text-style-2lines {
+                        display: -webkit-box;
+                        overflow: hidden;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                    }
+
+                    /* Adds inline flex display */
+                    .display-inlineflex {
+                        display: inline-flex;
+                    }
+
+                    /* These classes are never overwritten */
+                    .hide {
+                        display: none !important;
+                    }
+
+                    @media screen and (max-width: 991px) {
+                        .hide,
+                        .hide-tablet {
+                            display: none !important;
+                        }
+                    }
+                    @media screen and (max-width: 767px) {
+                        .hide-mobile-landscape {
+                            display: none !important;
+                        }
+                    }
+                    @media screen and (max-width: 479px) {
+                        .hide-mobile {
+                            display: none !important;
+                        }
+                    }
+
+                    .margin-0 {
+                        margin: 0rem !important;
+                    }
+
+                    .padding-0 {
+                        padding: 0rem !important;
+                    }
+
+                    .spacing-clean {
+                        padding: 0rem !important;
+                        margin: 0rem !important;
+                    }
+
+                    .margin-top {
+                        margin-right: 0rem !important;
+                        margin-bottom: 0rem !important;
+                        margin-left: 0rem !important;
+                    }
+
+                    .padding-top {
+                        padding-right: 0rem !important;
+                        padding-bottom: 0rem !important;
+                        padding-left: 0rem !important;
+                    }
+
+                    .margin-right {
+                        margin-top: 0rem !important;
+                        margin-bottom: 0rem !important;
+                        margin-left: 0rem !important;
+                    }
+
+                    .padding-right {
+                        padding-top: 0rem !important;
+                        padding-bottom: 0rem !important;
+                        padding-left: 0rem !important;
+                    }
+
+                    .margin-bottom {
+                        margin-top: 0rem !important;
+                        margin-right: 0rem !important;
+                        margin-left: 0rem !important;
+                    }
+
+                    .padding-bottom {
+                        padding-top: 0rem !important;
+                        padding-right: 0rem !important;
+                        padding-left: 0rem !important;
+                    }
+
+                    .margin-left {
+                        margin-top: 0rem !important;
+                        margin-right: 0rem !important;
+                        margin-bottom: 0rem !important;
+                    }
+
+                    .padding-left {
+                        padding-top: 0rem !important;
+                        padding-right: 0rem !important;
+                        padding-bottom: 0rem !important;
+                    }
+
+                    .margin-horizontal {
+                        margin-top: 0rem !important;
+                        margin-bottom: 0rem !important;
+                    }
+
+                    .padding-horizontal {
+                        padding-top: 0rem !important;
+                        padding-bottom: 0rem !important;
+                    }
+
+                    .margin-vertical {
+                        margin-right: 0rem !important;
+                        margin-left: 0rem !important;
+                    }
+
+                    .padding-vertical {
+                        padding-right: 0rem !important;
+                        padding-left: 0rem !important;
+                    }
+
+                    /* Hide scrollbar for Chrome, Safari and Opera */
+                    .sidebar::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    /* Hide scrollbar for IE, Edge and Firefox */
+                    .sidebar {
+                        -ms-overflow-style: none; /* IE and Edge */
+                        scrollbar-width: none; /* Firefox */
+                    }
+
+                    input,
+                    textarea,
+                    select {
+                        border: none !important;
+                        outline: none;
+                    }
+
+                    /* Custom CSS for template */
+
+                    .spacer * {
+                        padding: 0;
+                    }
+
+                    /* Tabs */
+
+                    .tabs_link.w--current {
+                        color: var(--text-color--text-primary) !important;
+                    }
+
+                    .tabs_link.w--current .point-wrap {
+                        border-color: var(--bg-color--bg-secondary) !important;
+                    }
+
+                    .tabs_link.w--current .point {
+                        background-color: var(
+                            --bg-color--bg-secondary
+                        ) !important;
+                        opacity: 1 !important;
+                    }
+
+                    /* Accordions */
+
+                    .accordion:hover {
+                        border-color: var(--grey--900) !important;
+                    }
+
+                    .accordion:hover .accordion_number {
+                        color: var(--grey--900) !important;
+                    }
+
+                    .accordion:hover .circle {
+                        opacity: 1 !important;
+                    }
+                </style>
+            </div>
+            <div
+                data-animation="default"
+                data-collapse="none"
+                data-duration="500"
+                data-easing="ease-out"
+                data-easing2="ease-in-back"
+                data-no-scroll="1"
+                role="banner"
+                class="nav w-nav"
+            >
+                <div class="nav_bar">
+                    <div class="nav_container">
+                        <div
+                            data-w-id="66efc696-f4c9-fa93-8fdc-072e7748fead"
+                            class="menu"
+                        >
+                            <nav role="navigation" class="menu_wrap w-nav-menu">
+                                <div>Menu</div>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="100%"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    class="icon-1x1-medium"
+                                >
+                                    <path
+                                        d="M9.41078 7.3H9.40078M14.6008 7.3H14.5908M9.31078 12H9.30078M14.6008 12H14.5908M9.41078 16.7H9.40078M14.6008 16.7H14.5908"
+                                        stroke="black"
+                                        stroke-width="2.6"
+                                        stroke-linecap="round"
+                                    ></path>
+                                </svg>
+                            </nav>
+                        </div>
+                        <a href="/" class="home_logo-link w-nav-brand"
+                            ><img
+                                loading="lazy"
+                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/684f939dc92027ed2eddbab6_Union.svg"
+                                alt=""
+                                class="home_logo"
+                        /></a>
+                        <div class="nav_button">
+                            <a
+                                data-w-id="4962a1f1-6bac-be07-dc3d-5b3868f37bdd"
+                                href="https://temlis.com"
+                                class="button is-small w-inline-block"
+                                ><div class="button-content">
+                                    <div class="button-text is-one">
+                                        Buy Template
+                                    </div>
+                                    <div class="button-text is-two">
+                                        Buy Template
+                                    </div>
+                                </div></a
+                            >
+                        </div>
+                        <div class="menu_content">
+                            <div class="nav_wrap">
+                                <div class="w-layout-grid nav_content-grid">
+                                    <div>
+                                        <div class="link no-link-nav">
+                                            <div class="text-xl font-secondary">
+                                                Pages
+                                            </div>
+                                        </div>
+                                        <a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/home/home-v1"
+                                            aria-current="page"
+                                            class="nav_link w-inline-block w--current"
+                                            ><div class="clip">
+                                                <div>Home V.1</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/home/home-v2"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Home V.2</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/home/home-v3"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Home V.3</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div
+                                        ></a>
+                                    </div>
+                                    <div>
+                                        <div class="link no-link-nav">
+                                            <div class="text-xl font-secondary">
+                                                Pages
+                                            </div>
+                                        </div>
+                                        <a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/service/service-v1"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Services V.1</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/service/service-v2"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Services V.2</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/service/service-v3"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Services V.3</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div
+                                        ></a>
+                                    </div>
+                                    <div>
+                                        <div class="link no-link-nav">
+                                            <div class="text-xl font-secondary">
+                                                Pages
+                                            </div>
+                                        </div>
+                                        <a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/get-a-quote"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Get a Quote</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/blog"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Blog</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/about"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>About</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div
+                                        ></a>
+                                    </div>
+                                    <div>
+                                        <div class="link no-link-nav">
+                                            <div class="text-xl font-secondary">
+                                                Pages
+                                            </div>
+                                        </div>
+                                        <a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/contact/contact-v1"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Contact V.1</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/contact/contact-v2"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Contact V.2</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div></a
+                                        ><a
+                                            data-w-id="f774a3bf-129e-7c80-463a-843c4557cf23"
+                                            href="/contact/contact-v3"
+                                            class="nav_link w-inline-block"
+                                            ><div class="clip">
+                                                <div>Contact V.3</div>
+                                                <div
+                                                    class="line is-black"
+                                                ></div></div
+                                        ></a>
+                                    </div>
+                                </div>
+                                <div class="nav_image hide-tablet">
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6854f138a0a296749234b1b4_nav-img.webp"
+                                        loading="lazy"
+                                        sizes="(max-width: 991px) 100vw, 848px"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6854f138a0a296749234b1b4_nav-img-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6854f138a0a296749234b1b4_nav-img-p-800.webp 800w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6854f138a0a296749234b1b4_nav-img.webp       848w
+                                        "
+                                        alt=""
+                                        class="img"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav_overlay"></div>
+            </div>
+            <div class="main-wrapper">
+                <section class="section_hero">
+                    <div class="padding-global is-hero">
+                        <div class="container-large">
+                            <div class="hero_layout">
+                                <div class="max-width-medium">
+                                    <div
+                                        data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e035b7"
+                                        style="opacity: 0"
+                                        class="tag"
+                                    >
+                                        Coverly insurance
+                                    </div>
+                                    <div class="spacer-medium"></div>
+                                    <h1
+                                        data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e035ba"
+                                        style="opacity: 0"
+                                    >
+                                        Your perfect policy, fast &amp;
+                                        affordable
+                                    </h1>
+                                </div>
+                                <div class="max-content is-26rem">
+                                    <div
+                                        data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e035bd"
+                                        style="opacity: 0"
+                                        class="text-color-secondary"
+                                    >
+                                        Get a free quote in under 2 minutes.
+                                        Experience peace of mind with our
+                                        reliable insurance options.
+                                    </div>
+                                    <div class="spacer-xxlarge"></div>
+                                    <div
+                                        data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e035c0"
+                                        style="opacity: 0"
+                                        class="button-wrapper"
+                                    >
+                                        <a
+                                            data-wf--button--variant="base"
+                                            data-w-id="240aeaf1-8b90-c9f8-b11f-bd4675861a39"
+                                            href="https://temlis.com"
+                                            class="button w-inline-block"
+                                            ><div class="button-content">
+                                                <div class="button-text is-one">
+                                                    Get your free quote
+                                                </div>
+                                                <div class="button-text is-two">
+                                                    Get your free quote
+                                                </div>
+                                            </div></a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e035c3"
+                        class="hero_img"
+                    >
+                        <div
+                            style="
+                                -webkit-transform: translate3d(0, -100%, 0)
+                                    scale3d(1, 1, 1) rotateX(0) rotateY(0)
+                                    rotateZ(0) skew(0, 0);
+                                -moz-transform: translate3d(0, -100%, 0)
+                                    scale3d(1, 1, 1) rotateX(0) rotateY(0)
+                                    rotateZ(0) skew(0, 0);
+                                -ms-transform: translate3d(0, -100%, 0)
+                                    scale3d(1, 1, 1) rotateX(0) rotateY(0)
+                                    rotateZ(0) skew(0, 0);
+                                transform: translate3d(0, -100%, 0)
+                                    scale3d(1, 1, 1) rotateX(0) rotateY(0)
+                                    rotateZ(0) skew(0, 0);
+                            "
+                            class="img-wrapper"
+                        >
+                            <img
+                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/684f9eb0d0b3b34f086009cc_hero_igm.webp"
+                                loading="lazy"
+                                style="
+                                    -webkit-transform: translate3d(0, 100%, 0)
+                                        scale3d(1.5, 1.5, 1) rotateX(0)
+                                        rotateY(0) rotateZ(0) skew(0, 0);
+                                    -moz-transform: translate3d(0, 100%, 0)
+                                        scale3d(1.5, 1.5, 1) rotateX(0)
+                                        rotateY(0) rotateZ(0) skew(0, 0);
+                                    -ms-transform: translate3d(0, 100%, 0)
+                                        scale3d(1.5, 1.5, 1) rotateX(0)
+                                        rotateY(0) rotateZ(0) skew(0, 0);
+                                    transform: translate3d(0, 100%, 0)
+                                        scale3d(1.5, 1.5, 1) rotateX(0)
+                                        rotateY(0) rotateZ(0) skew(0, 0);
+                                    filter: blur(10px);
+                                "
+                                sizes="(max-width: 1920px) 100vw, 1920px"
+                                alt=""
+                                srcset="
+                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/684f9eb0d0b3b34f086009cc_hero_igm-p-500.webp   500w,
+                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/684f9eb0d0b3b34f086009cc_hero_igm-p-800.webp   800w,
+                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/684f9eb0d0b3b34f086009cc_hero_igm-p-1080.webp 1080w,
+                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/684f9eb0d0b3b34f086009cc_hero_igm-p-1600.webp 1600w,
+                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/684f9eb0d0b3b34f086009cc_hero_igm.webp        1920w
+                                "
+                                class="img"
+                            />
+                        </div>
+                    </div>
+                </section>
+                <section class="section_statistic">
+                    <div class="padding-global padding-section-medium">
+                        <div class="container-large">
+                            <div class="releted_codes w-embed w-script">
+                                <script
+                                    defer
+                                    src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-numbercount@1/numbercount.js"
+                                ></script>
+                            </div>
+                            <div class="w-layout-grid grid-3gap">
+                                <div class="content">
+                                    <div class="scroll-slide-left">
+                                        <div class="tag">Statistic</div>
+                                        <div class="spacer-medium"></div>
+                                        <h2 class="scroll-slide-left">
+                                            Proven results, <br />trusted
+                                            coverage
+                                        </h2>
+                                        <div class="spacer-medium"></div>
+                                        <div
+                                            class="text-color-secondary scroll-slide-left"
+                                        >
+                                            We don’t just promise reliability —
+                                            we deliver it. Thousands of
+                                            individuals, families, and
+                                            businesses trust us to protect what
+                                            matters most. Our data tells the
+                                            story
+                                        </div>
+                                    </div>
+                                    <div class="w-layout-grid statistic_grid">
+                                        <div class="statistic_item">
+                                            <div class="scroll-slide-left">
+                                                Families protected
+                                            </div>
+                                            <div
+                                                class="statistic_group scroll-slide-left"
+                                            >
+                                                <div
+                                                    fs-numbercount-duration="2000"
+                                                    fs-numbercount-element="number"
+                                                    fs-numbercount-start="0"
+                                                    fs-numbercount-end="23"
+                                                    class="text-number"
+                                                >
+                                                    23
+                                                </div>
+                                                <div class="font-primary">
+                                                    <div
+                                                        class="text-2xl text-color-50"
+                                                    >
+                                                        k
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="statistic_item">
+                                            <div class="scroll-slide-left">
+                                                Policy renewal rate
+                                            </div>
+                                            <div
+                                                class="statistic_group scroll-slide-left"
+                                            >
+                                                <div
+                                                    fs-numbercount-duration="2000"
+                                                    fs-numbercount-element="number"
+                                                    fs-numbercount-start="0"
+                                                    fs-numbercount-end="95"
+                                                    class="text-number"
+                                                >
+                                                    95
+                                                </div>
+                                                <div class="font-primary">
+                                                    <div
+                                                        class="text-2xl text-color-50"
+                                                    >
+                                                        %
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e035ea"
+                                    class="statistic_img"
+                                >
+                                    <div
+                                        style="
+                                            -webkit-transform: translate3d(
+                                                    0,
+                                                    -100%,
+                                                    0
+                                                )
+                                                scale3d(1, 1, 1) rotateX(0)
+                                                rotateY(0) rotateZ(0) skew(0, 0);
+                                            -moz-transform: translate3d(
+                                                    0,
+                                                    -100%,
+                                                    0
+                                                )
+                                                scale3d(1, 1, 1) rotateX(0)
+                                                rotateY(0) rotateZ(0) skew(0, 0);
+                                            -ms-transform: translate3d(
+                                                    0,
+                                                    -100%,
+                                                    0
+                                                )
+                                                scale3d(1, 1, 1) rotateX(0)
+                                                rotateY(0) rotateZ(0) skew(0, 0);
+                                            transform: translate3d(0, -100%, 0)
+                                                scale3d(1, 1, 1) rotateX(0)
+                                                rotateY(0) rotateZ(0) skew(0, 0);
+                                        "
+                                        class="img-wrapper"
+                                    >
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af7c1c943dabc6cb86cd_img2.png"
+                                            loading="lazy"
+                                            style="
+                                                -webkit-transform: translate3d(
+                                                        0,
+                                                        100%,
+                                                        0
+                                                    )
+                                                    scale3d(1.5, 1.5, 1)
+                                                    rotateX(0) rotateY(0)
+                                                    rotateZ(0) skew(0, 0);
+                                                -moz-transform: translate3d(
+                                                        0,
+                                                        100%,
+                                                        0
+                                                    )
+                                                    scale3d(1.5, 1.5, 1)
+                                                    rotateX(0) rotateY(0)
+                                                    rotateZ(0) skew(0, 0);
+                                                -ms-transform: translate3d(
+                                                        0,
+                                                        100%,
+                                                        0
+                                                    )
+                                                    scale3d(1.5, 1.5, 1)
+                                                    rotateX(0) rotateY(0)
+                                                    rotateZ(0) skew(0, 0);
+                                                transform: translate3d(
+                                                        0,
+                                                        100%,
+                                                        0
+                                                    )
+                                                    scale3d(1.5, 1.5, 1)
+                                                    rotateX(0) rotateY(0)
+                                                    rotateZ(0) skew(0, 0);
+                                                filter: blur(10px);
+                                            "
+                                            sizes="(max-width: 1128px) 100vw, 1128px"
+                                            alt=""
+                                            srcset="
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af7c1c943dabc6cb86cd_img2-p-500.png   500w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af7c1c943dabc6cb86cd_img2-p-800.png   800w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af7c1c943dabc6cb86cd_img2-p-1080.png 1080w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af7c1c943dabc6cb86cd_img2.png        1128w
+                                            "
+                                            class="img"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section_service">
+                    <div class="padding-global padding-section-medium">
+                        <div class="container-large">
+                            <div>
+                                <div class="tag scroll-slide-left">
+                                    Our services
+                                </div>
+                                <div class="spacer-medium"></div>
+                                <h2 class="scroll-slide-left">
+                                    Your Partner in Smart, <br />Reliable
+                                    Insurance Protection
+                                </h2>
+                                <div class="spacer-medium"></div>
+                                <div class="max-description-large">
+                                    <div
+                                        class="text-color-secondary scroll-slide-left"
+                                    >
+                                        we make it easy to protect what matters
+                                        most. From health and life insurance to
+                                        vehicle and property coverage, we offer
+                                        smart, flexible plans designed to fit
+                                        your needs and budget.
+                                    </div>
+                                </div>
+                                <div class="spacer-huge"></div>
+                                <div class="button-wrapper scroll-slide-left">
+                                    <a
+                                        data-wf--button--variant="base"
+                                        data-w-id="240aeaf1-8b90-c9f8-b11f-bd4675861a39"
+                                        href="/service/service-v1"
+                                        class="button w-inline-block"
+                                        ><div class="button-content">
+                                            <div class="button-text is-one">
+                                                View all
+                                            </div>
+                                            <div class="button-text is-two">
+                                                View all
+                                            </div>
+                                        </div></a
+                                    >
+                                </div>
+                            </div>
+                            <div class="spacer">
+                                <div
+                                    style="height: 4rem"
+                                    class="spacer-desktop"
+                                ></div>
+                                <div
+                                    style="height: 3rem"
+                                    class="spacer-tablet"
+                                ></div>
+                                <div
+                                    style="height: 2rem"
+                                    class="spacer-mobile"
+                                ></div>
+                            </div>
+                            <div class="service_grid">
+                                <div class="service_img scroll-slide-left">
+                                    <div class="img-wrapper">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afa02ca5297f1daa0f53_image.png"
+                                            loading="lazy"
+                                            sizes="(max-width: 767px) 100vw, 768px"
+                                            srcset="
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afa02ca5297f1daa0f53_image-p-500.png 500w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afa02ca5297f1daa0f53_image.png       768w
+                                            "
+                                            alt=""
+                                            class="img"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="scroll-slide-left">
+                                    <div class="w-dyn-list">
+                                        <div role="list" class="w-dyn-items">
+                                            <div
+                                                role="listitem"
+                                                class="w-dyn-item"
+                                            >
+                                                <a
+                                                    href="/services/secure-life-coverage"
+                                                    class="card is-link w-inline-block"
+                                                    ><div>
+                                                        <div class="icon">
+                                                            <img
+                                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64e18/6852d2fe35a6e0b8d804e13c_mdi_heart.svg"
+                                                                loading="lazy"
+                                                                alt=""
+                                                                class="icon-1x1-medium"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="text-xl">
+                                                            Secure Life coverage
+                                                        </div>
+                                                    </div>
+                                                    <div class="spacer">
+                                                        <div
+                                                            style="
+                                                                height: 12.5rem;
+                                                            "
+                                                            class="spacer-desktop"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 5rem"
+                                                            class="spacer-tablet"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 2rem"
+                                                            class="spacer-mobile"
+                                                        ></div>
+                                                    </div>
+                                                    <div class="align-auto">
+                                                        <div
+                                                            class="text-color-secondary"
+                                                        >
+                                                            Life insurance that
+                                                            safeguards your
+                                                            family’s
+                                                            future—simple,
+                                                            affordable, and
+                                                            reliable
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="lean-more">
+                                                            <div>
+                                                                Learn more
+                                                            </div>
+                                                            <div
+                                                                class="line-more_line"
+                                                            ></div>
+                                                        </div></div
+                                                ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="scroll-slide-left">
+                                    <div class="w-dyn-list">
+                                        <div role="list" class="w-dyn-items">
+                                            <div
+                                                role="listitem"
+                                                class="w-dyn-item"
+                                            >
+                                                <a
+                                                    href="/services/total-home-security"
+                                                    class="card is-link w-inline-block"
+                                                    ><div>
+                                                        <div class="icon">
+                                                            <img
+                                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64e18/6852d2c3aa3c3d27c8a040a1_tabler_home-filled.svg"
+                                                                loading="lazy"
+                                                                alt=""
+                                                                class="icon-1x1-medium"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="text-xl">
+                                                            Total Home security
+                                                        </div>
+                                                    </div>
+                                                    <div class="spacer">
+                                                        <div
+                                                            style="
+                                                                height: 12.5rem;
+                                                            "
+                                                            class="spacer-desktop"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 5rem"
+                                                            class="spacer-tablet"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 2rem"
+                                                            class="spacer-mobile"
+                                                        ></div>
+                                                    </div>
+                                                    <div class="align-auto">
+                                                        <div
+                                                            class="text-color-secondary"
+                                                        >
+                                                            Complete home
+                                                            protection against
+                                                            the unexpected, from
+                                                            leaks to natural
+                                                            disasters
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="lean-more">
+                                                            <div>
+                                                                Learn more
+                                                            </div>
+                                                            <div
+                                                                class="line-more_line"
+                                                            ></div>
+                                                        </div></div
+                                                ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="scroll-slide-left">
+                                    <div class="w-dyn-list">
+                                        <div role="list" class="w-dyn-items">
+                                            <div
+                                                role="listitem"
+                                                class="w-dyn-item"
+                                            >
+                                                <a
+                                                    href="/services/travel-insurance"
+                                                    class="card is-link w-inline-block"
+                                                    ><div>
+                                                        <div class="icon">
+                                                            <img
+                                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64e18/6852d2a243fa4127661f1de5_material-symbols_hiking.svg"
+                                                                loading="lazy"
+                                                                alt=""
+                                                                class="icon-1x1-medium"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="text-xl">
+                                                            Travel insurance
+                                                        </div>
+                                                    </div>
+                                                    <div class="spacer">
+                                                        <div
+                                                            style="
+                                                                height: 12.5rem;
+                                                            "
+                                                            class="spacer-desktop"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 5rem"
+                                                            class="spacer-tablet"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 2rem"
+                                                            class="spacer-mobile"
+                                                        ></div>
+                                                    </div>
+                                                    <div class="align-auto">
+                                                        <div
+                                                            class="text-color-secondary"
+                                                        >
+                                                            Travel smart. Stay
+                                                            protected
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="lean-more">
+                                                            <div>
+                                                                Learn more
+                                                            </div>
+                                                            <div
+                                                                class="line-more_line"
+                                                            ></div>
+                                                        </div></div
+                                                ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="scroll-slide-left">
+                                    <div class="w-dyn-list">
+                                        <div role="list" class="w-dyn-items">
+                                            <div
+                                                role="listitem"
+                                                class="w-dyn-item"
+                                            >
+                                                <a
+                                                    href="/services/commercial-protection"
+                                                    class="card is-link w-inline-block"
+                                                    ><div>
+                                                        <div class="icon">
+                                                            <img
+                                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64e18/6852d27b825d5d8fd604bb45_basil_bag-solid.svg"
+                                                                loading="lazy"
+                                                                alt=""
+                                                                class="icon-1x1-medium"
+                                                            />
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="text-xl">
+                                                            Commercial
+                                                            protection
+                                                        </div>
+                                                    </div>
+                                                    <div class="spacer">
+                                                        <div
+                                                            style="
+                                                                height: 12.5rem;
+                                                            "
+                                                            class="spacer-desktop"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 5rem"
+                                                            class="spacer-tablet"
+                                                        ></div>
+                                                        <div
+                                                            style="height: 2rem"
+                                                            class="spacer-mobile"
+                                                        ></div>
+                                                    </div>
+                                                    <div class="align-auto">
+                                                        <div
+                                                            class="text-color-secondary"
+                                                        >
+                                                            Business risks?
+                                                            We’ve got your back
+                                                        </div>
+                                                        <div
+                                                            class="spacer-xlarge"
+                                                        ></div>
+                                                        <div class="lean-more">
+                                                            <div>
+                                                                Learn more
+                                                            </div>
+                                                            <div
+                                                                class="line-more_line"
+                                                            ></div>
+                                                        </div></div
+                                                ></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service_img scroll-slide-left">
+                                    <div class="img-wrapper">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af9f35a779340c720572_image-1.png"
+                                            loading="lazy"
+                                            sizes="(max-width: 767px) 100vw, 768px"
+                                            srcset="
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af9f35a779340c720572_image-1-p-500.png 500w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855af9f35a779340c720572_image-1.png       768w
+                                            "
+                                            alt=""
+                                            class="img"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section_testimonial">
+                    <div class="padding-section-medium">
+                        <div class="padding-global">
+                            <div class="container-large">
+                                <div class="w-layout-grid header_grid">
+                                    <div class="tag scroll-slide-left">
+                                        Testimonials
+                                    </div>
+                                    <div
+                                        id="w-node-_2b203082-ec1c-8fc4-0bde-6a70773d5595-773d558e"
+                                    >
+                                        <h2 class="h3 scroll-slide-left">
+                                            Real Stories. Real Protection.
+                                        </h2>
+                                        <div class="spacer-medium"></div>
+                                        <div class="max-content is-41rem">
+                                            <div
+                                                class="text-color-secondary scroll-slide-left"
+                                            >
+                                                Thousands of people trust us to
+                                                protect their families, their
+                                                health, their homes, and their
+                                                future. But don’t just take our
+                                                word for it hear directly from
+                                                the people who’ve experienced
+                                                the difference.
+                                            </div>
+                                        </div>
+                                        <div class="spacer-huge"></div>
+                                        <div
+                                            class="button-wrapper scroll-slide-left"
+                                        >
+                                            <a
+                                                data-wf--button--variant="base"
+                                                data-w-id="240aeaf1-8b90-c9f8-b11f-bd4675861a39"
+                                                href="https://temlis.com"
+                                                class="button w-inline-block"
+                                                ><div class="button-content">
+                                                    <div
+                                                        class="button-text is-one"
+                                                    >
+                                                        Contact Us
+                                                    </div>
+                                                    <div
+                                                        class="button-text is-two"
+                                                    >
+                                                        Contact Us
+                                                    </div>
+                                                </div></a
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="spacer-custom"></div>
+                        <div
+                            data-w-id="2b203082-ec1c-8fc4-0bde-6a70773d55a1"
+                            class="loop"
+                        >
+                            <div
+                                data-wf--loop-group--variant="base"
+                                class="loop_track"
+                            >
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>James Thore</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                Small business owner
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                &quot;When a storm damaged our
+                                                roof, TotalHome Security had an
+                                                adjuster onsite within hours. We
+                                                got our full claim approved in 3
+                                                days—no fights, no delays. THIS
+                                                is how insurance should
+                                                work.&quot;
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05db1c1592737ab7e07_testi-2.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05db1c1592737ab7e07_testi-2-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05db1c1592737ab7e07_testi-2.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>Laura Méndez</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                Freelance designer
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                “The support team was incredibly
+                                                fast. I submitted my request at
+                                                night and got help first thing
+                                                in the morning. Super
+                                                professional and clear.”
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05e40aea4b9368f1459_testi-1.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05e40aea4b9368f1459_testi-1-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05e40aea4b9368f1459_testi-1.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>Camila Rojas</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                Legal consultant
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                “I’ve dealt with delays in the
+                                                past, but not this time.
+                                                Everything was approved in
+                                                hours. No forms, no stress, just
+                                                results. Loved that.”
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05de3447ed9c7fe6e28_testi.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05de3447ed9c7fe6e28_testi-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05de3447ed9c7fe6e28_testi.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>Daniela Pérez</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                E-commerce founder
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                “Quickest process I’ve ever
+                                                seen. From quote to approval it
+                                                felt seamless. It’s rare to find
+                                                a team that delivers exactly
+                                                what they promise.”
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05dac6fa9f95e17f58f_testi-3.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05dac6fa9f95e17f58f_testi-3-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05dac6fa9f95e17f58f_testi-3.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                            </div>
+                            <div
+                                data-wf--loop-group--variant="hide-tablet"
+                                class="loop_track w-variant-3c4ffb32-f547-3558-29b5-0de108c4049b"
+                            >
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>James Thore</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                Small business owner
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                &quot;When a storm damaged our
+                                                roof, TotalHome Security had an
+                                                adjuster onsite within hours. We
+                                                got our full claim approved in 3
+                                                days—no fights, no delays. THIS
+                                                is how insurance should
+                                                work.&quot;
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05db1c1592737ab7e07_testi-2.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05db1c1592737ab7e07_testi-2-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05db1c1592737ab7e07_testi-2.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>Laura Méndez</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                Freelance designer
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                “The support team was incredibly
+                                                fast. I submitted my request at
+                                                night and got help first thing
+                                                in the morning. Super
+                                                professional and clear.”
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05e40aea4b9368f1459_testi-1.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05e40aea4b9368f1459_testi-1-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05e40aea4b9368f1459_testi-1.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>Camila Rojas</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                Legal consultant
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                “I’ve dealt with delays in the
+                                                past, but not this time.
+                                                Everything was approved in
+                                                hours. No forms, no stress, just
+                                                results. Loved that.”
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05de3447ed9c7fe6e28_testi.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05de3447ed9c7fe6e28_testi-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05de3447ed9c7fe6e28_testi.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                                <div
+                                    data-w-id="1ab71850-5b58-4e8c-2c22-3d967592cb10"
+                                    class="loop_card"
+                                >
+                                    <div class="loop_card_content">
+                                        <div class="opacity-0"></div>
+                                        <div>
+                                            <div>Daniela Pérez</div>
+                                            <div class="spacer-xxsmall"></div>
+                                            <div class="text-sm">
+                                                E-commerce founder
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                        id="w-node-_1ab71850-5b58-4e8c-2c22-3d967592cb19-7592cb10"
+                                        class="loop_card_gradient"
+                                    ></div>
+                                    <div class="loop_card_hover">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e22c702090d266424c1a_quote.svg"
+                                            loading="lazy"
+                                            alt=""
+                                            class="icon-1x1-medium"
+                                        />
+                                        <div>
+                                            <div class="text-xl">
+                                                “Quickest process I’ve ever
+                                                seen. From quote to approval it
+                                                felt seamless. It’s rare to find
+                                                a team that delivers exactly
+                                                what they promise.”
+                                            </div>
+                                            <div class="spacer">
+                                                <div
+                                                    style="height: 4.5rem"
+                                                    class="spacer-desktop"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-tablet"
+                                                ></div>
+                                                <div
+                                                    style="height: 0rem"
+                                                    class="spacer-mobile"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05dac6fa9f95e17f58f_testi-3.webp"
+                                        loading="lazy"
+                                        id="w-node-_845de58e-1df7-1e85-bfcc-4c5505190414-7592cb10"
+                                        alt=""
+                                        sizes="(max-width: 800px) 100vw, 800px, 100vw"
+                                        srcset="
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05dac6fa9f95e17f58f_testi-3-p-500.webp 500w,
+                                            https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6852e05dac6fa9f95e17f58f_testi-3.webp       800w
+                                        "
+                                        class="img"
+                                    />
+                                </div>
+                            </div>
+                            <div class="w-embed">
+                                <style>
+                                    .loop_track {
+                                        animation: loop-scroll 20s linear
+                                            infinite;
+                                    }
+
+                                    @keyframes loop-scroll {
+                                        0% {
+                                            transform: translateX(0%);
+                                        }
+                                        100% {
+                                            transform: translateX(-50%);
+                                        }
+                                    }
+
+                                    /* Desactiva la animación en tablet y móviles */
+                                    @media screen and (max-width: 991px) {
+                                        .loop_track {
+                                            animation: none;
+                                            transform: none;
+                                        }
+                                    }
+                                </style>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section_trust">
+                    <div class="padding-global padding-section-medium">
+                        <div class="container-large">
+                            <div class="w-layout-grid grid-3gap">
+                                <div
+                                    data-w-id="db77a3fc-85cd-1cf5-6ef4-8b2e1d14e6cc"
+                                    class="statistic_img"
+                                >
+                                    <div class="img-wrapper">
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afb925a91cf40d2169da_img3.png"
+                                            loading="lazy"
+                                            sizes="(max-width: 1128px) 100vw, 1128px, 100vw"
+                                            srcset="
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afb925a91cf40d2169da_img3-p-500.png   500w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afb925a91cf40d2169da_img3-p-800.png   800w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afb925a91cf40d2169da_img3-p-1080.png 1080w,
+                                                https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6855afb925a91cf40d2169da_img3.png        1128w
+                                            "
+                                            alt=""
+                                            class="img"
+                                        />
+                                    </div>
+                                </div>
+                                <div
+                                    id="w-node-db77a3fc-85cd-1cf5-6ef4-8b2e1d14e6cf-1d14e6c8"
+                                    class="content"
+                                >
+                                    <div>
+                                        <div class="tag scroll-slide-left">
+                                            Trust
+                                        </div>
+                                        <div class="spacer-medium"></div>
+                                        <h2 class="scroll-slide-left">
+                                            Why choose us?
+                                        </h2>
+                                        <div class="spacer-medium"></div>
+                                        <div
+                                            class="text-color-secondary scroll-slide-left"
+                                        >
+                                            We prioritize your peace of mind
+                                            with reliable coverage options. Our
+                                            dedicated team is here to support
+                                            you every step of the way.
+                                        </div>
+                                    </div>
+                                    <div class="w-layout-grid list_grid">
+                                        <div
+                                            class="list_item scroll-slide-left"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="100%"
+                                                viewBox="0 0 28 28"
+                                                fill="none"
+                                                class="icon-1x1-large"
+                                            >
+                                                <path
+                                                    d="M12.3673 16.1007L9.85899 13.5923C9.6451 13.3784 9.37287 13.2715 9.04232 13.2715C8.71176 13.2715 8.43954 13.3784 8.22565 13.5923C8.01176 13.8062 7.90482 14.0784 7.90482 14.409C7.90482 14.7395 8.01176 15.0118 8.22565 15.2257L11.5507 18.5506C11.784 18.784 12.0562 18.9007 12.3673 18.9007C12.6784 18.9007 12.9507 18.784 13.184 18.5506L19.7757 11.959C19.9895 11.7451 20.0965 11.4729 20.0965 11.1423C20.0965 10.8118 19.9895 10.5395 19.7757 10.3257C19.5618 10.1118 19.2895 10.0048 18.959 10.0048C18.6284 10.0048 18.3562 10.1118 18.1423 10.3257L12.3673 16.1007ZM14.0007 25.6673C12.3868 25.6673 10.8701 25.3609 9.45065 24.748C8.03121 24.1351 6.79649 23.304 5.74649 22.2548C4.69649 21.2056 3.86543 19.9709 3.25332 18.5506C2.64121 17.1304 2.33476 15.6138 2.33399 14.0007C2.33321 12.3875 2.63965 10.8709 3.25332 9.45065C3.86699 8.03043 4.69804 6.79571 5.74649 5.74648C6.79493 4.69726 8.02965 3.86621 9.45065 3.25332C10.8717 2.64043 12.3883 2.33398 14.0007 2.33398C15.613 2.33398 17.1297 2.64043 18.5507 3.25332C19.9717 3.86621 21.2064 4.69726 22.2548 5.74648C23.3033 6.79571 24.1347 8.03043 24.7492 9.45065C25.3636 10.8709 25.6697 12.3875 25.6673 14.0007C25.665 15.6138 25.3585 17.1304 24.748 18.5506C24.1374 19.9709 23.3064 21.2056 22.2548 22.2548C21.2033 23.304 19.9685 24.1355 18.5507 24.7491C17.1328 25.3628 15.6161 25.6689 14.0007 25.6673Z"
+                                                    fill="#0A0A0A"
+                                                ></path>
+                                            </svg>
+                                            <div>
+                                                <div class="text-xl">
+                                                    Speed You Can Rely On
+                                                </div>
+                                                <div
+                                                    class="spacer-medium"
+                                                ></div>
+                                                <div
+                                                    class="text-color-secondary"
+                                                >
+                                                    From instant quotes to
+                                                    48-hour claims processing,
+                                                    we save you time (and
+                                                    stress).
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="list_item scroll-slide-left"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="100%"
+                                                viewBox="0 0 28 28"
+                                                fill="none"
+                                                class="icon-1x1-large"
+                                            >
+                                                <path
+                                                    d="M12.3673 16.1007L9.85899 13.5923C9.6451 13.3784 9.37287 13.2715 9.04232 13.2715C8.71176 13.2715 8.43954 13.3784 8.22565 13.5923C8.01176 13.8062 7.90482 14.0784 7.90482 14.409C7.90482 14.7395 8.01176 15.0118 8.22565 15.2257L11.5507 18.5506C11.784 18.784 12.0562 18.9007 12.3673 18.9007C12.6784 18.9007 12.9507 18.784 13.184 18.5506L19.7757 11.959C19.9895 11.7451 20.0965 11.4729 20.0965 11.1423C20.0965 10.8118 19.9895 10.5395 19.7757 10.3257C19.5618 10.1118 19.2895 10.0048 18.959 10.0048C18.6284 10.0048 18.3562 10.1118 18.1423 10.3257L12.3673 16.1007ZM14.0007 25.6673C12.3868 25.6673 10.8701 25.3609 9.45065 24.748C8.03121 24.1351 6.79649 23.304 5.74649 22.2548C4.69649 21.2056 3.86543 19.9709 3.25332 18.5506C2.64121 17.1304 2.33476 15.6138 2.33399 14.0007C2.33321 12.3875 2.63965 10.8709 3.25332 9.45065C3.86699 8.03043 4.69804 6.79571 5.74649 5.74648C6.79493 4.69726 8.02965 3.86621 9.45065 3.25332C10.8717 2.64043 12.3883 2.33398 14.0007 2.33398C15.613 2.33398 17.1297 2.64043 18.5507 3.25332C19.9717 3.86621 21.2064 4.69726 22.2548 5.74648C23.3033 6.79571 24.1347 8.03043 24.7492 9.45065C25.3636 10.8709 25.6697 12.3875 25.6673 14.0007C25.665 15.6138 25.3585 17.1304 24.748 18.5506C24.1374 19.9709 23.3064 21.2056 22.2548 22.2548C21.2033 23.304 19.9685 24.1355 18.5507 24.7491C17.1328 25.3628 15.6161 25.6689 14.0007 25.6673Z"
+                                                    fill="#0A0A0A"
+                                                ></path>
+                                            </svg>
+                                            <div>
+                                                <div class="text-xl">
+                                                    Personalized Coverage
+                                                </div>
+                                                <div
+                                                    class="spacer-medium"
+                                                ></div>
+                                                <div
+                                                    class="text-color-secondary"
+                                                >
+                                                    No two policies are alike—we
+                                                    tailor plans to fit your
+                                                    budget and needs, not the
+                                                    other way around.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section_solutions">
+                    <div class="padding-global padding-section-medium">
+                        <div class="container-large">
+                            <div class="w-layout-grid header_grid">
+                                <div class="tag scroll-slide-left">
+                                    Solutions
+                                </div>
+                                <div
+                                    id="w-node-abe0f8f4-16ec-5c5d-5725-2fb742e03652-63a64dea"
+                                >
+                                    <h2 class="h3 scroll-slide-left">
+                                        Experience Insurance Solutions
+                                        <br />Designed to Fit Your Unique Needs
+                                    </h2>
+                                    <div class="spacer-huge"></div>
+                                    <div
+                                        class="button-wrapper scroll-slide-left"
+                                    >
+                                        <a
+                                            data-wf--button--variant="base"
+                                            data-w-id="240aeaf1-8b90-c9f8-b11f-bd4675861a39"
+                                            href="https://temlis.com"
+                                            class="button w-inline-block"
+                                            ><div class="button-content">
+                                                <div class="button-text is-one">
+                                                    Contact Us
+                                                </div>
+                                                <div class="button-text is-two">
+                                                    Contact Us
+                                                </div>
+                                            </div></a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer">
+                                <div
+                                    style="height: 4rem"
+                                    class="spacer-desktop"
+                                ></div>
+                                <div
+                                    style="height: 3rem"
+                                    class="spacer-tablet"
+                                ></div>
+                                <div
+                                    style="height: 2rem"
+                                    class="spacer-mobile"
+                                ></div>
+                            </div>
+                            <div class="tabs_wrapper">
+                                <div
+                                    data-current="Tab 1"
+                                    data-easing="ease"
+                                    data-duration-in="300"
+                                    data-duration-out="100"
+                                    class="tabs w-tabs"
+                                >
+                                    <div
+                                        id="w-node-abe0f8f4-16ec-5c5d-5725-2fb742e0365e-63a64dea"
+                                        class="tabs_menu scroll-slide-left w-tab-menu"
+                                    >
+                                        <a
+                                            data-w-tab="Tab 1"
+                                            data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e0365f"
+                                            class="tabs_link w-inline-block w-tab-link w--current"
+                                            ><div class="point-wrap">
+                                                <div
+                                                    style="
+                                                        opacity: 0;
+                                                        background-color: rgb(
+                                                            191,
+                                                            191,
+                                                            191
+                                                        );
+                                                    "
+                                                    class="point"
+                                                ></div>
+                                            </div>
+                                            <div class="text-xl">
+                                                At-Home Care Plans
+                                            </div></a
+                                        ><a
+                                            data-w-tab="Tab 2"
+                                            data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e03664"
+                                            class="tabs_link w-inline-block w-tab-link"
+                                            ><div class="point-wrap">
+                                                <div
+                                                    style="
+                                                        opacity: 0;
+                                                        background-color: rgb(
+                                                            191,
+                                                            191,
+                                                            191
+                                                        );
+                                                    "
+                                                    class="point"
+                                                ></div>
+                                            </div>
+                                            <div class="text-xl">
+                                                Free Video Consultations
+                                            </div></a
+                                        ><a
+                                            data-w-tab="Tab 3"
+                                            data-w-id="abe0f8f4-16ec-5c5d-5725-2fb742e03669"
+                                            class="tabs_link w-inline-block w-tab-link"
+                                            ><div class="point-wrap">
+                                                <div
+                                                    style="
+                                                        opacity: 0;
+                                                        background-color: rgb(
+                                                            191,
+                                                            191,
+                                                            191
+                                                        );
+                                                    "
+                                                    class="point"
+                                                ></div>
+                                            </div>
+                                            <div class="text-xl">
+                                                Get Started with Your Insurance
+                                                Journey Today
+                                            </div></a
+                                        >
+                                    </div>
+                                    <div
+                                        id="w-node-abe0f8f4-16ec-5c5d-5725-2fb742e0366e-63a64dea"
+                                        class="tabs_content scroll-slide-left w-tab-content"
+                                    >
+                                        <div
+                                            data-w-tab="Tab 1"
+                                            class="tab_panel w-tab-pane w--tab-active"
+                                        >
+                                            <img
+                                                sizes="(max-width: 1552px) 100vw, 1552px, 100vw"
+                                                srcset="
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218bfa12139e15574146_tab_img-p-500.webp   500w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218bfa12139e15574146_tab_img-p-800.webp   800w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218bfa12139e15574146_tab_img-p-1080.webp 1080w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218bfa12139e15574146_tab_img.webp        1552w
+                                                "
+                                                alt=""
+                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218bfa12139e15574146_tab_img.webp"
+                                                loading="lazy"
+                                                class="img"
+                                            />
+                                        </div>
+                                        <div
+                                            data-w-tab="Tab 2"
+                                            class="tab_panel w-tab-pane"
+                                        >
+                                            <img
+                                                sizes="100vw"
+                                                srcset="
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218c19dc56529a6b16c4_tab_img-1-p-500.webp   500w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218c19dc56529a6b16c4_tab_img-1-p-800.webp   800w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218c19dc56529a6b16c4_tab_img-1-p-1080.webp 1080w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218c19dc56529a6b16c4_tab_img-1.webp        1552w
+                                                "
+                                                alt=""
+                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218c19dc56529a6b16c4_tab_img-1.webp"
+                                                loading="lazy"
+                                                class="img"
+                                            />
+                                        </div>
+                                        <div
+                                            data-w-tab="Tab 3"
+                                            class="tab_panel w-tab-pane"
+                                        >
+                                            <img
+                                                sizes="100vw"
+                                                srcset="
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218b0bd88081e6ca66ee_tab_img-2-p-500.webp   500w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218b0bd88081e6ca66ee_tab_img-2-p-800.webp   800w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218b0bd88081e6ca66ee_tab_img-2-p-1080.webp 1080w,
+                                                    https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218b0bd88081e6ca66ee_tab_img-2.webp        1552w
+                                                "
+                                                alt=""
+                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853218b0bd88081e6ca66ee_tab_img-2.webp"
+                                                loading="lazy"
+                                                class="img"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section_blog">
+                    <div class="padding-global padding-section-medium">
+                        <div class="container-large">
+                            <div class="w-layout-grid header_grid">
+                                <div class="tag scroll-slide-left">blog</div>
+                                <div
+                                    id="w-node-_7646cae1-a83c-f00d-fcef-1faa52eadab8-52eadab2"
+                                >
+                                    <h2 class="h3 scroll-slide-left">
+                                        Insurance insights and tips
+                                    </h2>
+                                    <div class="spacer-huge"></div>
+                                    <div
+                                        class="button-wrapper scroll-slide-left"
+                                    >
+                                        <a
+                                            data-wf--button--variant="base"
+                                            data-w-id="240aeaf1-8b90-c9f8-b11f-bd4675861a39"
+                                            href="/blog"
+                                            class="button w-inline-block"
+                                            ><div class="button-content">
+                                                <div class="button-text is-one">
+                                                    View all
+                                                </div>
+                                                <div class="button-text is-two">
+                                                    View all
+                                                </div>
+                                            </div></a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer">
+                                <div
+                                    style="height: 4rem"
+                                    class="spacer-desktop"
+                                ></div>
+                                <div
+                                    style="height: 3rem"
+                                    class="spacer-tablet"
+                                ></div>
+                                <div
+                                    style="height: 2rem"
+                                    class="spacer-mobile"
+                                ></div>
+                            </div>
+                            <div class="w-dyn-list">
+                                <div role="list" class="blog_list w-dyn-items">
+                                    <div
+                                        role="listitem"
+                                        class="blog_item scroll-slide-left w-dyn-item"
+                                    >
+                                        <a
+                                            data-w-id="7646cae1-a83c-f00d-fcef-1faa52eadac3"
+                                            href="/blog-posts/understanding-your-insurance-needs"
+                                            class="w-inline-block"
+                                            ><div class="thumbnail_img">
+                                                <div class="img-wrapper">
+                                                    <img
+                                                        loading="lazy"
+                                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532e127f5190c79a34232b_thumbn.webp"
+                                                        alt=""
+                                                        sizes="100vw"
+                                                        srcset="
+                                                            https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532e127f5190c79a34232b_thumbn-p-500.webp 500w,
+                                                            https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532e127f5190c79a34232b_thumbn.webp       752w
+                                                        "
+                                                        class="img"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="spacer-small"></div>
+                                            <div class="wrap-padding-small">
+                                                <div class="batch_list">
+                                                    <div class="batch">
+                                                        <div class="text-sm">
+                                                            Insurance
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="batch w-condition-invisible"
+                                                    >
+                                                        <div
+                                                            class="text-sm w-dyn-bind-empty"
+                                                        ></div>
+                                                    </div>
+                                                    <div
+                                                        class="batch w-condition-invisible"
+                                                    >
+                                                        <div
+                                                            class="text-sm w-dyn-bind-empty"
+                                                        ></div>
+                                                    </div>
+                                                </div>
+                                                <div class="spacer-small"></div>
+                                                <h3 class="text-xl">
+                                                    Understanding your insurance
+                                                    needs
+                                                </h3>
+                                                <div class="spacer-small"></div>
+                                                <div
+                                                    class="text-color-secondary"
+                                                >
+                                                    Explore how to choose the
+                                                    right coverage for you.
+                                                </div>
+                                                <div
+                                                    class="spacer-xlarge"
+                                                ></div>
+                                                <div class="align-auto">
+                                                    <div class="lean-more">
+                                                        <div>Learn more</div>
+                                                        <div
+                                                            class="line-more_line"
+                                                        ></div>
+                                                    </div>
+                                                </div></div
+                                        ></a>
+                                    </div>
+                                    <div
+                                        role="listitem"
+                                        class="blog_item scroll-slide-left w-dyn-item"
+                                    >
+                                        <a
+                                            data-w-id="7646cae1-a83c-f00d-fcef-1faa52eadac3"
+                                            href="/blog-posts/tips-for-homeowners-insurance"
+                                            class="w-inline-block"
+                                            ><div class="thumbnail_img">
+                                                <div class="img-wrapper">
+                                                    <img
+                                                        loading="lazy"
+                                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532dfc1d0d32298781c104_thumbn-1.webp"
+                                                        alt=""
+                                                        sizes="100vw"
+                                                        srcset="
+                                                            https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532dfc1d0d32298781c104_thumbn-1-p-500.webp 500w,
+                                                            https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532dfc1d0d32298781c104_thumbn-1.webp       752w
+                                                        "
+                                                        class="img"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="spacer-small"></div>
+                                            <div class="wrap-padding-small">
+                                                <div class="batch_list">
+                                                    <div class="batch">
+                                                        <div class="text-sm">
+                                                            Tips
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="batch w-condition-invisible"
+                                                    >
+                                                        <div
+                                                            class="text-sm w-dyn-bind-empty"
+                                                        ></div>
+                                                    </div>
+                                                    <div
+                                                        class="batch w-condition-invisible"
+                                                    >
+                                                        <div
+                                                            class="text-sm w-dyn-bind-empty"
+                                                        ></div>
+                                                    </div>
+                                                </div>
+                                                <div class="spacer-small"></div>
+                                                <h3 class="text-xl">
+                                                    Tips for homeowners
+                                                    insurance
+                                                </h3>
+                                                <div class="spacer-small"></div>
+                                                <div
+                                                    class="text-color-secondary"
+                                                >
+                                                    Essential tips to ensure
+                                                    your home is properly
+                                                    covered.
+                                                </div>
+                                                <div
+                                                    class="spacer-xlarge"
+                                                ></div>
+                                                <div class="align-auto">
+                                                    <div class="lean-more">
+                                                        <div>Learn more</div>
+                                                        <div
+                                                            class="line-more_line"
+                                                        ></div>
+                                                    </div>
+                                                </div></div
+                                        ></a>
+                                    </div>
+                                    <div
+                                        role="listitem"
+                                        class="blog_item scroll-slide-left w-dyn-item"
+                                    >
+                                        <a
+                                            data-w-id="7646cae1-a83c-f00d-fcef-1faa52eadac3"
+                                            href="/blog-posts/life-insurance-basics-explained"
+                                            class="w-inline-block"
+                                            ><div class="thumbnail_img">
+                                                <div class="img-wrapper">
+                                                    <img
+                                                        loading="lazy"
+                                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532de61f1fb04208a3f46e_thumbn-2.webp"
+                                                        alt=""
+                                                        sizes="100vw"
+                                                        srcset="
+                                                            https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532de61f1fb04208a3f46e_thumbn-2-p-500.webp 500w,
+                                                            https://cdn.prod.website-files.com/684f91df71b424da63a64e18/68532de61f1fb04208a3f46e_thumbn-2.webp       752w
+                                                        "
+                                                        class="img"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="spacer-small"></div>
+                                            <div class="wrap-padding-small">
+                                                <div class="batch_list">
+                                                    <div class="batch">
+                                                        <div class="text-sm">
+                                                            Corporate
+                                                        </div>
+                                                    </div>
+                                                    <div class="batch">
+                                                        <div class="text-sm">
+                                                            Finance
+                                                        </div>
+                                                    </div>
+                                                    <div class="batch">
+                                                        <div class="text-sm">
+                                                            Tax
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="spacer-small"></div>
+                                                <h3 class="text-xl">
+                                                    Life Insurance basics
+                                                    explained
+                                                </h3>
+                                                <div class="spacer-small"></div>
+                                                <div
+                                                    class="text-color-secondary"
+                                                >
+                                                    Explore how to choose the
+                                                    right coverage for you.
+                                                </div>
+                                                <div
+                                                    class="spacer-xlarge"
+                                                ></div>
+                                                <div class="align-auto">
+                                                    <div class="lean-more">
+                                                        <div>Learn more</div>
+                                                        <div
+                                                            class="line-more_line"
+                                                        ></div>
+                                                    </div>
+                                                </div></div
+                                        ></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section_cta">
+                    <div class="padding-global is-cta">
+                        <div class="container-large">
+                            <div class="cta_wrap scroll-slide-left">
+                                <div class="card bg-secondary">
+                                    <div>
+                                        <img
+                                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6853430377e44437f9168295_Union.svg"
+                                            loading="lazy"
+                                            alt=""
+                                        />
+                                        <div class="spacer-xlarge"></div>
+                                        <h2 class="h3">Get in Touch</h2>
+                                        <div class="spacer-xlarge"></div>
+                                        <div>
+                                            You can also use the feedback form
+                                            below to reach out to us directly
+                                            through our website.
+                                        </div>
+                                    </div>
+                                    <div class="spacer">
+                                        <div
+                                            style="height: 14.5rem"
+                                            class="spacer-desktop"
+                                        ></div>
+                                        <div
+                                            style="height: 3rem"
+                                            class="spacer-tablet"
+                                        ></div>
+                                        <div
+                                            style="height: 2rem"
+                                            class="spacer-mobile"
+                                        ></div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <a
+                                            data-wf--button--variant="base"
+                                            data-w-id="240aeaf1-8b90-c9f8-b11f-bd4675861a39"
+                                            href="https://temlis.com"
+                                            class="button w-inline-block"
+                                            ><div class="button-content">
+                                                <div class="button-text is-one">
+                                                    Contact Us
+                                                </div>
+                                                <div class="button-text is-two">
+                                                    Contact Us
+                                                </div>
+                                            </div></a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="section_footer">
+                    <div class="padding-section-small">
+                        <div class="padding-global">
+                            <div>
+                                <div class="w-layout-grid footer_grid">
+                                    <div class="footer_content">
+                                        <a
+                                            href="/"
+                                            class="home_logo-link scroll-slide-left w-nav-brand"
+                                            ><img
+                                                loading="lazy"
+                                                src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/685468e03fc698d37f1c3f54_logo-white.svg"
+                                                alt=""
+                                                class="home_logo"
+                                        /></a>
+                                        <div class="scroll-slide-left">
+                                            Innovative legal strategies paired
+                                            with outstanding service. Our legal
+                                            expertise and talent are tailored to
+                                            meet the evolving needs.
+                                        </div>
+                                    </div>
+                                    <div class="w-layout-grid links_grid">
+                                        <div>
+                                            <div
+                                                class="link no-link scroll-slide-left"
+                                            >
+                                                <div
+                                                    class="text-xl font-secondary"
+                                                >
+                                                    Pages
+                                                </div>
+                                            </div>
+                                            <a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/home/home-v1"
+                                                aria-current="page"
+                                                class="link scroll-slide-left w-inline-block w--current"
+                                                ><div class="clip">
+                                                    <div>Home V.1</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/home/home-v2"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Home V.2</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/home/home-v3"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Home V.3</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div
+                                            ></a>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="link no-link scroll-slide-left"
+                                            >
+                                                <div
+                                                    class="text-xl font-secondary"
+                                                >
+                                                    Pages
+                                                </div>
+                                            </div>
+                                            <a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/service/service-v1"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Services V.1</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/service/service-v2"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Services V.2</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/service/service-v3"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Services V.3</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div
+                                            ></a>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="link no-link scroll-slide-left"
+                                            >
+                                                <div
+                                                    class="text-xl font-secondary"
+                                                >
+                                                    Pages
+                                                </div>
+                                            </div>
+                                            <a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/get-a-quote"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Get a Quote</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/blog"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Blog</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/about"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>About</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div
+                                            ></a>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="link no-link scroll-slide-left"
+                                            >
+                                                <div
+                                                    class="text-xl font-secondary"
+                                                >
+                                                    Pages
+                                                </div>
+                                            </div>
+                                            <a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/contact/contact-v1"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Contact V.1</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/contact/contact-v2"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Contact V.2</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div></a
+                                            ><a
+                                                data-w-id="51a2a5b3-b8e1-e267-e051-8d54e57be1b1"
+                                                href="/contact/contact-v3"
+                                                class="link scroll-slide-left w-inline-block"
+                                                ><div class="clip">
+                                                    <div>Contact V.3</div>
+                                                    <div
+                                                        class="line"
+                                                    ></div></div
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="spacer-xhuge"></div>
+                                <div class="line_grey-700"></div>
+                                <div class="spacer-xhuge"></div>
+                                <div class="footer_medium">
+                                    <div class="text-sm scroll-slide-left">
+                                        Copyright © 2025
+                                    </div>
+                                    <div class="link_wrap">
+                                        <a
+                                            href="/template/style-guide"
+                                            class="text-link scroll-slide-left"
+                                            >Style Guide</a
+                                        ><a
+                                            href="/template/changelog"
+                                            class="text-link scroll-slide-left"
+                                            >Changelog</a
+                                        ><a
+                                            href="/template/licensing"
+                                            class="text-link scroll-slide-left"
+                                            >Licensing</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer-xhuge"></div>
+                            <div class="footer_logo">
+                                <img
+                                    src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/6854707a544216a06e4fc3fa_foooter-svg.svg"
+                                    loading="lazy"
+                                    alt=""
+                                    class="img"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div>
+                <div
+                    data-wf--new-base--temlis-new--variant="dark"
+                    class="new-base--t-temlis-component"
+                >
+                    <div class="new-base--t-card">
+                        <div class="new-base--t-top">
+                            <a
+                                href="https://www.temlis.com/?utm_source=organic&amp;utm_medium=widgetspreview"
+                                target="_blank"
+                                class="w-inline-block"
+                                ><img
+                                    src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296fd_25e308780be95a8d912855f417b3fa3b_tesmlis.logo.svg"
+                                    loading="lazy"
+                                    alt=""
+                                    class="new-base--t-temlis" /><img
+                                    src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68ed2b1db2692857d790c741_02e3c08c87d7ebc3b8fe0819c48fab4c_temlis.blue.svg"
+                                    loading="lazy"
+                                    alt=""
+                                    class="new-base--t-temlis-lite"
+                            /></a>
+                            <div class="new-base--t-text-secondary">
+                                130+ Premium Templates
+                            </div>
+                        </div>
+                        <div class="new-base--t-buttons">
+                            <a
+                                href="https://www.skool.com/temlis/about"
+                                target="_blank"
+                                class="new-base--t-button-secondary w-button"
+                                >Join our AI community</a
+                            ><a
+                                href="https://www.temlis.com/?utm_source=organic&amp;utm_medium=widgetspreview"
+                                target="_blank"
+                                class="new-base--t-button w-inline-block"
+                                ><div>See all templates</div>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="100%"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    class="new-base--t-icon"
+                                >
+                                    <g clip-path="url(#clip0_3129_1165)">
+                                        <path
+                                            d="M4.07408 15.237L5.45926 16.6222L13.7704 8.31111L15.1556 9.69629L16.5407 8.31111L15.1556 6.92592L16.5407 5.54074L15.1556 4.15555L13.7704 5.54074L12.3852 4.15555L11 5.54074L12.3852 6.92592L4.07408 15.237ZM8.22963 5.54074L9.61482 4.15555L11 5.54074L9.61482 6.92592L8.22963 5.54074ZM8.22963 5.54074L6.84445 6.92592L5.45926 5.54074L6.84445 4.15555L8.22963 5.54074ZM15.1556 12.4667L16.5407 11.0815L15.1556 9.69629L13.7704 11.0815L15.1556 12.4667ZM15.1556 12.4667L13.7704 13.8518L15.1556 15.237L16.5407 13.8518L15.1556 12.4667Z"
+                                            fill="currentColor"
+                                        ></path>
+                                    </g></svg
+                            ></a>
+                        </div>
+                        <div class="new-base--t-bottom">
+                            <div class="new-base--t-profiles">
+                                <div class="new-base--t-profile2">
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296fb_d504a199c78b368c3763ed601e1530f4_Frame%202147227211.avif"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--img"
+                                    />
+                                </div>
+                                <div class="new-base--t-profile2">
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296f9_076ac9e1ed19f523a0a79fc50fd27872_Frame%202147227211-1.avif"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--img"
+                                    />
+                                </div>
+                                <div class="new-base--t-profile">
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296f7_ab860bd3f6bb78a8176a67434c1108a3_Frame%202147227212.avif"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--img"
+                                    />
+                                </div>
+                            </div>
+                            <div class="new-base--t-right">
+                                <div class="new-base--t-stars">
+                                    <img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296f6_00e35344e242e2e019735ce395eeb332_star.svg"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--t-star"
+                                    /><img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296f6_00e35344e242e2e019735ce395eeb332_star.svg"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--t-star"
+                                    /><img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296f6_00e35344e242e2e019735ce395eeb332_star.svg"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--t-star"
+                                    /><img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296f6_00e35344e242e2e019735ce395eeb332_star.svg"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--t-star"
+                                    /><img
+                                        src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68e977f254e6002385d296f6_00e35344e242e2e019735ce395eeb332_star.svg"
+                                        loading="lazy"
+                                        alt=""
+                                        class="new-base--t-star"
+                                    />
+                                </div>
+                                <div class="new-base--t-text-secondary">
+                                    1,540+ happy designers
+                                </div>
+                            </div>
+                        </div>
+                        <img
+                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68ed2b1db2692857d790c740_5a941be7b7e6881c416e138615565c77_widget.svg"
+                            loading="lazy"
+                            alt=""
+                            class="new-base--t-img"
+                        /><img
+                            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/68ed2b1db2692857d790c742_dcfe660bb97dd3615bc55109d32a62ab_widget-1.svg"
+                            loading="lazy"
+                            alt=""
+                            class="new-base--t-img-lite"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=684f91df71b424da63a64df2"
+            type="text/javascript"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/js/webflow.schunk.36b8fb49256177c8.js"
+            type="text/javascript"
+            integrity="sha384-4abIlA5/v7XaW1HMXKBgnUuhnjBYJ/Z9C1OSg4OhmVw9O3QeHJ/qJqFBERCDPv7G"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/js/webflow.schunk.c420de7292bd144f.js"
+            type="text/javascript"
+            integrity="sha384-0xbWWHHaU/LjJptskoOfV9gc1uTGjluRSEtZw84+rmPi/4MNUF/3LbWkQvPezQsY"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.prod.website-files.com/684f91df71b424da63a64df2/js/webflow.6c3c1598.fd0020846f95ba5b.js"
+            type="text/javascript"
+            integrity="sha384-xDtKaOf5LFLyOj1snmxKxSKshYGnFD3UuYOfdai3Zu512mdHoAhFyTnl7d/Y2FV5"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
