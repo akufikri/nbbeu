@@ -9,6 +9,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use App\Models\Post;
 
 class PostsTable
 {
@@ -24,6 +25,9 @@ class PostsTable
                     ->weight('medium'),
                 TextColumn::make('author.name')
                     ->searchable(),
+                TextColumn::make('category')
+                    ->badge()
+                    ->formatStateUsing(fn (?string $state) => $state ? Post::CATEGORIES[$state] ?? $state : '-'),
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => $state === 'published' ? 'success' : 'gray'),
@@ -39,6 +43,9 @@ class PostsTable
                         'draft' => 'Draft',
                         'published' => 'Published',
                     ]),
+                SelectFilter::make('category')
+                    ->placeholder('All categories')
+                    ->options(Post::CATEGORIES),
             ])
             ->recordActions([
                 EditAction::make(),

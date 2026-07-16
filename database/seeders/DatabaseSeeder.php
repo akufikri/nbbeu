@@ -70,18 +70,21 @@ class DatabaseSeeder extends Seeder
             [
                 'title' => 'NBBEU Officially Launches to Unite Banking Executives',
                 'cover_image' => 'posts/post-1.png',
+                'category' => 'symposium',
                 'excerpt' => 'North Borneo Banking Executive Union opens its doors to banking leaders across the region, marking a new chapter in industry collaboration.',
                 'content' => '<p>North Borneo Banking Executive Union (NBBEU) has officially launched, bringing together banking executives from across North Borneo under one professional community.</p><p>The union aims to foster collaboration, share industry insight, and advocate for stronger banking standards throughout the region.</p>',
             ],
             [
                 'title' => 'Why Professional Networks Matter in Banking',
                 'cover_image' => 'posts/post-2.png',
+                'category' => 'reports',
                 'excerpt' => 'A strong professional network helps banking executives navigate industry changes, share best practices, and build lasting partnerships.',
                 'content' => '<p>In an industry as fast-moving as banking, having a trusted network of peers can make all the difference.</p><p>NBBEU members gain access to exclusive events, knowledge sharing sessions, and a community built on mutual growth.</p>',
             ],
             [
                 'title' => 'Member Certification: What It Means for Your Career',
                 'cover_image' => 'posts/post-3.png',
+                'category' => 'certification',
                 'excerpt' => 'An official NBBEU member card and certificate is more than recognition — it is a mark of credibility within the banking profession.',
                 'content' => '<p>Upon approval, every NBBEU member receives an official member card and certificate, verifiable through a public QR code.</p><p>This recognition signals your standing as a trusted banking professional in North Borneo.</p>',
             ],
@@ -93,8 +96,10 @@ class DatabaseSeeder extends Seeder
                 'title' => $post['title'],
                 'slug' => \Illuminate\Support\Str::slug($post['title']),
                 'excerpt' => $post['excerpt'],
+                'category' => $post['category'],
                 'content' => $post['content'],
                 'cover_image' => $post['cover_image'],
+                'hero_image' => $post['cover_image'],
                 'status' => 'published',
                 'published_at' => now()->subDays($index * 3),
             ]);

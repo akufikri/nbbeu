@@ -1,0 +1,48 @@
+/* Hallmark · tokens · genre: editorial · macrostructure: Stat-Led
+ * theme: brand-locked (source: existing NBBEU palette, converted to OKLCH)
+ * paper-band: light · display-style: roman-serif · accent-hue: cool (~207°)
+ */
+:root {
+  /* paper / ink */
+  --color-paper:        oklch(97.6% 0.003 264.5);  /* was nb-canvas-cool, used as tinted paper (gate 7) */
+  --color-paper-raised:  oklch(100% 0 0);           /* was nb-canvas, reserved for raised surfaces only */
+  --color-paper-final:  oklch(93.9% 0.006 255.5);  /* was nb-canvas-final */
+  --color-ink:           oklch(28.2% 0.019 254.8);  /* was nb-body */
+  --color-ink-muted:     oklch(55.1% 0.023 264.4);  /* was nb-muted */
+  --color-rule:          oklch(89.3% 0.011 261.8);  /* was nb-hairline */
+  --color-rule-inverse:  oklch(100% 0 0 / 0.15);    /* hairline on dark (navy/teal) surfaces */
+
+  /* brand */
+  --color-primary:        oklch(31.5% 0.085 260.2); /* was nb-primary */
+  --color-primary-active: oklch(26.3% 0.068 259.1); /* was nb-primary-active */
+  --color-accent:         oklch(69.0% 0.115 206.7); /* was nb-accent */
+  --color-navy:           oklch(23.4% 0.061 259.5); /* was sig-navy */
+  --color-teal:           oklch(41.4% 0.067 210.9); /* was sig-teal */
+  --color-cream:          oklch(94.3% 0.025 83.4);  /* was sig-cream */
+  --color-focus:          var(--color-accent);
+
+  /* type */
+  --font-display: "Spectral", serif;
+  --font-body:    "IBM Plex Sans", sans-serif;
+  --font-mono:    "IBM Plex Mono", monospace;
+
+  /* space — 4pt scale */
+  --space-3xs: 0.25rem;  --space-2xs: 0.5rem;  --space-xs: 0.75rem;
+  --space-sm:  1rem;     --space-md:  1.5rem;  --space-lg: 2rem;
+  --space-xl:  3rem;     --space-2xl: 4.5rem;  --space-3xl: 7rem;
+
+  /* type scale */
+  --text-display: clamp(2.25rem, 2vw + 1.75rem, 3.5rem);
+  --text-2xl:     2rem;
+  --text-xl:      1.5rem;
+  --text-lg:      1.125rem;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-short: 220ms;
+  --dur-med:   500ms;
+
+  /* radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}

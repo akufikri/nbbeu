@@ -10,9 +10,14 @@ use App\Http\Controllers\Membership\ToyyibpayWebhookController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\OrgStructureController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/org-structure', [OrgStructureController::class, 'index'])->name('org-structure');
+Route::view('/terms', 'public.terms')->name('terms');
+Route::view('/privacy', 'public.privacy')->name('privacy');
 
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');

@@ -1,48 +1,51 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" placeholder="name@email.com" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<x-site-layout
+    title="Member Login — NBBEU"
+    description="Access the membership portal to manage your profile, certifications, and exclusive NBBEU publications."
+    :hide-nav="true"
+>
+    <section class="page-header">
+        <div class="max-w-7xl mx-auto px-6">
+            <a href="{{ route('home') }}" class="page-header__crumb">← Back to Home</a>
+            <h1>Member Login</h1>
+            <p>Access the membership portal to manage your profile, certifications, and exclusive NBBEU publications.</p>
         </div>
+    </section>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <section class="py-16">
+        <x-auth-session-status class="max-w-7xl mx-auto px-6 mb-6" :status="session('status')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            required autocomplete="current-password" />
+        <form class="form mx-auto" method="POST" action="{{ route('login') }}">
+            @csrf
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <div class="field @if ($errors->get('email')) field--error @endif">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" autocomplete="username" placeholder="name@institution.co.id" required autofocus>
+                @if ($errors->get('email'))
+                    <span class="field__msg">{{ $errors->first('email') }}</span>
+                @endif
+            </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            <div class="field @if ($errors->get('password')) field--error @endif">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" required aria-describedby="password-msg">
+                @if ($errors->get('password'))
+                    <span class="field__msg" id="password-msg">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+
+            <label for="remember_me" class="flex items-center gap-2 mb-6 font-sans text-sm text-nb-ink-muted">
+                <input id="remember_me" type="checkbox" name="remember">
+                <span>Remember me</span>
             </label>
-        </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+            <button type="submit" class="btn-submit">Sign In</button>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+            <p class="form-aside">
+                Not a member yet? <a href="{{ route('home') }}#benefits">Apply for membership</a>.
+                @if (Route::has('password.request'))
+                    Forgot your password? <a href="{{ route('password.request') }}">Reset here</a>.
+                @endif
+            </p>
+        </form>
+    </section>
+</x-site-layout>

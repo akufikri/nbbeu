@@ -6,9 +6,17 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['author_id', 'title', 'slug', 'excerpt', 'content', 'cover_image', 'status', 'published_at'])]
+#[Fillable(['author_id', 'title', 'slug', 'excerpt', 'category', 'content', 'cover_image', 'hero_image', 'status', 'published_at'])]
 class Post extends Model
 {
+    public const CATEGORIES = [
+        'regulation' => 'Regulation',
+        'cybersecurity' => 'Cybersecurity',
+        'symposium' => 'Symposium',
+        'certification' => 'Certification',
+        'reports' => 'Reports',
+    ];
+
     protected function casts(): array
     {
         return [
