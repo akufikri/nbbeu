@@ -1,0 +1,40 @@
+name: Deploy Development / Staging
+
+on:
+  push:
+    branches: [develop, staging]
+
+jobs:
+  ftp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          tools: composer:v2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: composer install --no-dev --optimize-autoloader
+      - run: npm ci --ignore-scripts && npm run build
+
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT || 21 }}
+          exclude: |
+            .git/**
+            .gitignore
+            .env*
+            node_modules/**
+            tests/**
+            docs/**
+            storage/logs/**
+            storage/pail/**
