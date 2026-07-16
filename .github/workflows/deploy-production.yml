@@ -10,17 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          tools: composer:v2
-
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - run: composer install --no-dev --optimize-autoloader
       - run: npm ci --ignore-scripts && npm run build
 
       - uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -34,6 +28,7 @@ jobs:
             .gitignore
             .env*
             node_modules/**
+            vendor/**
             tests/**
             docs/**
             storage/logs/**
