@@ -23,6 +23,7 @@ jobs:
           username: ${{ secrets.FTP_PROD_USERNAME }}
           password: ${{ secrets.FTP_PROD_PASSWORD }}
           port: ${{ secrets.FTP_PROD_PORT || 21 }}
+          protocol: ftps
           exclude: |
             .git/**
             .gitignore
