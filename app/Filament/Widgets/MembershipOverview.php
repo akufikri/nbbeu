@@ -15,6 +15,10 @@ class MembershipOverview extends StatsOverviewWidget
     protected function getStats(): array
     {
         $revenue = Payment::where('status', 'paid')->sum('amount');
+        $revenueThisMonth = Payment::where('status', 'paid')
+            ->whereBetween('paid_at', [now()->startOfMonth(), now()->endOfMonth()])
+            ->sum('amount');
+        $newRegistrantsThisMonth = User::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->count();
 
         return [
             Stat::make('Approved Members', User::where('status', 'approved')->count())
@@ -29,6 +33,12 @@ class MembershipOverview extends StatsOverviewWidget
             Stat::make('Total Revenue', 'RM '.number_format($revenue, 2))
                 ->icon(Heroicon::OutlinedBanknotes)
                 ->color('gray'),
+            Stat::make('Revenue This Month', 'RM '.number_format($revenueThisMonth, 2))
+                ->icon(Heroicon::OutlinedBanknotes)
+                ->color('success'),
+            Stat::make('New Registrants This Month', $newRegistrantsThisMonth)
+                ->icon(Heroicon::OutlinedUserPlus)
+                ->color('info'),
             Stat::make('Expired Renewal', User::where('status', 'approved')
                 ->whereDate('renewal_expires_at', '<', now())
                 ->count())

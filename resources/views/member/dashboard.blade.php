@@ -11,9 +11,28 @@
                 <h3 class="font-medium text-gray-900">Membership Status</h3>
 
                 @if ($user->status === 'pending')
-                    <p class="mt-2 text-sm text-amber-700 bg-amber-50 rounded-md p-3">
+                    @php
+                        $paymentDone = $latestPayment && $latestPayment->status === 'paid';
+                    @endphp
+                    <div class="mt-4 flex items-center">
+                        <div class="flex flex-col items-center">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white bg-nbbeu-navy">1</div>
+                            <span class="mt-1 text-xs text-gray-600">Submitted</span>
+                        </div>
+                        <div class="flex-1 h-0.5 mx-2 {{ $paymentDone ? 'bg-nbbeu-navy' : 'bg-gray-200' }}"></div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold {{ $paymentDone ? 'text-white bg-nbbeu-navy' : 'text-gray-500 bg-gray-200' }}">2</div>
+                            <span class="mt-1 text-xs text-gray-600">Payment</span>
+                        </div>
+                        <div class="flex-1 h-0.5 mx-2 bg-gray-200"></div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-gray-500 bg-gray-200">3</div>
+                            <span class="mt-1 text-xs text-gray-600">Admin Review</span>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-sm text-amber-700 bg-amber-50 rounded-md p-3">
                         Your application is still awaiting admin review.
-                        @if ($latestPayment && $latestPayment->status !== 'paid')
+                        @if (! $paymentDone)
                             Payment is also not yet complete —
                             <a href="{{ route('registration.status', ['email' => $user->email]) }}" class="underline">check status</a>.
                         @endif
@@ -50,7 +69,11 @@
                     @if ($renewalDue)
                         <div class="mt-4 text-sm bg-amber-50 rounded-md p-3">
                             <p class="text-amber-700">
-                                Your membership will expire / has expired on {{ $user->renewal_expires_at?->format('d M Y') }}.
+                                @if ($daysUntilExpiry > 0)
+                                    Your membership expires in {{ $daysUntilExpiry }} days ({{ $user->renewal_expires_at?->format('d M Y') }}).
+                                @else
+                                    Your membership expired {{ abs($daysUntilExpiry) }} days ago ({{ $user->renewal_expires_at?->format('d M Y') }}).
+                                @endif
                             </p>
                             <form method="POST" action="{{ route('member.renewal') }}" class="mt-2">
                                 @csrf

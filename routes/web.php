@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
 use App\Http\Controllers\Member\DocumentController;
+use App\Http\Controllers\Member\PaymentHistoryController;
 use App\Http\Controllers\Member\RenewalController;
 use App\Http\Controllers\Membership\CardVerificationController;
 use App\Http\Controllers\Membership\RegistrationController;
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/payments', [PaymentHistoryController::class, 'index'])->name('member.payments');
 
     Route::prefix('member')->name('member.')->group(function () {
         Route::get('/documents/card', [DocumentController::class, 'card'])->name('documents.card');

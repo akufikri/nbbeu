@@ -10,6 +10,7 @@ use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -167,6 +168,7 @@ class UsersTable
                             ->danger()
                             ->send();
                     }),
+                ViewAction::make(),
                 EditAction::make(),
             ])
             ->toolbarActions([

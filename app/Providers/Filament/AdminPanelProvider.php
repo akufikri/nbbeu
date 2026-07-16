@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Widgets\ExpiringMembersWidget;
 use App\Filament\Widgets\MembershipOverview;
 use App\Filament\Widgets\MembershipStatusChart;
 use App\Filament\Widgets\MembersTrendChart;
@@ -47,6 +48,7 @@ class AdminPanelProvider extends PanelProvider
                 MembershipOverview::class,
                 MembersTrendChart::class,
                 MembershipStatusChart::class,
+                ExpiringMembersWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
