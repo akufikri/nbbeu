@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Member;
 
+use App\Actions\Membership\RenderMemberCardImage;
 use App\Http\Controllers\Controller;
 use Endroid\QrCode\Builder\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use ZipArchive;
 
 class DocumentController extends Controller
 {
@@ -24,6 +27,8 @@ class DocumentController extends Controller
             'user' => $user,
             'memberCard' => $memberCard,
             'qrDataUri' => $qrDataUri,
+            'photoUrl' => $user->photo ? Storage::disk('cloudinary')->url($user->photo) : null,
+            'location' => $user->memberProfile?->residential_address ?? '-',
         ]);
     }
 
@@ -35,13 +40,23 @@ class DocumentController extends Controller
         ]);
     }
 
-    public function card(Request $request): StreamedResponse
+    public function card(Request $request, RenderMemberCardImage $renderMemberCardImage): Response
     {
-        $memberCard = $request->user()->memberCards()->latest('id')->firstOrFail();
+        $user = $request->user();
+        $memberCard = $user->memberCards()->latest('id')->firstOrFail();
 
-        abort_unless(Storage::exists($memberCard->file_path), 404);
+        $frontPng = $renderMemberCardImage($user, $memberCard);
+        $backPng = file_get_contents(public_path('assets/illustrations/back-kad-ahli.png'));
 
-        return Storage::download($memberCard->file_path, "Member-Card-{$request->user()->member_no}.pdf");
+        $tmpPath = tempnam(sys_get_temp_dir(), 'nbbeu-card-').'.zip';
+
+        $zip = new ZipArchive();
+        $zip->open($tmpPath, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $zip->addFromString('Member-Card-Front.png', $frontPng);
+        $zip->addFromString('Member-Card-Back.png', $backPng);
+        $zip->close();
+
+        return response()->download($tmpPath, "Member-Card-{$user->member_no}.zip")->deleteFileAfterSend();
     }
 
     public function certificate(Request $request): StreamedResponse

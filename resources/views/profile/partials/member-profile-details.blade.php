@@ -34,5 +34,9 @@
             <dt class="text-gray-500">{{ __('Bank') }}</dt>
             <dd class="font-medium text-gray-900">{{ $user->memberProfile->bank_name ?? '-' }}</dd>
         </div>
+        <div class="sm:col-span-2">
+            <dt class="text-gray-500">{{ __('Residential Address') }}</dt>
+            <dd class="font-medium text-gray-900">{{ $user->memberProfile->residential_address ?? '-' }}</dd>
+        </div>
     </dl>
 </section>

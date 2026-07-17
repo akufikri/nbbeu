@@ -26,7 +26,15 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated())->save();
+        $data = $request->validated();
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('members', 'cloudinary');
+        } else {
+            unset($data['photo']);
+        }
+
+        $request->user()->fill($data)->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('You may update your name and phone number. Email and other details from your registration are locked — contact the secretariat to change them.') }}
+            {{ __('You may update your name, phone number, and profile photo (used on your member card). Email and other details from your registration are locked — contact the secretariat to change them.') }}
         </p>
     </header>
 
@@ -34,9 +34,19 @@
         @endif
     </div>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
+        <div>
+            <x-input-label for="photo" :value="__('Profile Photo')" />
+            @if ($user->photo)
+                <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($user->photo) }}" alt="" class="mt-2 w-20 h-20 rounded-full object-cover">
+            @endif
+            <input id="photo" name="photo" type="file" accept="image/*" class="mt-2 block w-full text-sm text-gray-600" />
+            <p class="mt-1 text-xs text-gray-500">Used on your member card. JPG/PNG, max 2MB.</p>
+            <x-input-error class="mt-2" :messages="$errors->get('photo')" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />

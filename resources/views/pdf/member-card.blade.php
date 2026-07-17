@@ -4,73 +4,62 @@
     <meta charset="utf-8">
     <style>
         @page { margin: 0; }
-        body {
-            margin: 0;
-            font-family: 'DejaVu Sans', sans-serif;
-            width: 340px;
-            height: 214px;
-        }
-        .card {
-            width: 340px;
-            height: 214px;
-            background-color: #16305C;
-            background-image: linear-gradient(135deg, #16305C 0%, #0B1D3A 100%);
-            color: #F6F7F9;
-            padding: 18px 20px;
-            box-sizing: border-box;
-        }
-        .org {
-            font-size: 9px;
-            letter-spacing: 1px;
-            color: #B08D3D;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-        .title {
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 2px;
-        }
-        .name {
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 22px;
-        }
-        .company {
-            font-size: 10px;
-            color: #C9D2E0;
-            margin-top: 2px;
-        }
-        .meta {
-            margin-top: 16px;
-            font-size: 9px;
-            color: #C9D2E0;
-        }
-        .meta strong {
-            color: #F6F7F9;
-            font-family: 'DejaVu Sans Mono', monospace;
-        }
-        .qr {
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: 'DejaVu Sans', sans-serif; }
+        .card { position: relative; width: 340px; height: 214px; overflow: hidden; page-break-after: always; }
+        .card:last-child { page-break-after: avoid; }
+        .card-bg { position: absolute; top: 0; left: 0; width: 340px; height: 214px; }
+
+        .photo-box {
             position: absolute;
-            top: 18px;
-            right: 20px;
+            left: 234.6px; top: 36px; width: 68.7px; height: 75.8px;
+            overflow: hidden;
         }
+        .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        .field {
+            position: absolute;
+            left: 55.8px; width: 108.8px;
+            font-size: 8.5px;
+            color: #16305C;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .field-name { top: 40.6px; }
+        .field-phone { top: 67.5px; }
+        .field-email { top: 95.2px; }
+        .field-location { top: 123.8px; }
+
+        .qr-box {
+            position: absolute;
+            left: 246.5px; top: 116.6px; width: 40.8px; height: 40.8px;
+        }
+        .qr-box img { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
     <div class="card">
-        <div class="org">North Borneo Banking Executive Union</div>
-        <div class="title">Member Card</div>
+        <img class="card-bg" src="{{ public_path('assets/illustrations/front-kad-ahli.png') }}">
 
-        <img class="qr" src="{{ $qrDataUri }}" width="60" height="60">
-
-        <div class="name">{{ $user->name }}</div>
-        <div class="company">{{ $user->company }}</div>
-
-        <div class="meta">
-            Member No.: <strong>{{ $user->member_no }}</strong><br>
-            Valid Until: <strong>{{ $memberCard->expires_at->format('d M Y') }}</strong>
+        <div class="photo-box">
+            @if ($photoUrl)
+                <img src="{{ $photoUrl }}">
+            @endif
         </div>
+
+        <div class="field field-name">{{ $user->name }}</div>
+        <div class="field field-phone">{{ $user->phone }}</div>
+        <div class="field field-email">{{ $user->email }}</div>
+        <div class="field field-location">{{ $location }}</div>
+
+        <div class="qr-box">
+            <img src="{{ $qrDataUri }}">
+        </div>
+    </div>
+
+    <div class="card">
+        <img class="card-bg" src="{{ public_path('assets/illustrations/back-kad-ahli.png') }}">
     </div>
 </body>
 </html>
