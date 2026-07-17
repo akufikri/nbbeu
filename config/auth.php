@@ -42,6 +42,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // Separate from 'web' so an admin panel session never authenticates
+        // the member-facing site (and vice versa) — same session cookie,
+        // independent auth state per guard.
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
     ],
 
     /*

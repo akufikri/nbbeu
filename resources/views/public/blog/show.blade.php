@@ -13,7 +13,7 @@
 
             @if ($post->hero_image || $post->cover_image)
                 <div class="article-hero-image mt-8">
-                    <img src="{{ \Illuminate\Support\Facades\Storage::url($post->hero_image ?? $post->cover_image) }}" alt="{{ $post->title }}">
+                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->hero_image ?? $post->cover_image) }}" alt="{{ $post->title }}">
                 </div>
             @endif
 

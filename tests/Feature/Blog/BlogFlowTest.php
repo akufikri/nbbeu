@@ -78,7 +78,7 @@ class BlogFlowTest extends TestCase
     {
         $admin = User::factory()->create();
         $admin->assignRole('admin');
-        $this->actingAs($admin);
+        $this->actingAs($admin, 'admin');
 
         Livewire::test(CreatePost::class)
             ->fillForm([

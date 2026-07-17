@@ -12,7 +12,7 @@
             <article class="index-list__row">
                 <div class="index-list__thumb">
                     @if ($post->cover_image)
-                        <img src="{{ \Illuminate\Support\Facades\Storage::url($post->cover_image) }}" alt="{{ $post->title }}">
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->cover_image) }}" alt="{{ $post->title }}">
                     @else
                         Photo 16:10
                     @endif

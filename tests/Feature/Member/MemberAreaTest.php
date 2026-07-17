@@ -33,6 +33,7 @@ class MemberAreaTest extends TestCase
             'member_no' => 'NBBEU-2026-0001',
             'renewal_expires_at' => now()->addMonths(6),
         ]);
+        $user->assignRole('member');
         MemberCard::create([
             'user_id' => $user->id,
             'card_number' => $user->member_no,
@@ -47,6 +48,11 @@ class MemberAreaTest extends TestCase
 
         $response->assertOk()
             ->assertSee('NBBEU-2026-0001')
+            ->assertSee(route('member.card'));
+
+        // The dedicated card page shows the QR preview + PDF download link.
+        $this->actingAs($user)->get(route('member.card'))
+            ->assertOk()
             ->assertSee(route('member.documents.card'));
     }
 
@@ -55,6 +61,7 @@ class MemberAreaTest extends TestCase
         Storage::fake('local');
 
         $user = User::factory()->create(['status' => 'approved']);
+        $user->assignRole('member');
         MemberCard::create([
             'user_id' => $user->id,
             'card_number' => 'X',
@@ -70,6 +77,7 @@ class MemberAreaTest extends TestCase
             ->assertOk();
 
         $userWithoutCard = User::factory()->create(['status' => 'approved']);
+        $userWithoutCard->assignRole('member');
 
         $this->actingAs($userWithoutCard)
             ->get(route('member.documents.card'))
@@ -82,6 +90,7 @@ class MemberAreaTest extends TestCase
             'status' => 'approved',
             'renewal_expires_at' => now()->addDays(5),
         ]);
+        $user->assignRole('member');
 
         Http::fake([
             '*/index.php/api/createBill' => Http::response([['BillCode' => 'RENEW001']]),

@@ -2,15 +2,15 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class ProfileUpdateRequest extends FormRequest
 {
     /**
-     * Get the validation rules that apply to the request.
+     * Members may only update their name and phone number — email/company
+     * and the legal member_profiles fields (IC, address, employer, etc.)
+     * are locked after registration per FEATURES.md §11.
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
@@ -18,16 +18,7 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
             'phone' => ['required', 'string', 'max:20'],
-            'company' => ['required', 'string', 'max:255'],
         ];
     }
 }

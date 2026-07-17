@@ -70,6 +70,17 @@ h1, h2, h3, h4 {
 
 .masthead-wordmark-row { text-align: center; padding-bottom: var(--space-md); }
 
+.masthead-wordmark-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.masthead-logo {
+  height: clamp(3rem, 4vw + 1.5rem, 4.5rem);
+  width: auto;
+}
+
 .masthead-wordmark {
   font-family: var(--font-display);
   font-weight: 600;
@@ -94,6 +105,13 @@ h1, h2, h3, h4 {
 }
 
 .masthead-links { display: flex; align-items: center; gap: var(--space-lg); }
+
+.masthead-compact-logo-link {
+  display: none;
+  align-items: center;
+}
+.masthead-compact-logo { height: 2rem; width: auto; }
+.masthead.is-compact .masthead-compact-logo-link { display: flex; }
 
 .masthead-links a,
 .masthead-actions a {
@@ -622,6 +640,9 @@ footer#contact { padding-block: var(--space-3xl); }
 .field--success input { border-color: oklch(60% 0.13 150); }
 .field--success .field__msg { color: oklch(45% 0.13 150); }
 .field__msg { display: block; font-family: var(--font-body); font-size: 0.8125rem; margin-top: var(--space-2xs); }
+.field__hint { font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-ink-muted); margin-top: var(--space-2xs); }
+.field--signature-upload { margin-top: var(--space-md); }
+.field--signature-upload input[type="file"] { font-family: var(--font-body); font-size: 0.875rem; }
 
 .btn-submit {
   display: inline-flex;
@@ -665,6 +686,167 @@ footer#contact { padding-block: var(--space-3xl); }
 }
 .form-aside a { color: var(--color-primary); text-decoration: underline; text-decoration-color: var(--color-rule); text-underline-offset: 3px; }
 .form-aside a:hover { text-decoration-color: var(--color-accent); }
+
+/* ==========================================================================
+   Registration wizard — step indicator, select/textarea/checkbox, sponsor
+   search dropdown, signature pad. Extends the .form/.field system above.
+   ========================================================================== */
+
+.field select,
+.field textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-ink);
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.875rem;
+  min-height: 44px;
+  transition: border-color var(--dur-short) var(--ease-out), background var(--dur-short) var(--ease-out);
+}
+.field select:hover, .field textarea:hover { border-color: var(--color-ink-muted); }
+.field select:focus, .field textarea:focus { border-color: var(--color-accent); }
+.field textarea { resize: vertical; }
+
+.field--checkbox label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+  text-transform: none;
+  letter-spacing: normal;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+.field--checkbox input[type="checkbox"] {
+  margin-top: 0.2rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.field--search { position: relative; }
+.sponsor-results {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin-top: var(--space-3xs);
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  max-height: 12rem;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px oklch(0% 0 0 / 0.12);
+}
+.sponsor-results li + li { border-top: 1px solid var(--color-rule); }
+.sponsor-results button {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-2xs) var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+.sponsor-results button:hover { background: var(--color-paper-final); }
+.sponsor-results button span { color: var(--color-ink-muted); font-family: var(--font-mono); font-size: 0.75rem; }
+
+.signature-pad {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: 180px;
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  touch-action: none;
+  cursor: crosshair;
+}
+.signature-pad__clear {
+  margin-top: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.signature-pad__clear:hover { color: var(--color-accent); }
+
+.wizard-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  max-width: 26rem;
+  margin: 0 auto var(--space-2xs);
+  padding: 0;
+  list-style: none;
+}
+.wizard-steps__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+.wizard-steps__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-rule);
+  color: var(--color-ink-muted);
+}
+.wizard-steps__item.is-current .wizard-steps__num { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-paper-raised); }
+.wizard-steps__item.is-current .wizard-steps__label { color: var(--color-primary); }
+.wizard-steps__item.is-done .wizard-steps__num { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-paper-raised); }
+.wizard-steps__label { display: none; }
+.wizard-steps__item.is-current .wizard-steps__label { display: inline; }
+.wizard-steps__caption {
+  max-width: 26rem;
+  margin: 0 auto var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--color-ink-muted);
+}
+.wizard-steps__reset {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-rule);
+  text-underline-offset: 2px;
+}
+.wizard-steps__reset:hover { text-decoration-color: var(--color-accent); }
+
+.wizard-actions { display: flex; gap: var(--space-sm); }
+.wizard-actions .btn-submit { flex: 1; }
+.btn-back {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+  background: var(--color-paper-raised);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--dur-short) var(--ease-out);
+}
+.btn-back:hover { border-color: var(--color-ink-muted); }
 
 /* ==========================================================================
    Article prose (blog detail, legal pages) — Long Document voice

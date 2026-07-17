@@ -19,7 +19,7 @@ class PostsTable
             ->defaultSort('created_at', 'desc')
             ->columns([
                 ImageColumn::make('cover_image')
-                    ->disk('public'),
+                    ->disk('cloudinary'),
                 TextColumn::make('title')
                     ->searchable()
                     ->weight('medium'),

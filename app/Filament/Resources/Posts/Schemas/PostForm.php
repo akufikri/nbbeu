@@ -51,7 +51,7 @@ class PostForm
                     ->imageResizeTargetWidth('800')
                     ->imageResizeTargetHeight('600')
                     ->maxSize(2048)
-                    ->disk('public')
+                    ->disk('cloudinary')
                     ->directory('posts/thumbnails'),
                 FileUpload::make('hero_image')
                     ->label('Main Image')
@@ -61,7 +61,7 @@ class PostForm
                     ->imageResizeTargetWidth('1600')
                     ->imageResizeTargetHeight('900')
                     ->maxSize(4096)
-                    ->disk('public')
+                    ->disk('cloudinary')
                     ->directory('posts/hero'),
                 Select::make('status')
                     ->placeholder('Select status')

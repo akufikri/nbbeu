@@ -6,14 +6,13 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
-                <h3 class="font-medium text-gray-900">Membership Status</h3>
-
-                @if ($user->status === 'pending')
-                    @php
-                        $paymentDone = $latestPayment && $latestPayment->status === 'paid';
-                    @endphp
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            @if ($user->status === 'pending')
+                @php
+                    $paymentDone = $latestPayment && $latestPayment->status === 'paid';
+                @endphp
+                <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
+                    <h3 class="font-medium text-gray-900">Application Status</h3>
                     <div class="mt-4 flex items-center">
                         <div class="flex flex-col items-center">
                             <div class="w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white bg-nbbeu-navy">1</div>
@@ -30,18 +29,27 @@
                             <span class="mt-1 text-xs text-gray-600">Admin Review</span>
                         </div>
                     </div>
-                    <p class="mt-3 text-sm text-amber-700 bg-amber-50 rounded-md p-3">
+                    <p class="mt-4 text-sm text-amber-700 bg-amber-50 rounded-md p-3">
                         Your application is still awaiting admin review.
                         @if (! $paymentDone)
                             Payment is also not yet complete —
                             <a href="{{ route('registration.status', ['email' => $user->email]) }}" class="underline">check status</a>.
                         @endif
                     </p>
-                @elseif ($user->status === 'rejected')
+                </div>
+            @elseif ($user->status === 'rejected')
+                <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
+                    <h3 class="font-medium text-gray-900">Application Status</h3>
                     <p class="mt-2 text-sm text-red-700 bg-red-50 rounded-md p-3">
                         Your application was rejected. {{ $user->rejection_reason ? 'Reason: '.$user->rejection_reason : '' }}
                     </p>
-                @else
+                </div>
+            @endif
+
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
+                <h3 class="font-medium text-gray-900">Membership Status</h3>
+
+                @if ($user->status === 'approved')
                     <div class="mt-3 grid sm:grid-cols-2 gap-4 text-sm">
                         <div>
                             <p class="text-gray-500">Member No.</p>
@@ -53,42 +61,22 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 flex flex-wrap gap-3">
-                        @if ($memberCard)
-                            <a href="{{ route('member.documents.card') }}" class="px-4 py-2 text-sm rounded-sm bg-nbbeu-navy text-white hover:bg-nbbeu-gold hover:text-nbbeu-navy-deep">
-                                Download Member Card
-                            </a>
-                        @endif
-                        @if ($certificate)
-                            <a href="{{ route('member.documents.certificate') }}" class="px-4 py-2 text-sm rounded-sm bg-nbbeu-navy text-white hover:bg-nbbeu-gold hover:text-nbbeu-navy-deep">
-                                Download Certificate
-                            </a>
-                        @endif
-                    </div>
-
                     @if ($renewalDue)
-                        <div class="mt-4 text-sm bg-amber-50 rounded-md p-3">
-                            <p class="text-amber-700">
-                                @if ($daysUntilExpiry > 0)
-                                    Your membership expires in {{ $daysUntilExpiry }} days ({{ $user->renewal_expires_at?->format('d M Y') }}).
-                                @else
-                                    Your membership expired {{ abs($daysUntilExpiry) }} days ago ({{ $user->renewal_expires_at?->format('d M Y') }}).
-                                @endif
-                            </p>
-                            <form method="POST" action="{{ route('member.renewal') }}" class="mt-2">
-                                @csrf
-                                <button type="submit" class="px-4 py-2 text-sm rounded-sm bg-nbbeu-gold text-nbbeu-navy-deep font-medium">
-                                    Renew Now
-                                </button>
-                            </form>
+                        <div class="mt-4 text-sm bg-red-50 border border-red-200 rounded-md p-3">
+                            <p class="text-red-700 font-medium">Your membership needs renewal soon.</p>
+                            <a href="{{ route('member.renewal.index') }}" class="mt-2 inline-block px-4 py-2 text-sm rounded-sm bg-nbbeu-gold text-nbbeu-navy-deep font-medium">
+                                Go to Renewal
+                            </a>
                         </div>
                     @endif
+                @else
+                    <p class="mt-2 text-sm text-gray-500">Your membership details will appear here once your application is approved.</p>
                 @endif
             </div>
 
             <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
                 <h3 class="font-medium text-gray-900">Profile Details</h3>
-                <p class="mt-2 text-sm text-gray-600">{{ $user->name }} &bull; {{ $user->email }} &bull; {{ $user->phone }} &bull; {{ $user->company }}</p>
+                <p class="mt-2 text-sm text-gray-600">{{ $user->name }} &bull; {{ $user->email }} &bull; {{ $user->phone }}</p>
                 <a href="{{ route('profile.edit') }}" class="mt-3 inline-block text-sm underline text-gray-600 hover:text-gray-900">
                     Update profile
                 </a>

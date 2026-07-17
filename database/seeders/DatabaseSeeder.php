@@ -44,8 +44,15 @@ class DatabaseSeeder extends Seeder
      */
     private function seedDummyOrgChart(): void
     {
+        $president = OrgChart::create([
+            'name' => 'Ahmad Zulkifli',
+            'position' => 'President',
+            'photo' => 'org-chart/leader-1.webp',
+            'display_order' => 1,
+            'is_active' => true,
+        ]);
+
         $members = [
-            ['name' => 'Ahmad Zulkifli', 'position' => 'President', 'photo' => 'org-chart/leader-1.webp'],
             ['name' => 'Sarah Lim', 'position' => 'Vice President', 'photo' => 'org-chart/leader-2.webp'],
             ['name' => 'David Wong', 'position' => 'Secretary', 'photo' => 'org-chart/leader-3.webp'],
             ['name' => 'Nurul Aisyah', 'position' => 'Treasurer', 'photo' => 'org-chart/leader-4.webp'],
@@ -54,6 +61,7 @@ class DatabaseSeeder extends Seeder
         foreach ($members as $index => $member) {
             OrgChart::create([
                 ...$member,
+                'parent_id' => $president->id,
                 'display_order' => $index + 1,
                 'is_active' => true,
             ]);

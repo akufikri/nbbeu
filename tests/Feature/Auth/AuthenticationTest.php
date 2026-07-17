@@ -4,11 +4,20 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class AuthenticationTest extends TestCase
 {
     use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Role::firstOrCreate(['name' => 'member']);
+        Role::firstOrCreate(['name' => 'admin']);
+    }
 
     public function test_login_screen_can_be_rendered(): void
     {
@@ -20,6 +29,7 @@ class AuthenticationTest extends TestCase
     public function test_users_can_authenticate_using_the_login_screen(): void
     {
         $user = User::factory()->create();
+        $user->assignRole('member');
 
         $response = $this->post('/login', [
             'email' => $user->email,
@@ -42,9 +52,23 @@ class AuthenticationTest extends TestCase
         $this->assertGuest();
     }
 
+    public function test_admin_accounts_cannot_authenticate_via_the_member_login_screen(): void
+    {
+        $admin = User::factory()->create();
+        $admin->assignRole('admin');
+
+        $this->post('/login', [
+            'email' => $admin->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertGuest();
+    }
+
     public function test_users_can_logout(): void
     {
         $user = User::factory()->create();
+        $user->assignRole('member');
 
         $response = $this->actingAs($user)->post('/logout');
 

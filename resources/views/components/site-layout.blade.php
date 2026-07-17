@@ -53,7 +53,10 @@
             <div class="masthead-top__inner">
                 <p class="masthead-kicker">Est. 2024 · North Borneo Banking Executive Union</p>
                 <div class="masthead-wordmark-row">
-                    <a href="{{ route('home') }}" class="masthead-wordmark">NBBEU</a>
+                    <a href="{{ route('home') }}" class="masthead-wordmark-link">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="" class="masthead-logo">
+                        <span class="masthead-wordmark">NBBEU</span>
+                    </a>
                 </div>
                 <div class="masthead-rule masthead-rule--double"></div>
             </div>
@@ -66,6 +69,9 @@
                     </svg>
                 </button>
                 <nav class="masthead-links hidden lg:flex">
+                    <a href="{{ route('home') }}" class="masthead-compact-logo-link">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="NBBEU" class="masthead-compact-logo">
+                    </a>
                     <a href="{{ route('home') }}#about">About Us</a>
                     <a href="{{ route('home') }}#benefits">Membership</a>
                     <a href="{{ route('org-structure') }}">Organization Structure</a>

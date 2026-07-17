@@ -35,7 +35,7 @@ class OrgChartAndExcelTest extends TestCase
     {
         $admin = User::factory()->create();
         $admin->assignRole('admin');
-        $this->actingAs($admin);
+        $this->actingAs($admin, 'admin');
 
         return $admin;
     }

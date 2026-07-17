@@ -92,26 +92,33 @@
                 <div class="step">
                     <span class="step__num">01</span>
                     <div>
+                        <h4>Prepare Your Sponsors</h4>
+                        <p>You'll need to be nominated by 2 active NBBEU members (a Proposer and a Seconder) as part of your application.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step__num">02</span>
+                    <div>
                         <h4>Fill the Form</h4>
                         <p>Complete your executive profile, career track record, and institutional verification online.</p>
                     </div>
                 </div>
                 <div class="step">
-                    <span class="step__num">02</span>
+                    <span class="step__num">03</span>
                     <div>
                         <h4>Registration Fee</h4>
                         <p>Settle the annual union administration fee via secure instant bank transfer.</p>
                     </div>
                 </div>
                 <div class="step">
-                    <span class="step__num">03</span>
+                    <span class="step__num">04</span>
                     <div>
                         <h4>Admin Review</h4>
                         <p>The NBBEU Honorary Board validates credentials within 5-7 professional working days.</p>
                     </div>
                 </div>
                 <div class="step">
-                    <span class="step__num">04</span>
+                    <span class="step__num">05</span>
                     <div>
                         <h4>Certification</h4>
                         <p>Receive physical and digital Membership Card and official accredited Certificate of Honor.</p>
@@ -139,7 +146,7 @@
                         <div class="directory__item">
                             <div class="directory__mono">
                                 @if ($person->photo)
-                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($person->photo) }}" alt="{{ $person->name }}">
+                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($person->photo) }}" alt="{{ $person->name }}">
                                 @else
                                     {{ collect(explode(' ', $person->name))->map(fn ($part) => mb_substr($part, 0, 1))->join('') }}
                                 @endif
@@ -165,7 +172,7 @@
                         <article class="index-list__row">
                             <div class="index-list__thumb">
                                 @if ($post->cover_image)
-                                    <img src="{{ \Illuminate\Support\Facades\Storage::url($post->cover_image) }}" alt="{{ $post->title }}">
+                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->cover_image) }}" alt="{{ $post->title }}">
                                 @else
                                     Photo 16:10
                                 @endif

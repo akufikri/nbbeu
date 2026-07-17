@@ -4,8 +4,8 @@ use App\Http\Controllers\Member\DashboardController as MemberDashboardController
 use App\Http\Controllers\Member\DocumentController;
 use App\Http\Controllers\Member\PaymentHistoryController;
 use App\Http\Controllers\Member\RenewalController;
+use App\Http\Controllers\Member\UnionDuesController;
 use App\Http\Controllers\Membership\CardVerificationController;
-use App\Http\Controllers\Membership\RegistrationController;
 use App\Http\Controllers\Membership\RegistrationStatusController;
 use App\Http\Controllers\Membership\ToyyibpayWebhookController;
 use App\Http\Controllers\ProfileController;
@@ -26,8 +26,7 @@ Route::prefix('blog')->name('blog.')->group(function () {
 });
 
 Route::prefix('register')->name('registration.')->group(function () {
-    Route::get('/', [RegistrationController::class, 'create'])->name('create');
-    Route::post('/', [RegistrationController::class, 'store'])->name('store')->middleware('throttle:10,1');
+    Route::get('/', fn () => view('membership.register-wizard'))->name('create');
     Route::get('/status', [RegistrationStatusController::class, 'show'])->name('status');
     Route::get('/return/{payment}', [ToyyibpayWebhookController::class, 'return'])->name('return');
 });
@@ -41,19 +40,25 @@ Route::get('/verify/{qrToken}', [CardVerificationController::class, 'show'])
     ->middleware('throttle:60,1');
 
 Route::get('/dashboard', [MemberDashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth:web', 'verified'])
     ->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/payments', [PaymentHistoryController::class, 'index'])->name('member.payments');
 
     Route::prefix('member')->name('member.')->group(function () {
+        Route::get('/card', [DocumentController::class, 'cardPage'])->name('card');
+        Route::get('/certificate', [DocumentController::class, 'certificatePage'])->name('certificate');
         Route::get('/documents/card', [DocumentController::class, 'card'])->name('documents.card');
         Route::get('/documents/certificate', [DocumentController::class, 'certificate'])->name('documents.certificate');
+        Route::get('/renewal', [RenewalController::class, 'index'])->name('renewal.index');
         Route::post('/renewal', [RenewalController::class, 'store'])->name('renewal');
+        Route::get('/union-dues', [UnionDuesController::class, 'index'])->name('union-dues');
+        Route::post('/union-dues', [UnionDuesController::class, 'store'])->name('union-dues.store');
+        Route::get('/union-dues/{mandate}/download', [UnionDuesController::class, 'download'])->name('union-dues.download');
     });
 });
 

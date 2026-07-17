@@ -7,9 +7,21 @@ use App\Models\Payment;
 use App\Services\ToyyibpayService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RenewalController extends Controller
 {
+    public function index(Request $request): View
+    {
+        $user = $request->user();
+
+        return view('member.renewal', [
+            'user' => $user,
+            'daysUntilExpiry' => $user->renewal_expires_at ? (int) now()->diffInDays($user->renewal_expires_at, false) : null,
+            'renewalDue' => $user->renewal_expires_at && $user->renewal_expires_at->lte(now()->addDays(30)),
+        ]);
+    }
+
     public function store(Request $request, ToyyibpayService $toyyibpay): RedirectResponse
     {
         $user = $request->user();

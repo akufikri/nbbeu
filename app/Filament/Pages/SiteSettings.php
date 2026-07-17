@@ -103,12 +103,12 @@ class SiteSettings extends Page
                                 FileUpload::make('card_logo')
                                     ->image()
                                     ->maxSize(2048)
-                                    ->disk('public')
+                                    ->disk('cloudinary')
                                     ->directory('branding'),
                                 FileUpload::make('card_signature')
                                     ->image()
                                     ->maxSize(2048)
-                                    ->disk('public')
+                                    ->disk('cloudinary')
                                     ->directory('branding'),
                             ]),
                     ]),

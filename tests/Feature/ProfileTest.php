@@ -4,15 +4,24 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Role::firstOrCreate(['name' => 'member']);
+    }
+
     public function test_profile_page_is_displayed(): void
     {
         $user = User::factory()->create();
+        $user->assignRole('member');
 
         $response = $this
             ->actingAs($user)
@@ -24,14 +33,14 @@ class ProfileTest extends TestCase
     public function test_profile_information_can_be_updated(): void
     {
         $user = User::factory()->create();
+        $user->assignRole('member');
+        $originalEmail = $user->email;
 
         $response = $this
             ->actingAs($user)
             ->patch('/profile', [
                 'name' => 'Test User',
-                'email' => 'test@example.com',
-                'phone' => $user->phone,
-                'company' => $user->company,
+                'phone' => '0199998888',
             ]);
 
         $response
@@ -41,13 +50,15 @@ class ProfileTest extends TestCase
         $user->refresh();
 
         $this->assertSame('Test User', $user->name);
-        $this->assertSame('test@example.com', $user->email);
-        $this->assertNull($user->email_verified_at);
+        $this->assertSame('0199998888', $user->phone);
+        // Email is locked — not part of this form, must stay untouched.
+        $this->assertSame($originalEmail, $user->email);
     }
 
     public function test_email_verification_status_is_unchanged_when_the_email_address_is_unchanged(): void
     {
         $user = User::factory()->create();
+        $user->assignRole('member');
 
         $response = $this
             ->actingAs($user)
@@ -68,6 +79,7 @@ class ProfileTest extends TestCase
     public function test_user_can_delete_their_account(): void
     {
         $user = User::factory()->create();
+        $user->assignRole('member');
 
         $response = $this
             ->actingAs($user)
@@ -86,6 +98,7 @@ class ProfileTest extends TestCase
     public function test_correct_password_must_be_provided_to_delete_account(): void
     {
         $user = User::factory()->create();
+        $user->assignRole('member');
 
         $response = $this
             ->actingAs($user)

@@ -15,9 +15,25 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Auth::user()->status === 'approved')
+                        <x-nav-link :href="route('member.card')" :active="request()->routeIs('member.card')">
+                            {{ __('My Card') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('member.certificate')" :active="request()->routeIs('member.certificate')">
+                            {{ __('My Certificate') }}
+                        </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('member.payments')" :active="request()->routeIs('member.payments')">
                         {{ __('Payment History') }}
                     </x-nav-link>
+                    @if (Auth::user()->status === 'approved')
+                        <x-nav-link :href="route('member.union-dues')" :active="request()->routeIs('member.union-dues')">
+                            {{ __('Union Dues') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('member.renewal.index')" :active="request()->routeIs('member.renewal.index')">
+                            {{ __('Renewal') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -73,9 +89,25 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (Auth::user()->status === 'approved')
+                <x-responsive-nav-link :href="route('member.card')" :active="request()->routeIs('member.card')">
+                    {{ __('My Card') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('member.certificate')" :active="request()->routeIs('member.certificate')">
+                    {{ __('My Certificate') }}
+                </x-responsive-nav-link>
+            @endif
             <x-responsive-nav-link :href="route('member.payments')" :active="request()->routeIs('member.payments')">
                 {{ __('Payment History') }}
             </x-responsive-nav-link>
+            @if (Auth::user()->status === 'approved')
+                <x-responsive-nav-link :href="route('member.union-dues')" :active="request()->routeIs('member.union-dues')">
+                    {{ __('Union Dues') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('member.renewal.index')" :active="request()->routeIs('member.renewal.index')">
+                    {{ __('Renewal') }}
+                </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

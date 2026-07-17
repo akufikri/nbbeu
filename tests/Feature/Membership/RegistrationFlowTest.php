@@ -2,7 +2,11 @@
 
 namespace Tests\Feature\Membership;
 
+use App\Events\UserApproved;
+use App\Events\UserRejected;
 use App\Filament\Resources\Users\Pages\ListUsers;
+use App\Livewire\RegistrationWizard;
+use App\Mail\MemberApprovedMail;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,37 +31,81 @@ class RegistrationFlowTest extends TestCase
 
     public function test_registration_form_renders(): void
     {
-        $this->get(route('registration.create'))->assertOk();
+        $this->get(route('registration.create'))->assertOk()->assertSeeLivewire(RegistrationWizard::class);
     }
 
     public function test_submitting_registration_creates_user_and_redirects_to_toyyibpay(): void
     {
+        Storage::fake('cloudinary');
+
         Http::fake([
             '*/index.php/api/createBill' => Http::response([
                 ['BillCode' => 'ABC123'],
             ]),
         ]);
 
-        $response = $this->post(route('registration.store'), [
-            'name' => 'Budi Santoso',
-            'email' => 'budi@example.com',
-            'phone' => '0812345678',
-            'company' => 'Bank Contoh',
-        ]);
+        // Seed two approved members so the sponsor step has candidates to pick from.
+        $proposer = User::factory()->create(['status' => 'approved', 'member_no' => 'NBBEU-2026-0001']);
+        $proposer->assignRole('member');
+        $seconder = User::factory()->create(['status' => 'approved', 'member_no' => 'NBBEU-2026-0002']);
+        $seconder->assignRole('member');
+
+        $component = Livewire::test(RegistrationWizard::class)
+            ->set('name', 'Budi Santoso')
+            ->set('email', 'budi@example.com')
+            ->set('phone', '0812345678')
+            ->set('password', 'password123')
+            ->set('password_confirmation', 'password123')
+            ->call('nextStep')
+            ->assertHasNoErrors()
+            ->set('gender', 'male')
+            ->set('race', 'malay')
+            ->set('date_of_birth', '1990-01-01')
+            ->set('place_of_birth', 'Tanjung Selor')
+            ->set('ic_no', '900101-12-3456')
+            ->set('postal_address', 'PO Box 1, Tanjung Selor')
+            ->set('residential_address', 'Jl. Contoh No. 1, Tanjung Selor')
+            ->call('nextStep')
+            ->assertHasNoErrors()
+            ->set('occupation', 'Banker')
+            ->set('position', 'Manager')
+            ->set('employer_name', 'Bank Contoh')
+            ->set('employer_address', 'Jl. Bank No. 1')
+            ->set('employment_date', '2015-01-01')
+            ->set('bank_name', 'Bank Contoh')
+            ->set('bank_branch', 'Main Branch')
+            ->set('present_salary', 5000)
+            ->call('nextStep')
+            ->assertHasNoErrors()
+            ->set('proposed_by_user_id', $proposer->id)
+            ->set('seconded_by_user_id', $seconder->id)
+            ->call('nextStep')
+            ->assertHasNoErrors()
+            ->set('declaration_truth', true)
+            ->set('declaration_constitution', true)
+            ->set('declaration_pdpa', true)
+            ->set('signatureData', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=')
+            ->call('nextStep')
+            ->assertHasNoErrors()
+            ->call('submit');
 
         $user = User::where('email', 'budi@example.com')->first();
 
         $this->assertNotNull($user);
         $this->assertSame('pending', $user->status);
         $this->assertTrue($user->hasRole('member'));
+        $this->assertSame('Bank Contoh', $user->company);
+
+        $this->assertNotNull($user->memberProfile);
+        $this->assertNotNull($user->memberProfile->declaration_accepted_at);
+        Storage::disk('cloudinary')->assertExists($user->memberProfile->signature_path);
 
         $payment = Payment::where('user_id', $user->id)->first();
         $this->assertNotNull($payment);
         $this->assertSame('ABC123', $payment->toyyibpay_bill_code);
         $this->assertSame('pending', $payment->status);
 
-        $response->assertRedirect();
-        $this->assertStringContainsString('ABC123', $response->headers->get('Location'));
+        $component->assertRedirectContains('ABC123');
     }
 
     public function test_toyyibpay_callback_marks_payment_paid_after_verifying_with_api(): void
@@ -117,7 +165,7 @@ class RegistrationFlowTest extends TestCase
 
         $user = User::factory()->create(['status' => 'pending', 'member_no' => null]);
 
-        event(new \App\Events\UserApproved($user, $admin));
+        event(new UserApproved($user, $admin));
 
         $user->refresh();
 
@@ -129,7 +177,7 @@ class RegistrationFlowTest extends TestCase
             'subject_id' => $user->id,
         ]);
 
-        Mail::assertQueued(\App\Mail\MemberApprovedMail::class);
+        Mail::assertQueued(MemberApprovedMail::class);
     }
 
     public function test_admin_rejecting_user_writes_audit_log(): void
@@ -140,7 +188,7 @@ class RegistrationFlowTest extends TestCase
         $user = User::factory()->create(['status' => 'pending']);
         $user->forceFill(['status' => 'rejected', 'rejection_reason' => 'Data tidak lengkap'])->save();
 
-        event(new \App\Events\UserRejected($user, $admin));
+        event(new UserRejected($user, $admin));
 
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $admin->id,
@@ -159,7 +207,7 @@ class RegistrationFlowTest extends TestCase
         $user = User::factory()->create(['status' => 'pending', 'member_no' => null]);
         $user->forceFill(['status' => 'approved'])->save();
 
-        event(new \App\Events\UserApproved($user, $admin));
+        event(new UserApproved($user, $admin));
 
         $user->refresh();
 
@@ -187,7 +235,7 @@ class RegistrationFlowTest extends TestCase
 
         $admin = User::factory()->create();
         $admin->assignRole('admin');
-        $this->actingAs($admin);
+        $this->actingAs($admin, 'admin');
 
         $applicant = User::factory()->create(['status' => 'pending']);
 
@@ -206,7 +254,7 @@ class RegistrationFlowTest extends TestCase
     {
         $admin = User::factory()->create();
         $admin->assignRole('admin');
-        $this->actingAs($admin);
+        $this->actingAs($admin, 'admin');
 
         $applicant = User::factory()->create(['status' => 'pending']);
 
