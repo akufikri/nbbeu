@@ -104,12 +104,14 @@ class SiteSettings extends Page
                                     ->image()
                                     ->maxSize(2048)
                                     ->disk('cloudinary')
-                                    ->directory('branding'),
+                                    ->directory('branding')
+                                    ->helperText('Recommended size: 500x500px, square, transparent PNG. Max 2MB.'),
                                 FileUpload::make('card_signature')
                                     ->image()
                                     ->maxSize(2048)
                                     ->disk('cloudinary')
-                                    ->directory('branding'),
+                                    ->directory('branding')
+                                    ->helperText('Recommended size: 400x150px, transparent PNG. Max 2MB.'),
                             ]),
                     ]),
             ])

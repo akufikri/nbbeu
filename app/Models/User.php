@@ -23,6 +23,12 @@ class User extends Authenticatable implements FilamentUser
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasRoles, Notifiable;
 
+    // Filament's admin panel authenticates on a separate 'admin' session guard
+    // (AdminPanelProvider), but roles are seeded/assigned under the default
+    // 'web' guard. Pinning this keeps Spatie role lookups consistent
+    // regardless of which guard the current request is authenticated on.
+    protected string $guard_name = 'web';
+
     /**
      * Get the attributes that should be cast.
      *

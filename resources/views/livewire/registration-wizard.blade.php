@@ -15,7 +15,7 @@
         @endif
     </p>
 
-    <form class="form mx-auto" wire:submit.prevent="{{ $currentStep === self::TOTAL_STEPS ? 'submit' : 'nextStep' }}">
+    <form class="form mx-auto" wire:submit.prevent="nextStep">
 
         @if ($currentStep === 1)
             <div class="field @if ($errors->get('name')) field--error @endif">
@@ -179,45 +179,17 @@
         @endif
 
         @if ($currentStep === 4)
-            @unless ($sponsorsAvailable)
-                <div class="field field--error">
-                    <span class="field__msg">Not enough active members are available to sponsor new applications yet. Please contact the secretariat.</span>
-                </div>
-            @else
-                <div class="field field--search @if ($errors->get('proposed_by_user_id')) field--error @endif">
-                    <label for="proposedSearch">Proposed By</label>
-                    <input type="text" id="proposedSearch" wire:model.live.debounce.300ms="proposedSearch" placeholder="Search by name or member number" autocomplete="off">
-                    @if (count($proposedResults))
-                        <ul class="sponsor-results">
-                            @foreach ($proposedResults as $result)
-                                <li>
-                                    <button type="button" wire:click="selectProposed({{ $result['id'] }}, '{{ addslashes($result['name']) }}')">
-                                        {{ $result['name'] }} <span>{{ $result['member_no'] }}</span>
-                                    </button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
-                    @error('proposed_by_user_id') <span class="field__msg">{{ $message }}</span> @enderror
-                </div>
+            <div class="field @if ($errors->get('proposed_by_name')) field--error @endif">
+                <label for="proposed_by_name">Proposed By</label>
+                <input type="text" id="proposed_by_name" wire:model="proposed_by_name" placeholder="Full name">
+                @error('proposed_by_name') <span class="field__msg">{{ $message }}</span> @enderror
+            </div>
 
-                <div class="field field--search @if ($errors->get('seconded_by_user_id')) field--error @endif">
-                    <label for="secondedSearch">Seconded By</label>
-                    <input type="text" id="secondedSearch" wire:model.live.debounce.300ms="secondedSearch" placeholder="Search by name or member number" autocomplete="off">
-                    @if (count($secondedResults))
-                        <ul class="sponsor-results">
-                            @foreach ($secondedResults as $result)
-                                <li>
-                                    <button type="button" wire:click="selectSeconded({{ $result['id'] }}, '{{ addslashes($result['name']) }}')">
-                                        {{ $result['name'] }} <span>{{ $result['member_no'] }}</span>
-                                    </button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
-                    @error('seconded_by_user_id') <span class="field__msg">{{ $message }}</span> @enderror
-                </div>
-            @endunless
+            <div class="field @if ($errors->get('seconded_by_name')) field--error @endif">
+                <label for="seconded_by_name">Seconded By</label>
+                <input type="text" id="seconded_by_name" wire:model="seconded_by_name" placeholder="Full name">
+                @error('seconded_by_name') <span class="field__msg">{{ $message }}</span> @enderror
+            </div>
         @endif
 
         @if ($currentStep === 5)
@@ -286,42 +258,43 @@
         @endif
 
         @if ($currentStep === 6)
-            <p class="form-aside">
-                Your application details are complete. Continue to pay the one-time registration fee via Toyyibpay to finish submitting your application.
-            </p>
+            <div class="field--notice">
+                <p class="field--notice__title">Registration sent!</p>
+                <p class="form-aside">NBBEU will inform you shortly.</p>
+            </div>
         @endif
 
-        <div class="wizard-actions">
-            @if ($currentStep > 1)
-                <button type="button" class="btn-back" wire:click="previousStep" wire:loading.attr="disabled">Back</button>
-            @endif
+        @if ($currentStep < self::TOTAL_STEPS)
+            <div class="wizard-actions">
+                @if ($currentStep > 1)
+                    <button type="button" class="btn-back" wire:click="previousStep" wire:loading.attr="disabled">Back</button>
+                @endif
 
-            @if ($currentStep === 5)
-                <button type="button" class="btn-submit"
-                    x-data
-                    x-on:click="
-                        @if ($signatureFile)
-                            $wire.call('nextStep')
-                        @else
-                            $wire.set('signatureData', $el.closest('form').querySelector('.signature-pad').toDataURL('image/png')).then(() => $wire.call('nextStep'))
-                        @endif
-                    "
-                    wire:loading.attr="disabled" wire:target="nextStep">
-                    Continue
-                </button>
-            @elseif ($currentStep === self::TOTAL_STEPS)
-                <button type="submit" class="btn-submit" wire:loading.attr="disabled" wire:target="submit">
-                    Continue to Payment
-                </button>
-            @else
-                <button type="submit" class="btn-submit" @if ($currentStep === 4 && ! $sponsorsAvailable) disabled aria-disabled="true" @endif wire:loading.attr="disabled" wire:target="nextStep">
-                    Continue
-                </button>
-            @endif
-        </div>
+                @if ($currentStep === 5)
+                    <button type="button" class="btn-submit"
+                        x-data
+                        x-on:click="
+                            @if ($signatureFile)
+                                $wire.call('nextStep')
+                            @else
+                                $wire.set('signatureData', $el.closest('form').querySelector('.signature-pad').toDataURL('image/png')).then(() => $wire.call('nextStep'))
+                            @endif
+                        "
+                        wire:loading.attr="disabled" wire:target="nextStep">
+                        Continue
+                    </button>
+                @else
+                    <button type="submit" class="btn-submit" wire:loading.attr="disabled" wire:target="nextStep">
+                        Continue
+                    </button>
+                @endif
+            </div>
+        @endif
 
-        <p class="form-aside">
-            Already applied? <a href="{{ route('registration.status') }}">Check status</a>.
-        </p>
+        @if ($currentStep < self::TOTAL_STEPS)
+            <p class="form-aside">
+                Already applied? <a href="{{ route('registration.status') }}">Check status</a>.
+            </p>
+        @endif
     </form>
 </div>

@@ -644,6 +644,9 @@ footer#contact { padding-block: var(--space-3xl); }
 .field--signature-upload { margin-top: var(--space-md); }
 .field--signature-upload input[type="file"] { font-family: var(--font-body); font-size: 0.875rem; }
 
+.field--notice { text-align: center; padding: var(--space-lg) 0; }
+.field--notice__title { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-accent); margin-bottom: var(--space-2xs); }
+
 .btn-submit {
   display: inline-flex;
   align-items: center;

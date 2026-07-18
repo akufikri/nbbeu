@@ -70,18 +70,12 @@ class UserInfolist
                     ->visible(fn ($record) => $record->memberProfile !== null)
                     ->columns(2)
                     ->components([
-                        TextEntry::make('memberProfile.proposedBy.name')
+                        TextEntry::make('memberProfile.proposed_by_name')
                             ->label('Proposed By')
-                            ->placeholder('-')
-                            ->formatStateUsing(fn (?string $state, $record) => filled($state) && filled($record->memberProfile->proposedBy?->member_no)
-                                ? "{$state} ({$record->memberProfile->proposedBy->member_no})"
-                                : $state),
-                        TextEntry::make('memberProfile.secondedBy.name')
+                            ->placeholder('-'),
+                        TextEntry::make('memberProfile.seconded_by_name')
                             ->label('Seconded By')
-                            ->placeholder('-')
-                            ->formatStateUsing(fn (?string $state, $record) => filled($state) && filled($record->memberProfile->secondedBy?->member_no)
-                                ? "{$state} ({$record->memberProfile->secondedBy->member_no})"
-                                : $state),
+                            ->placeholder('-'),
                     ]),
                 Section::make('Payments')
                     ->components([

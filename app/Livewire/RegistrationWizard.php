@@ -3,9 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\MemberProfile;
-use App\Models\Payment;
 use App\Models\User;
-use App\Services\ToyyibpayService;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Session;
@@ -80,19 +78,9 @@ class RegistrationWizard extends Component
     public ?string $present_salary = null;
 
     // Step 4 — Sponsor
-    public bool $sponsorsAvailable = true;
+    public ?string $proposed_by_name = null;
 
-    public string $proposedSearch = '';
-
-    public string $secondedSearch = '';
-
-    public array $proposedResults = [];
-
-    public array $secondedResults = [];
-
-    public ?int $proposed_by_user_id = null;
-
-    public ?int $seconded_by_user_id = null;
+    public ?string $seconded_by_name = null;
 
     // Step 5 — Declaration & Signature
     public bool $declaration_truth = false;
@@ -108,8 +96,6 @@ class RegistrationWizard extends Component
 
     public function mount(): void
     {
-        $this->sponsorsAvailable = $this->eligibleSponsorsQuery()->count() >= 2;
-
         $this->hydrateFromDraft();
     }
 
@@ -163,10 +149,8 @@ class RegistrationWizard extends Component
         $this->office_fax = $profile->office_fax;
         $this->present_salary = $profile->present_salary;
 
-        $this->proposed_by_user_id = $profile->proposed_by_user_id;
-        $this->proposedSearch = $profile->proposedBy?->name ?? '';
-        $this->seconded_by_user_id = $profile->seconded_by_user_id;
-        $this->secondedSearch = $profile->secondedBy?->name ?? '';
+        $this->proposed_by_name = $profile->proposed_by_name;
+        $this->seconded_by_name = $profile->seconded_by_name;
     }
 
     /**
@@ -176,14 +160,8 @@ class RegistrationWizard extends Component
     public function startOver()
     {
         $this->reset();
-        $this->sponsorsAvailable = $this->eligibleSponsorsQuery()->count() >= 2;
 
         return redirect(route('registration.create'));
-    }
-
-    protected function eligibleSponsorsQuery(): \Illuminate\Database\Eloquent\Builder
-    {
-        return User::role('member')->where('status', 'approved');
     }
 
     protected function rules(): array
@@ -236,14 +214,8 @@ class RegistrationWizard extends Component
                 'present_salary' => ['required', 'numeric', 'min:0'],
             ],
             4 => [
-                'proposed_by_user_id' => [
-                    'required',
-                    Rule::in($this->eligibleSponsorsQuery()->pluck('id')),
-                ],
-                'seconded_by_user_id' => [
-                    'required', 'different:proposed_by_user_id',
-                    Rule::in($this->eligibleSponsorsQuery()->pluck('id')),
-                ],
+                'proposed_by_name' => ['required', 'string', 'max:255'],
+                'seconded_by_name' => ['required', 'string', 'max:255', 'different:proposed_by_name'],
             ],
             5 => [
                 'declaration_truth' => ['accepted'],
@@ -261,7 +233,7 @@ class RegistrationWizard extends Component
         return [
             'email.unique' => 'This email is already registered as an approved member.',
             'ic_no.required' => 'IC Number is required.',
-            'seconded_by_user_id.different' => 'Proposed By and Seconded By must be two different members.',
+            'seconded_by_name.different' => 'Proposed By and Seconded By must be two different people.',
             'declaration_truth.accepted' => 'You must confirm the information above is true and accurate.',
             'declaration_constitution.accepted' => 'You must agree to be bound by the NBBEU Constitution & Regulations.',
             'declaration_pdpa.accepted' => 'You must consent to NBBEU processing your personal data.',
@@ -273,10 +245,6 @@ class RegistrationWizard extends Component
 
     public function nextStep(): void
     {
-        if ($this->currentStep === 4 && ! $this->sponsorsAvailable) {
-            return;
-        }
-
         $this->validate($this->rules(), $this->messages());
 
         match ($this->currentStep) {
@@ -362,8 +330,8 @@ class RegistrationWizard extends Component
     protected function saveStep4(): void
     {
         $this->persistProfile([
-            'proposed_by_user_id' => $this->proposed_by_user_id,
-            'seconded_by_user_id' => $this->seconded_by_user_id,
+            'proposed_by_name' => $this->proposed_by_name,
+            'seconded_by_name' => $this->seconded_by_name,
         ]);
     }
 
@@ -386,74 +354,6 @@ class RegistrationWizard extends Component
     protected function persistProfile(array $data): void
     {
         MemberProfile::updateOrCreate(['user_id' => $this->userId], $data);
-    }
-
-    public function updatedProposedSearch(): void
-    {
-        $this->proposedResults = $this->searchSponsors($this->proposedSearch, $this->seconded_by_user_id);
-    }
-
-    public function updatedSecondedSearch(): void
-    {
-        $this->secondedResults = $this->searchSponsors($this->secondedSearch, $this->proposed_by_user_id);
-    }
-
-    protected function searchSponsors(string $term, ?int $excludeId): array
-    {
-        if (mb_strlen(trim($term)) < 2) {
-            return [];
-        }
-
-        return $this->eligibleSponsorsQuery()
-            ->when($excludeId, fn ($q) => $q->whereKeyNot($excludeId))
-            ->where(fn ($q) => $q->where('name', 'like', "%{$term}%")->orWhere('member_no', 'like', "%{$term}%"))
-            ->orderBy('name')
-            ->limit(10)
-            ->get(['id', 'name', 'member_no'])
-            ->toArray();
-    }
-
-    public function selectProposed(int $id, string $name): void
-    {
-        $this->proposed_by_user_id = $id;
-        $this->proposedSearch = $name;
-        $this->proposedResults = [];
-    }
-
-    public function selectSeconded(int $id, string $name): void
-    {
-        $this->seconded_by_user_id = $id;
-        $this->secondedSearch = $name;
-        $this->secondedResults = [];
-    }
-
-    public function submit(ToyyibpayService $toyyibpay)
-    {
-        $user = User::findOrFail($this->userId);
-
-        $amount = (int) config('services.toyyibpay.registration_amount');
-
-        $payment = Payment::create([
-            'user_id' => $user->id,
-            'amount' => $amount / 100,
-            'purpose' => 'registration',
-            'status' => 'pending',
-        ]);
-
-        $billCode = $toyyibpay->createBill([
-            'bill_name' => 'NBBEU Membership Registration',
-            'bill_description' => "NBBEU membership registration - {$user->name}",
-            'return_url' => route('registration.return', $payment),
-            'callback_url' => route('registration.callback'),
-            'reference_no' => (string) $payment->id,
-            'payer_name' => $user->name,
-            'payer_email' => $user->email,
-            'payer_phone' => $user->phone,
-        ], $amount);
-
-        $payment->update(['toyyibpay_bill_code' => $billCode]);
-
-        return redirect()->away($toyyibpay->billUrl($billCode));
     }
 
     public function render()
