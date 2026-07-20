@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __('You may update your name, phone number, and profile photo (used on your member card). Email and other details from your registration are locked — contact the secretariat to change them.') }}
+            {{ __('Update your photo and personal details.') }}
         </p>
     </header>
 
@@ -34,31 +34,56 @@
         @endif
     </div>
 
-    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6" x-data="{ preview: null }">
         @csrf
         @method('patch')
 
         <div>
-            <x-input-label for="photo" :value="__('Profile Photo')" />
-            @if ($user->photo)
-                <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($user->photo) }}" alt="" class="mt-2 w-20 h-20 rounded-full object-cover">
-            @endif
-            <input id="photo" name="photo" type="file" accept="image/*" class="mt-2 block w-full text-sm text-gray-600" />
-            <p class="mt-1 text-xs text-gray-500">Used on your member card. JPG/PNG, max 2MB.</p>
+            <x-input-label :value="__('Profile Photo')" />
+            <div class="mt-2 flex items-center gap-4">
+                <div class="relative">
+                    <template x-if="preview">
+                        <img :src="preview" alt="" class="w-20 h-20 rounded-full object-cover ring-2 ring-nbbeu-navy/10">
+                    </template>
+                    <template x-if="!preview">
+                        @if ($user->photo)
+                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($user->photo) }}" alt="" class="w-20 h-20 rounded-full object-cover ring-2 ring-nbbeu-navy/10">
+                        @else
+                            <div class="w-20 h-20 rounded-full bg-nbbeu-navy/10 flex items-center justify-center text-nbbeu-navy font-semibold text-xl">
+                                {{ collect(explode(' ', $user->name))->map(fn ($n) => mb_substr($n, 0, 1))->take(2)->implode('') }}
+                            </div>
+                        @endif
+                    </template>
+                </div>
+                <div>
+                    <label for="photo" class="inline-block px-3 py-2 text-sm font-medium rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 cursor-pointer">
+                        {{ __('Change Photo') }}
+                    </label>
+                    <input
+                        id="photo" name="photo" type="file" accept="image/*" class="hidden"
+                        x-on:change="preview = $event.target.files.length ? URL.createObjectURL($event.target.files[0]) : null"
+                    />
+                    <p class="mt-1 text-xs text-gray-500">{{ __('Used on your member card. JPG/PNG, max 2MB.') }}</p>
+                </div>
+            </div>
             <x-input-error class="mt-2" :messages="$errors->get('photo')" />
         </div>
 
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" placeholder="Full name" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        <div class="grid sm:grid-cols-2 gap-6">
+            <div>
+                <x-input-label for="name" :value="__('Name')" />
+                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" placeholder="Full name" required autofocus autocomplete="name" />
+                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            </div>
+
+            <div>
+                <x-input-label for="phone" :value="__('Phone Number')" />
+                <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" placeholder="+60 12-345 6789" required />
+                <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+            </div>
         </div>
 
-        <div>
-            <x-input-label for="phone" :value="__('Phone Number')" />
-            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" placeholder="+60 12-345 6789" required />
-            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
-        </div>
+        @include('profile.partials.member-profile-fields')
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

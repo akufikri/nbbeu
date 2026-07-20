@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\MemberProfile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,13 +29,17 @@ class ProfileController extends Controller
     {
         $data = $request->validated();
 
+        $userData = array_intersect_key($data, array_flip(['name', 'phone']));
+
         if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('members', 'cloudinary');
-        } else {
-            unset($data['photo']);
+            $userData['photo'] = $request->file('photo')->store('members', 'cloudinary');
         }
 
-        $request->user()->fill($data)->save();
+        $request->user()->fill($userData)->save();
+
+        $profileData = array_diff_key($data, array_flip(['name', 'phone', 'photo']));
+
+        MemberProfile::updateOrCreate(['user_id' => $request->user()->id], $profileData);
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

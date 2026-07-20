@@ -81,6 +81,31 @@
                     Update profile
                 </a>
             </div>
+
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-medium text-gray-900">Latest News</h3>
+                    <a href="{{ route('blog.index') }}" class="text-sm underline text-gray-600 hover:text-gray-900">View all</a>
+                </div>
+
+                @if ($latestPosts->isEmpty())
+                    <p class="mt-2 text-sm text-gray-500">No articles published yet.</p>
+                @else
+                    <div class="mt-4 grid sm:grid-cols-3 gap-4">
+                        @foreach ($latestPosts as $post)
+                            <a href="{{ route('blog.show', $post) }}" class="group block">
+                                <div class="aspect-[16/10] rounded-md bg-gray-100 overflow-hidden">
+                                    @if ($post->cover_image)
+                                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->cover_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover group-hover:opacity-90">
+                                    @endif
+                                </div>
+                                <p class="mt-2 text-sm font-medium text-gray-900 group-hover:underline">{{ $post->title }}</p>
+                                <p class="mt-1 text-xs text-gray-500">{{ $post->published_at?->format('d M Y') }}</p>
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </x-app-layout>
