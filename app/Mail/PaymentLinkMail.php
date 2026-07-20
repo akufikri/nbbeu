@@ -22,7 +22,7 @@ class PaymentLinkMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'NBBEU Membership Approved — Complete Your Payment',
+            subject: 'Notis NBBEU — Sahkan Bayaran Pendaftaran',
         );
     }
 

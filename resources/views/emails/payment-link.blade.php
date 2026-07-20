@@ -1,14 +1,14 @@
 <x-mail::message>
-# Congratulations, {{ $user->name }}!
+# Notis NBBEU
 
-Your membership application at **North Borneo Banking Executive Union (NBBEU)** has been approved.
+Permohonan keahlian anda di **North Borneo Banking Executive Union (NBBEU)** telah diluluskan.
 
-To activate your membership, please complete payment of the one-time registration fee:
+Sila tekan butang dibawah untuk selesaikan bayaran pendaftaran.
 
 <x-mail::button :url="$billUrl">
-Pay Registration Fee
+Proses Seterusnya
 </x-mail::button>
 
-Thank you,<br>
-NBBEU Admin
+Terima kasih,<br>
+Admin NBBEU
 </x-mail::message>
