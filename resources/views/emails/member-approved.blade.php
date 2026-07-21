@@ -8,11 +8,7 @@ Your membership application at **North Borneo Banking Executive Union (NBBEU)** 
 
 Your member card and certificate are attached to this email (PDF).
 
-To access the member dashboard (download documents, renew, update profile), please create your account password first:
-
-<x-mail::button :url="route('password.request')">
-Create Account Password
-</x-mail::button>
+You can log in to the member dashboard anytime using the email and password you registered with.
 
 Thank you,<br>
 NBBEU Admin

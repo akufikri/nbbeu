@@ -1,3 +1,29 @@
+#!/usr/bin/env bash
+# Run from anywhere inside the Laravel project: bash scripts/adjust-registration-and-emails.sh
+# 1) Registration wizard step 6 (final notice) gets a "Login" button.
+# 2) "Application Approved" email drops the "Create Account Password" button
+#    (password is already set during registration step 1).
+# 3) Every markdown email (member-approved, payment-link, renewal-reminder)
+#    gets the NBBEU logo in its header — done once, project-wide, by
+#    publishing + patching Laravel's mail theme.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_ROOT="$SCRIPT_DIR"
+while [ ! -f "$APP_ROOT/artisan" ] && [ "$APP_ROOT" != "/" ]; do
+    APP_ROOT="$(dirname "$APP_ROOT")"
+done
+if [ ! -f "$APP_ROOT/artisan" ]; then
+    echo "Could not locate artisan (looked upward from $SCRIPT_DIR). Run this from inside the Laravel project." >&2
+    exit 1
+fi
+cd "$APP_ROOT"
+
+# ------------------------------------------------------------
+# 1) Registration wizard — full rewrite, adds Login button on step 6
+# ------------------------------------------------------------
+mkdir -p resources/views/livewire
+cat > resources/views/livewire/registration-wizard.blade.php <<'BLADE'
 <div>
     <ol class="wizard-steps" aria-label="Registration progress">
         @foreach (['Account', 'Personal Data', 'Employment', 'Sponsor', 'Declaration', 'Payment'] as $i => $label)
@@ -299,3 +325,71 @@
         @endif
     </form>
 </div>
+BLADE
+
+# ------------------------------------------------------------
+# 2) Application Approved email — drop the "Create Account Password" button
+# ------------------------------------------------------------
+mkdir -p resources/views/emails
+cat > resources/views/emails/member-approved.blade.php <<'BLADE'
+<x-mail::message>
+# Congratulations, {{ $user->name }}!
+
+Your membership application at **North Borneo Banking Executive Union (NBBEU)** has been approved.
+
+- Member No.: **{{ $user->member_no }}**
+- Company: {{ $user->company }}
+
+Your member card and certificate are attached to this email (PDF).
+
+You can log in to the member dashboard anytime using the email and password you registered with.
+
+Thank you,<br>
+NBBEU Admin
+</x-mail::message>
+BLADE
+
+# ------------------------------------------------------------
+# 3) NBBEU logo in every markdown email — publish Laravel's mail theme
+#    (idempotent, --force is safe to rerun) and patch the header slot.
+# ------------------------------------------------------------
+php artisan vendor:publish --tag=laravel-mail --force
+
+mkdir -p resources/views/vendor/mail/html
+cat > resources/views/vendor/mail/html/message.blade.php <<'BLADE'
+<x-mail::layout>
+{{-- Header --}}
+<x-slot:header>
+<x-mail::header :url="config('app.url')">
+<img src="{{ asset('assets/images/logo.png') }}" alt="{{ config('app.name') }}" height="36" style="height: 36px; max-height: 36px;">
+</x-mail::header>
+</x-slot:header>
+
+{{-- Body --}}
+{!! $slot !!}
+
+{{-- Subcopy --}}
+@isset($subcopy)
+<x-slot:subcopy>
+<x-mail::subcopy>
+{!! $subcopy !!}
+</x-mail::subcopy>
+</x-slot:subcopy>
+@endisset
+
+{{-- Footer --}}
+<x-slot:footer>
+<x-mail::footer>
+© {{ date('Y') }} {{ config('app.name') }}. {{ __('All rights reserved.') }}
+</x-mail::footer>
+</x-slot:footer>
+</x-mail::layout>
+BLADE
+
+# ------------------------------------------------------------
+# 4) Clear caches
+# ------------------------------------------------------------
+php artisan optimize:clear
+
+echo "Done: step 6 has a Login button, approval email drops the password-setup button, all markdown emails now show the NBBEU logo."
+echo "Reminder: APP_URL in .env must be the real public URL (not localhost) for the logo <img> to load in received emails."
