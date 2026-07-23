@@ -51,7 +51,7 @@
     <header id="navbar" class="masthead sticky top-0 z-50">
         <div class="masthead-top">
             <div class="masthead-top__inner">
-                <p class="masthead-kicker">Est. 2024 · North Borneo Banking Executive Union</p>
+                <p class="masthead-kicker">Ditubuhkan 2024 · North Borneo Banking Executive Union</p>
                 <div class="masthead-wordmark-row">
                     <a href="{{ route('home') }}" class="masthead-wordmark-link">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="" class="masthead-logo">
@@ -72,11 +72,11 @@
                     <a href="{{ route('home') }}" class="masthead-compact-logo-link">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="NBBEU" class="masthead-compact-logo">
                     </a>
-                    <a href="{{ route('home') }}#about">About Us</a>
-                    <a href="{{ route('home') }}#benefits">Membership</a>
-                    <a href="{{ route('org-structure') }}">Organization Structure</a>
-                    <a href="{{ route('blog.index') }}">News</a>
-                    <a href="{{ route('home') }}#contact">Contact</a>
+                    <a href="{{ route('home') }}#tentang-kami">Tentang Kami</a>
+                    <a href="{{ route('home') }}#program">Program</a>
+                    <a href="{{ route('org-structure') }}">Struktur Organisasi</a>
+                    <a href="{{ route('blog.index') }}">Berita</a>
+                    <a href="{{ route('home') }}#contact">Hubungi Kami</a>
                 </nav>
                 <div class="masthead-actions hidden lg:flex">
                     @auth
@@ -87,16 +87,16 @@
                             </button>
                             <div id="user-menu-dropdown" class="user-menu__dropdown hidden">
                                 <a href="{{ route('dashboard') }}">Dashboard</a>
-                                <a href="{{ route('profile.edit') }}">Profile</a>
+                                <a href="{{ route('profile.edit') }}">Profil</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit">Log Out</button>
+                                    <button type="submit">Log Keluar</button>
                                 </form>
                             </div>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" id="login-link">Member Login</a>
-                        <a href="{{ route('registration.create') }}" id="nav-join-btn" class="btn-primary cta-fill">Join Membership</a>
+                        <a href="{{ route('login') }}" id="login-link">Log Masuk Ahli</a>
+                        <a href="{{ route('registration.create') }}" id="nav-join-btn" class="btn-primary cta-fill">Sertai Keahlian</a>
                     @endauth
                 </div>
             </div>
@@ -104,21 +104,21 @@
 
         <div id="mobile-menu" class="hidden lg:hidden bg-nb-paper">
             <div class="px-6 py-4 flex flex-col">
-                <a href="{{ route('home') }}#about" class="mobile-link">About Us</a>
-                <a href="{{ route('home') }}#benefits" class="mobile-link">Membership</a>
-                <a href="{{ route('org-structure') }}" class="mobile-link">Organization Structure</a>
-                <a href="{{ route('blog.index') }}" class="mobile-link">News</a>
-                <a href="{{ route('home') }}#contact" class="mobile-link">Contact</a>
+                <a href="{{ route('home') }}#tentang-kami" class="mobile-link">Tentang Kami</a>
+                <a href="{{ route('home') }}#program" class="mobile-link">Program</a>
+                <a href="{{ route('org-structure') }}" class="mobile-link">Struktur Organisasi</a>
+                <a href="{{ route('blog.index') }}" class="mobile-link">Berita</a>
+                <a href="{{ route('home') }}#contact" class="mobile-link">Hubungi Kami</a>
                 @auth
                     <a href="{{ route('dashboard') }}" class="mobile-link">Dashboard</a>
-                    <a href="{{ route('profile.edit') }}" class="mobile-link">Profile</a>
+                    <a href="{{ route('profile.edit') }}" class="mobile-link">Profil</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn-primary cta-fill w-full mt-3 justify-center">Log Out</button>
+                        <button type="submit" class="btn-primary cta-fill w-full mt-3 justify-center">Log Keluar</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="mobile-link">Member Login</a>
-                    <a href="{{ route('registration.create') }}" class="btn-primary cta-fill w-full mt-3 justify-center">Join Membership</a>
+                    <a href="{{ route('login') }}" class="mobile-link">Log Masuk Ahli</a>
+                    <a href="{{ route('registration.create') }}" class="btn-primary cta-fill w-full mt-3 justify-center">Sertai Keahlian</a>
                 @endauth
             </div>
         </div>
@@ -129,20 +129,21 @@
 
     <footer id="contact" class="bg-sig-navy text-white/80 py-16">
         <div class="max-w-7xl mx-auto px-6 colophon">
-            <p class="text-white"><strong>NBBEU</strong> — North Borneo Banking Executive Union. Officially accredited since 2024 as the primary professionalism body for financial industry leaders in North Borneo.</p>
+            <p class="text-white"><strong>NORTH BORNEO BANKING EXECUTIVE UNION (NBBEU)</strong></p>
             <p class="mt-6">
-                Secretariat: Menara Finansial lt. 14, Blok C, Jalan Jenderal Sudirman No. 45, Tanjung Selor, North Borneo ·
-                E: sekretariat@nbbeu.org · T: +62 (552) 4409-1100
+                Lot 1, Block A, Jalan Ikan Juara 1, Tingkat 2, Sadong Jaya, 88818 Kota Kinabalu, Sabah.<br>
+                E-mel: nbbeusabah@gmail.com · Telefon: +60165830034<br>
+                Waktu Pejabat: Isnin - Jumaat, 9.00 pagi - 5.00 petang
             </p>
             <p class="mt-6 colophon__links">
-                <a href="{{ route('home') }}#about">About Us</a>
-                <a href="{{ route('home') }}#benefits">Membership</a>
-                <a href="{{ route('org-structure') }}">Organization Structure</a>
-                <a href="{{ route('blog.index') }}">News &amp; Releases</a>
-                <a href="{{ route('privacy') }}">Privacy Policy</a>
-                <a href="{{ route('terms') }}">Terms &amp; Conditions</a>
+                <a href="{{ route('home') }}#tentang-kami">Tentang Kami</a>
+                <a href="{{ route('home') }}#program">Program</a>
+                <a href="{{ route('org-structure') }}">Struktur Organisasi</a>
+                <a href="{{ route('blog.index') }}">Berita</a>
+                <a href="{{ route('privacy') }}">Dasar Privasi</a>
+                <a href="{{ route('terms') }}">Terma &amp; Syarat</a>
             </p>
-            <p class="mt-8 text-white/50">© {{ now()->year }} North Borneo Banking Executive Union (NBBEU). All Rights Reserved.</p>
+            <p class="mt-8 text-white/50">© {{ now()->year }} North Borneo Banking Executive Union (NBBEU). Hak Cipta Terpelihara.</p>
         </div>
     </footer>
 
