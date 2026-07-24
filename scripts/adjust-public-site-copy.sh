@@ -568,8 +568,8 @@ class LeadershipSeeder extends Seeder
             ['name' => 'Christine John William', 'position' => 'Timbalan Presiden'],
             ['name' => 'Dzunaidah Binti Sahadan', 'position' => 'Setiausaha Agung'],
             ['name' => 'Ruzina Binti Lamau', 'position' => 'Timbalan Setiausaha Agung'],
-            ['name' => 'Emmanuel Sylvester', 'position' => 'Bendahari'],
-            ['name' => 'Zahaibuddin Bin Cappi', 'position' => 'Timbalan Bendahari'],
+            ['name' => 'Emmanuel Sylvester', 'position' => 'Bendahari Agung'],
+            ['name' => 'Zahaibuddin Bin Cappi', 'position' => 'Timbalan Bendahari Agung'],
             ['name' => 'Din Bin Badaruddin', 'position' => 'Ahli Jawatankuasa'],
         ];
 

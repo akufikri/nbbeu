@@ -54,7 +54,13 @@
                 <h2 class="mt-2">Profil Ahli</h2>
             </div>
 
-            <div class="supporting-stats mt-6 scroll-reveal">
+            <div class="mt-8 scroll-reveal rounded-md overflow-hidden max-w-3xl mx-auto">
+                <video controls playsinline class="w-full h-auto block" preload="metadata">
+                    <source src="https://res.cloudinary.com/pvufs4ep/video/upload/v1784875084/WhatsApp_Video_2026-07-23_at_08.16.15_1_ko3naa.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="supporting-stats mt-10 scroll-reveal">
                 <div class="stat-row">
                     <div class="stat-cell">
                         <div class="tnum"><span class="count-up" data-target="{{ $approvedMembersCount }}">0</span>+</div>
@@ -213,10 +219,47 @@
         </div>
     </section>
 
+    <section id="galeri" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-10 scroll-reveal flex items-start justify-between gap-6 flex-wrap">
+                <div>
+                    <span class="head-numbered__label">05 — Galeri</span>
+                    <h2 class="mt-2">Galeri Foto</h2>
+                    <p class="mt-2 font-sans text-sm text-nb-ink-muted">Momen aktiviti dan program NBBEU.</p>
+                </div>
+                <a href="{{ route('gallery.index') }}" class="cta-text">Lihat Semua Galeri →</a>
+            </div>
+
+            @if ($galleryPreview->isEmpty())
+                <p class="text-nb-ink-muted font-sans text-sm">Belum ada foto galeri.</p>
+            @else
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 scroll-reveal">
+                    @foreach ($galleryPreview as $item)
+                        <a href="{{ route('gallery.index') }}">
+                            <div class="block aspect-square rounded-md overflow-hidden bg-nb-paper-final">
+                                <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($item->image) }}" alt="{{ $item->title }}" class="w-full h-full object-cover hover:opacity-90 transition">
+                            </div>
+                            @if ($item->title || $item->category)
+                                <div class="mt-2">
+                                    @if ($item->title)
+                                        <p class="text-xs font-medium text-nb-ink truncate">{{ $item->title }}</p>
+                                    @endif
+                                    @if ($item->category)
+                                        <p class="text-xs text-nb-ink-muted truncate">{{ $item->category }}</p>
+                                    @endif
+                                </div>
+                            @endif
+                        </a>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </section>
+
     <section id="blog" class="py-24 bg-nb-paper-final">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-10 scroll-reveal">
-                <span class="head-numbered__label">05 — Penerbitan</span>
+                <span class="head-numbered__label">06 — Penerbitan</span>
                 <h2 class="mt-2">Berita &amp; Penerbitan</h2>
                 <p class="mt-2 font-sans text-sm text-nb-ink-muted">Analisis Industri, Kenyataan Rasmi, Buletin NBBEU dan Laporan Tahunan.</p>
             </div>

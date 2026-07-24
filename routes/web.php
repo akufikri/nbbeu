@@ -10,6 +10,7 @@ use App\Http\Controllers\Membership\RegistrationStatusController;
 use App\Http\Controllers\Membership\ToyyibpayWebhookController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Public\BlogController;
+use App\Http\Controllers\Public\GalleryController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\OrgStructureController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
     Route::get('/{post}', [BlogController::class, 'show'])->name('show');
 });
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
 
 Route::prefix('register')->name('registration.')->group(function () {
     Route::get('/', fn () => view('membership.register-wizard'))->name('create');

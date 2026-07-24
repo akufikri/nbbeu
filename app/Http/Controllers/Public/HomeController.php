@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Models\GalleryItem;
 use App\Models\OrgChart;
 use App\Models\Post;
 use App\Models\User;
@@ -22,6 +23,11 @@ class HomeController extends Controller
             ->limit(3)
             ->get();
 
+        $galleryPreview = GalleryItem::where('is_active', true)
+            ->orderBy('display_order')
+            ->limit(6)
+            ->get();
+
         $approvedMembersCount = User::where('status', 'approved')->count();
         $memberCompaniesCount = User::where('status', 'approved')->distinct('company')->count('company');
         $leadershipCount = $orgChart->count();
@@ -29,6 +35,7 @@ class HomeController extends Controller
         return view('public.home', [
             'orgChart' => $orgChart,
             'latestPosts' => $latestPosts,
+            'galleryPreview' => $galleryPreview,
             'approvedMembersCount' => $approvedMembersCount,
             'memberCompaniesCount' => $memberCompaniesCount,
             'leadershipCount' => $leadershipCount,
