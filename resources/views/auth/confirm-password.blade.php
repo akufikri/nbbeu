@@ -1,28 +1,28 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-    </div>
-
-    <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
-
-        <!-- Password -->
-        <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+<x-site-layout
+    title="Confirm Password — NBBEU"
+    description="Confirm your password to continue."
+    :hide-nav="true"
+>
+    <section class="page-header">
+        <div class="max-w-7xl mx-auto px-6">
+            <h1>Confirm Password</h1>
+            <p>This is a secure area of the application. Please confirm your password before continuing.</p>
         </div>
+    </section>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <section class="py-16">
+        <form class="form mx-auto" method="POST" action="{{ route('password.confirm') }}">
+            @csrf
+
+            <div class="field @if ($errors->get('password')) field--error @endif">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" required autofocus>
+                @if ($errors->get('password'))
+                    <span class="field__msg">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
+
+            <button type="submit" class="btn-submit">Confirm</button>
+        </form>
+    </section>
+</x-site-layout>

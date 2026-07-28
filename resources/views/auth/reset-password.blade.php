@@ -1,39 +1,47 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
-
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" placeholder="name@email.com" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<x-site-layout
+    title="Reset Password — NBBEU"
+    description="Set a new password for your NBBEU member portal account."
+    :hide-nav="true"
+>
+    <section class="page-header">
+        <div class="max-w-7xl mx-auto px-6">
+            <a href="{{ route('login') }}" class="page-header__crumb">← Back to Login</a>
+            <h1>Reset Password</h1>
+            <p>Enter a new password for your account.</p>
         </div>
+    </section>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" placeholder="New password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <section class="py-16">
+        <form class="form mx-auto" method="POST" action="{{ route('password.store') }}">
+            @csrf
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" placeholder="Confirm new password" required autocomplete="new-password" />
+            <div class="field @if ($errors->get('email')) field--error @endif">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="{{ old('email', $request->email) }}" autocomplete="username" placeholder="name@institution.co.id" required autofocus>
+                @if ($errors->get('email'))
+                    <span class="field__msg">{{ $errors->first('email') }}</span>
+                @endif
+            </div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+            <div class="field @if ($errors->get('password')) field--error @endif">
+                <label for="password">New Password</label>
+                <input type="password" id="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" required>
+                @if ($errors->get('password'))
+                    <span class="field__msg">{{ $errors->first('password') }}</span>
+                @endif
+            </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+            <div class="field @if ($errors->get('password_confirmation')) field--error @endif">
+                <label for="password_confirmation">Confirm New Password</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" autocomplete="new-password" placeholder="Re-enter new password" required>
+                @if ($errors->get('password_confirmation'))
+                    <span class="field__msg">{{ $errors->first('password_confirmation') }}</span>
+                @endif
+            </div>
+
+            <button type="submit" class="btn-submit">Reset Password</button>
+        </form>
+    </section>
+</x-site-layout>

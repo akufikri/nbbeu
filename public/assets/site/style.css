@@ -679,6 +679,44 @@ footer#contact { padding-block: var(--space-3xl); }
   .btn-submit .spinner { animation-duration: 1400ms; }
 }
 
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  min-height: 44px;
+  background: var(--color-paper-raised);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.5rem;
+  transition: background var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+}
+.google-btn:hover { background: color-mix(in oklch, var(--color-paper-raised) 92%, var(--color-ink)); }
+.google-btn:active { transform: translateY(1px); }
+.google-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-block: var(--space-lg);
+  color: var(--color-ink-muted);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+}
+.form-divider::before,
+.form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-rule);
+}
+
 .form-aside {
   font-family: var(--font-body);
   font-size: 0.875rem;

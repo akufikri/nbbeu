@@ -43,4 +43,19 @@ return [
         'renewal_amount' => env('TOYYIBPAY_RENEWAL_AMOUNT', 5000),
     ],
 
+    // Frontend (public) Firebase Web SDK config — safe to expose client-side.
+    'firebase' => [
+        'api_key' => env('FIREBASE_API_KEY'),
+        'auth_domain' => env('FIREBASE_AUTH_DOMAIN'),
+        'project_id' => env('FIREBASE_PROJECT_ID'),
+        'storage_bucket' => env('FIREBASE_STORAGE_BUCKET'),
+        'messaging_sender_id' => env('FIREBASE_MESSAGING_SENDER_ID'),
+        'app_id' => env('FIREBASE_APP_ID'),
+        // Backend-only: path to the Firebase service account JSON, used to verify
+        // ID tokens server-side. Never expose this file publicly. Resolved to an
+        // absolute path here so it doesn't depend on the process's CWD (php-fpm,
+        // queue workers, and artisan can all have a different working directory).
+        'credentials' => env('FIREBASE_CREDENTIALS') ? base_path(env('FIREBASE_CREDENTIALS')) : null,
+    ],
+
 ];
