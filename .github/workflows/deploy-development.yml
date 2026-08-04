@@ -24,6 +24,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT || 21 }}
           protocol: ftps
+          timeout: 60000
           exclude: |
             .git/**
             .gitignore
@@ -34,3 +35,5 @@ jobs:
             docs/**
             storage/logs/**
             storage/pail/**
+            public/build.zip
+            *.pdf
