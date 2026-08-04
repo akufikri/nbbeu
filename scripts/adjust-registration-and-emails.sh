@@ -361,7 +361,7 @@ cat > resources/views/vendor/mail/html/message.blade.php <<'BLADE'
 {{-- Header --}}
 <x-slot:header>
 <x-mail::header :url="config('app.url')">
-<img src="{{ asset('assets/images/logo.png') }}" alt="{{ config('app.name') }}" height="36" style="height: 36px; max-height: 36px;">
+<img src="{{ asset('assets/images/logo.png') }}" alt="{{ config('app.name') }}" height="72" style="height: 72px; max-height: 72px;">
 </x-mail::header>
 </x-slot:header>
 

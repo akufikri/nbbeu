@@ -1,3 +1,25 @@
+#!/usr/bin/env bash
+# Run from anywhere inside the Laravel project: bash scripts/adjust-users-export-styling.sh
+# Lead feedback: the Users/Active Members Excel export ("Export" button) looked
+# plain, needed styling, Member No. moved before Name, and a Position column.
+# Follow-up feedback: drop Status/Approved Date/Expiry Date entirely — those are
+# backend-managed workflow fields, not needed in this roster-style export.
+# Final columns: Member No., Name, Email, Phone, Company, Position.
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_ROOT="$SCRIPT_DIR"
+while [ ! -f "$APP_ROOT/artisan" ] && [ "$APP_ROOT" != "/" ]; do
+    APP_ROOT="$(dirname "$APP_ROOT")"
+done
+if [ ! -f "$APP_ROOT/artisan" ]; then
+    echo "Could not locate artisan (looked upward from $SCRIPT_DIR). Run this from inside the Laravel project." >&2
+    exit 1
+fi
+cd "$APP_ROOT"
+
+mkdir -p app/Exports
+cat > app/Exports/UsersExport.php <<'PHP'
 <?php
 
 namespace App\Exports;
@@ -92,3 +114,9 @@ class UsersExport implements FromCollection, ShouldAutoSize, WithEvents, WithHea
         ];
     }
 }
+PHP
+
+php artisan optimize:clear
+
+echo "Done: Users export now has a styled header (navy/white bold), auto-sized columns,"
+echo "frozen header row, thin borders. Columns: Member No., Name, Email, Phone, Company, Position."

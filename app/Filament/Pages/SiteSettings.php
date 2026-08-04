@@ -44,6 +44,7 @@ class SiteSettings extends Page
         'how_to_join_text',
         'card_logo',
         'card_signature',
+        'collective_agreement_text',
     ];
 
     public function mount(): void
@@ -112,6 +113,13 @@ class SiteSettings extends Page
                                     ->disk('cloudinary')
                                     ->directory('branding')
                                     ->helperText('Recommended size: 400x150px, transparent PNG. Max 2MB.'),
+                            ]),
+                        Tab::make('Collective Agreement')
+                            ->schema([
+                                Textarea::make('collective_agreement_text')
+                                    ->label('Collective Agreement Text')
+                                    ->rows(12)
+                                    ->placeholder('Text shown on the public Collective Agreement page'),
                             ]),
                     ]),
             ])

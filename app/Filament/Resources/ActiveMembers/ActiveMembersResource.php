@@ -31,7 +31,7 @@ class ActiveMembersResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('status', 'approved');
+        return parent::getEloquentQuery()->where('status', 'approved')->where('member_status', 'active');
     }
 
     public static function form(Schema $schema): Schema

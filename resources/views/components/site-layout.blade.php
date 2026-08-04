@@ -77,6 +77,7 @@
                     <a href="{{ route('org-structure') }}">Struktur Organisasi</a>
                     <a href="{{ route('blog.index') }}">Berita</a>
                     <a href="{{ route('gallery.index') }}">Galeri</a>
+                    <a href="{{ route('collective-agreement') }}">Perjanjian Kolektif</a>
                     <a href="{{ route('home') }}#contact">Hubungi Kami</a>
                 </nav>
                 <div class="masthead-actions hidden lg:flex">
@@ -110,6 +111,7 @@
                 <a href="{{ route('org-structure') }}" class="mobile-link">Struktur Organisasi</a>
                 <a href="{{ route('blog.index') }}" class="mobile-link">Berita</a>
                 <a href="{{ route('gallery.index') }}" class="mobile-link">Galeri</a>
+                <a href="{{ route('collective-agreement') }}" class="mobile-link">Perjanjian Kolektif</a>
                 <a href="{{ route('home') }}#contact" class="mobile-link">Hubungi Kami</a>
                 @auth
                     <a href="{{ route('dashboard') }}" class="mobile-link">Dashboard</a>
@@ -143,6 +145,7 @@
                 <a href="{{ route('org-structure') }}">Struktur Organisasi</a>
                 <a href="{{ route('blog.index') }}">Berita</a>
                 <a href="{{ route('gallery.index') }}">Galeri</a>
+                <a href="{{ route('collective-agreement') }}">Perjanjian Kolektif</a>
                 <a href="{{ route('privacy') }}">Dasar Privasi</a>
                 <a href="{{ route('terms') }}">Terma &amp; Syarat</a>
             </p>

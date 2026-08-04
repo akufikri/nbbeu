@@ -30,11 +30,21 @@ class RenderMemberCardImage
 
         $textLeft = 261.6;
         $textWidth = 510.1;
-        $fontSize = 22;
-        $this->drawText($canvas, $font, $fontSize, $navy, $user->name, $textLeft, 172.7 + $fontSize, $textWidth);
-        $this->drawText($canvas, $font, $fontSize, $navy, $user->phone, $textLeft, 297.1 + $fontSize, $textWidth);
-        $this->drawText($canvas, $font, $fontSize, $navy, $user->email, $textLeft, 425.4 + $fontSize, $textWidth);
-        $this->drawText($canvas, $font, $fontSize, $navy, $user->memberProfile?->residential_address ?? '-', $textLeft, 556.7 + $fontSize, $textWidth);
+        // Card PDF template uses 8.5px CSS font-size on a 340x214 card; this
+        // canvas is the same card scaled up to the illustration's native
+        // 1594x987 resolution (~4.65x), so the font size must scale up with
+        // it too — 22px was a stale guess, not derived from the PDF's actual
+        // size, and rendered visibly too small for the (correctly scaled)
+        // text box width/position below.
+        $fontSize = (int) round(8.5 * (1594 / 340));
+        // imagettftext's $y is the text baseline, not the box top — 0.8x the
+        // font size approximates DejaVu Sans's baseline offset from the top
+        // of its line box.
+        $baselineOffset = $fontSize * 0.8;
+        $this->drawText($canvas, $font, $fontSize, $navy, $user->name, $textLeft, 172.7 + $baselineOffset, $textWidth);
+        $this->drawText($canvas, $font, $fontSize, $navy, $user->phone, $textLeft, 297.1 + $baselineOffset, $textWidth);
+        $this->drawText($canvas, $font, $fontSize, $navy, $user->email, $textLeft, 425.4 + $baselineOffset, $textWidth);
+        $this->drawText($canvas, $font, $fontSize, $navy, $user->memberProfile?->residential_address ?? '-', $textLeft, 556.7 + $baselineOffset, $textWidth);
 
         ob_start();
         imagepng($canvas);
@@ -89,8 +99,12 @@ class RenderMemberCardImage
     private function drawText($canvas, string $font, int $size, int $color, string $text, float $x, float $y, float $maxWidth): void
     {
         // Trim with an ellipsis if the text would overflow the field's line width.
-        while (imagettfbbox($size, 0, $font, $text)[2] > $maxWidth && mb_strlen($text) > 1) {
-            $text = mb_substr($text, 0, -1);
+        if (imagettfbbox($size, 0, $font, $text)[2] > $maxWidth) {
+            while (mb_strlen($text) > 1 && imagettfbbox($size, 0, $font, $text.'…')[2] > $maxWidth) {
+                $text = mb_substr($text, 0, -1);
+            }
+
+            $text .= '…';
         }
 
         imagettftext($canvas, $size, 0, (int) $x, (int) $y, $color, $font, $text);

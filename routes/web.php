@@ -20,6 +20,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/org-structure', [OrgStructureController::class, 'index'])->name('org-structure');
 Route::view('/terms', 'public.terms')->name('terms');
 Route::view('/privacy', 'public.privacy')->name('privacy');
+Route::get('/collective-agreement', fn () => view('public.collective-agreement', [
+    'text' => \App\Models\Setting::get('collective_agreement_text'),
+]))->name('collective-agreement');
 
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');

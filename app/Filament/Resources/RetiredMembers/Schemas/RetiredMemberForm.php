@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Filament\Resources\ActiveMembers\Schemas;
+namespace App\Filament\Resources\RetiredMembers\Schemas;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
-class ActiveMemberForm
+class RetiredMemberForm
 {
     public static function configure(Schema $schema): Schema
     {

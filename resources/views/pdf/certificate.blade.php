@@ -16,12 +16,17 @@
             padding: 60px;
             text-align: center;
         }
+        .logo {
+            width: 72px;
+            height: 72px;
+        }
         .org {
             font-size: 12px;
             letter-spacing: 2px;
             color: #16305C;
             text-transform: uppercase;
             font-weight: bold;
+            margin-top: 12px;
         }
         .title {
             font-size: 32px;
@@ -59,6 +64,7 @@
 </head>
 <body>
     <div class="frame">
+        <img class="logo" src="{{ public_path('assets/images/logo.png') }}">
         <div class="org">North Borneo Banking Executive Union</div>
         <div class="title">Certificate of Membership</div>
 

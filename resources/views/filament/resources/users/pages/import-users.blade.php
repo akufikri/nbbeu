@@ -1,7 +1,11 @@
 <x-filament-panels::page>
     <x-filament::section>
         <x-slot name="heading">Upload Excel File</x-slot>
-        <x-slot name="description">Required columns: name, email, phone, company (first row = header).</x-slot>
+        <x-slot name="description">
+            Required columns: name, email, phone, company. Optional Personal Data Form columns (gender, race,
+            date_of_birth, ic_no, addresses, employer, bank, etc.) are also read if present — use the downloaded
+            template for exact column names (first row = header).
+        </x-slot>
 
         <form wire:submit="preview" class="space-y-4">
             <input type="file" wire:model="file" accept=".xlsx,.xls,.csv"
