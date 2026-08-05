@@ -18,6 +18,14 @@
                     <a href="{{ route('member.documents.certificate') }}" class="mt-4 inline-block px-4 py-2 text-sm rounded-sm bg-nbbeu-navy text-white hover:bg-nbbeu-gold hover:text-nbbeu-navy-deep">
                         Download Certificate (PDF)
                     </a>
+
+                    <div class="mt-6 border rounded-sm overflow-hidden" style="aspect-ratio: 297 / 210;">
+                        <iframe
+                            src="{{ route('member.documents.certificate.preview') }}"
+                            title="Certificate preview"
+                            class="w-full h-full"
+                        ></iframe>
+                    </div>
                 @endif
             </div>
         </div>

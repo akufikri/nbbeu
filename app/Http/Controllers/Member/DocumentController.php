@@ -67,4 +67,15 @@ class DocumentController extends Controller
 
         return Storage::download($certificate->file_path, "Certificate-{$request->user()->member_no}.pdf");
     }
+
+    public function certificatePreview(Request $request): StreamedResponse
+    {
+        $certificate = $request->user()->certificates()->latest('id')->firstOrFail();
+
+        abort_unless(Storage::exists($certificate->file_path), 404);
+
+        return Storage::response($certificate->file_path, "Certificate-{$request->user()->member_no}.pdf", [
+            'Content-Disposition' => 'inline',
+        ]);
+    }
 }

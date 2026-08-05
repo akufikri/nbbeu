@@ -4,16 +4,14 @@
     <meta charset="utf-8">
     <style>
         @page { margin: 0; size: A4 landscape; }
-        body {
+        html, body {
             margin: 0;
             font-family: 'DejaVu Serif', serif;
             color: #232A33;
             background-color: #F6F7F9;
         }
         .frame {
-            border: 3px solid #B08D3D;
-            margin: 24px;
-            padding: 60px;
+            margin: 160px 60px 0;
             text-align: center;
         }
         .logo {

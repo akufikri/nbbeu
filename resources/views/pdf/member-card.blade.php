@@ -20,11 +20,10 @@
         .field {
             position: absolute;
             left: 55.8px; width: 108.8px;
-            font-size: 8.5px;
+            font-size: 12px;
             color: #16305C;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
         .field-name { top: 40.6px; }
         .field-phone { top: 67.5px; }
@@ -48,10 +47,12 @@
             @endif
         </div>
 
-        <div class="field field-name">{{ $user->name }}</div>
-        <div class="field field-phone">{{ $user->phone }}</div>
-        <div class="field field-email">{{ $user->email }}</div>
-        <div class="field field-location">{{ $location }}</div>
+        {{-- dompdf doesn't support CSS text-overflow: ellipsis (text just gets
+             hard-clipped mid-word with no "…"), so truncate server-side instead. --}}
+        <div class="field field-name">{{ \Illuminate\Support\Str::limit($user->name, 16) }}</div>
+        <div class="field field-phone">{{ \Illuminate\Support\Str::limit($user->phone, 16) }}</div>
+        <div class="field field-email">{{ \Illuminate\Support\Str::limit($user->email, 16) }}</div>
+        <div class="field field-location">{{ \Illuminate\Support\Str::limit($location, 16) }}</div>
 
         <div class="qr-box">
             <img src="{{ $qrDataUri }}">

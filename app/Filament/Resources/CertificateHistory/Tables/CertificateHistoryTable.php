@@ -29,6 +29,17 @@ class CertificateHistoryTable
                     ->date(),
             ])
             ->recordActions([
+                Action::make('preview_certificate')
+                    ->label('Preview')
+                    ->icon('heroicon-o-eye')
+                    ->modalHeading('Certificate Preview')
+                    ->modalContent(fn ($record) => view('filament.modals.pdf-preview', [
+                        'url' => route('admin.documents.certificates.preview', $record),
+                        'aspectRatio' => '297 / 210',
+                    ]))
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Close')
+                    ->visible(fn ($record) => filled($record->file_path) && Storage::exists($record->file_path)),
                 Action::make('download_certificate')
                     ->label('Download Certificate')
                     ->icon('heroicon-o-arrow-down-tray')

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DocumentPreviewController;
 use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
 use App\Http\Controllers\Member\DocumentController;
 use App\Http\Controllers\Member\PaymentHistoryController;
@@ -60,12 +61,18 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/certificate', [DocumentController::class, 'certificatePage'])->name('certificate');
         Route::get('/documents/card', [DocumentController::class, 'card'])->name('documents.card');
         Route::get('/documents/certificate', [DocumentController::class, 'certificate'])->name('documents.certificate');
+        Route::get('/documents/certificate/preview', [DocumentController::class, 'certificatePreview'])->name('documents.certificate.preview');
         Route::get('/renewal', [RenewalController::class, 'index'])->name('renewal.index');
         Route::post('/renewal', [RenewalController::class, 'store'])->name('renewal');
         Route::get('/union-dues', [UnionDuesController::class, 'index'])->name('union-dues');
         Route::post('/union-dues', [UnionDuesController::class, 'store'])->name('union-dues.store');
         Route::get('/union-dues/{mandate}/download', [UnionDuesController::class, 'download'])->name('union-dues.download');
     });
+});
+
+Route::middleware('auth:admin')->prefix('admin/documents')->name('admin.documents.')->group(function () {
+    Route::get('/cards/{memberCard}/preview', [DocumentPreviewController::class, 'card'])->name('cards.preview');
+    Route::get('/certificates/{certificate}/preview', [DocumentPreviewController::class, 'certificate'])->name('certificates.preview');
 });
 
 require __DIR__.'/auth.php';
