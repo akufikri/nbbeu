@@ -1,14 +1,14 @@
 @props([
-    'title' => 'NBBEU | Kesatuan Eksekutif Perbankan Sabah, Malaysia',
-    'description' => 'NBBEU ialah kesatuan eksekutif perbankan di Sabah, Malaysia. Kami memperjuangkan hak, kebajikan dan pembangunan profesional bagi eksekutif perbankan.',
+    'title' => 'NBBEU | Banking Executive Union Sabah, Malaysia',
+    'description' => 'NBBEU is the union for banking executives in Sabah, Malaysia, working for members rights, welfare and professional development.',
     'canonical' => url()->current(),
     'ogTitle' => 'NBBEU | North Borneo Banking Executive Union, Sabah',
-    'ogDescription' => 'NBBEU ialah kesatuan eksekutif perbankan di Sabah, Malaysia — memperjuangkan hak, kebajikan dan pembangunan profesional ahli.',
+    'ogDescription' => 'NBBEU is the union for banking executives in Sabah, Malaysia — advocating for members rights, welfare and professional development.',
     'ogImage' => 'https://nbbeu.org/assets/images/og-image.jpg',
     'hideNav' => false,
 ])
 <!DOCTYPE html>
-<html lang="ms" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -91,7 +91,7 @@
     <header id="navbar" class="masthead sticky top-0 z-50">
         <div class="masthead-top">
             <div class="masthead-top__inner">
-                <p class="masthead-kicker">Ditubuhkan 2024 · North Borneo Banking Executive Union</p>
+                <p class="masthead-kicker">Established 2024 · North Borneo Banking Executive Union</p>
                 <div class="masthead-wordmark-row">
                     <a href="{{ route('home') }}" class="masthead-wordmark-link">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="" class="masthead-logo">
@@ -112,13 +112,13 @@
                     <a href="{{ route('home') }}" class="masthead-compact-logo-link">
                         <img src="{{ asset('assets/images/logo.png') }}" alt="NBBEU" class="masthead-compact-logo">
                     </a>
-                    <a href="{{ route('home') }}#tentang-kami">Tentang Kami</a>
-                    <a href="{{ route('home') }}#program">Program</a>
+                    <a href="{{ route('home') }}#tentang-kami">About</a>
+                    <a href="{{ route('home') }}#program">Programs</a>
                     <a href="{{ route('org-structure') }}">Struktur Organisasi</a>
-                    <a href="{{ route('blog.index') }}">Berita</a>
-                    <a href="{{ route('gallery.index') }}">Galeri</a>
-                    <a href="{{ route('collective-agreement') }}">Perjanjian Kolektif</a>
-                    <a href="{{ route('home') }}#contact">Hubungi Kami</a>
+                    <a href="{{ route('blog.index') }}">News</a>
+                    <a href="{{ route('gallery.index') }}">Gallery</a>
+                    <a href="{{ route('collective-agreement') }}">Collective Agreement</a>
+                    <a href="{{ route('home') }}#contact">Contact Us</a>
                 </nav>
                 <div class="masthead-actions hidden lg:flex">
                     @auth
@@ -132,13 +132,13 @@
                                 <a href="{{ route('profile.edit') }}">Profil</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit">Log Keluar</button>
+                                    <button type="submit">Log Out</button>
                                 </form>
                             </div>
                         </div>
                     @else
-                        <a href="{{ route('login') }}" id="login-link">Log Masuk Ahli</a>
-                        <a href="{{ route('registration.create') }}" id="nav-join-btn" class="btn-primary cta-fill">Sertai Keahlian</a>
+                        <a href="{{ route('login') }}" id="login-link">Member Login</a>
+                        <a href="{{ route('registration.create') }}" id="nav-join-btn" class="btn-primary cta-fill">Join Membership</a>
                     @endauth
                 </div>
             </div>
@@ -146,23 +146,23 @@
 
         <div id="mobile-menu" class="hidden lg:hidden bg-nb-paper">
             <div class="px-6 py-4 flex flex-col">
-                <a href="{{ route('home') }}#tentang-kami" class="mobile-link">Tentang Kami</a>
-                <a href="{{ route('home') }}#program" class="mobile-link">Program</a>
+                <a href="{{ route('home') }}#tentang-kami" class="mobile-link">About</a>
+                <a href="{{ route('home') }}#program" class="mobile-link">Programs</a>
                 <a href="{{ route('org-structure') }}" class="mobile-link">Struktur Organisasi</a>
-                <a href="{{ route('blog.index') }}" class="mobile-link">Berita</a>
-                <a href="{{ route('gallery.index') }}" class="mobile-link">Galeri</a>
-                <a href="{{ route('collective-agreement') }}" class="mobile-link">Perjanjian Kolektif</a>
-                <a href="{{ route('home') }}#contact" class="mobile-link">Hubungi Kami</a>
+                <a href="{{ route('blog.index') }}" class="mobile-link">News</a>
+                <a href="{{ route('gallery.index') }}" class="mobile-link">Gallery</a>
+                <a href="{{ route('collective-agreement') }}" class="mobile-link">Collective Agreement</a>
+                <a href="{{ route('home') }}#contact" class="mobile-link">Contact Us</a>
                 @auth
                     <a href="{{ route('dashboard') }}" class="mobile-link">Dashboard</a>
                     <a href="{{ route('profile.edit') }}" class="mobile-link">Profil</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn-primary cta-fill w-full mt-3 justify-center">Log Keluar</button>
+                        <button type="submit" class="btn-primary cta-fill w-full mt-3 justify-center">Log Out</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="mobile-link">Log Masuk Ahli</a>
-                    <a href="{{ route('registration.create') }}" class="btn-primary cta-fill w-full mt-3 justify-center">Sertai Keahlian</a>
+                    <a href="{{ route('login') }}" class="mobile-link">Member Login</a>
+                    <a href="{{ route('registration.create') }}" class="btn-primary cta-fill w-full mt-3 justify-center">Join Membership</a>
                 @endauth
             </div>
         </div>
@@ -176,20 +176,20 @@
             <p class="text-white"><strong>NORTH BORNEO BANKING EXECUTIVE UNION (NBBEU)</strong></p>
             <p class="mt-6">
                 Lot 1, Block A, Jalan Ikan Juara 1, Tingkat 2, Sadong Jaya, 88818 Kota Kinabalu, Sabah.<br>
-                E-mel: nbbeusabah@gmail.com · Telefon: +60165830034<br>
-                Waktu Pejabat: Isnin - Jumaat, 9.00 pagi - 5.00 petang
+                Email: nbbeusabah@gmail.com · Phone: +60165830034<br>
+                Office Hours: Monday - Friday, 9:00 am - 5:00 pm
             </p>
             <p class="mt-6 colophon__links">
-                <a href="{{ route('home') }}#tentang-kami">Tentang Kami</a>
-                <a href="{{ route('home') }}#program">Program</a>
+                <a href="{{ route('home') }}#tentang-kami">About</a>
+                <a href="{{ route('home') }}#program">Programs</a>
                 <a href="{{ route('org-structure') }}">Struktur Organisasi</a>
-                <a href="{{ route('blog.index') }}">Berita</a>
-                <a href="{{ route('gallery.index') }}">Galeri</a>
-                <a href="{{ route('collective-agreement') }}">Perjanjian Kolektif</a>
-                <a href="{{ route('privacy') }}">Dasar Privasi</a>
-                <a href="{{ route('terms') }}">Terma &amp; Syarat</a>
+                <a href="{{ route('blog.index') }}">News</a>
+                <a href="{{ route('gallery.index') }}">Gallery</a>
+                <a href="{{ route('collective-agreement') }}">Collective Agreement</a>
+                <a href="{{ route('privacy') }}">Privacy Policy</a>
+                <a href="{{ route('terms') }}">Terms &amp; Conditions</a>
             </p>
-            <p class="mt-8 text-white/50">© {{ now()->year }} North Borneo Banking Executive Union (NBBEU). Hak Cipta Terpelihara.</p>
+            <p class="mt-8 text-white/50">© {{ now()->year }} North Borneo Banking Executive Union (NBBEU). All Rights Reserved.</p>
         </div>
     </footer>
 

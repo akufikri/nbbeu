@@ -1,27 +1,27 @@
 <x-site-layout
-    title="Struktur Kepimpinan 2025-2027 — NBBEU"
-    description="Struktur Kepimpinan NBBEU 2025-2027, dipilih melalui musyawarah ahli untuk membimbing hala tuju strategik kesatuan."
+    title="Leadership Structure 2025-2027 — NBBEU"
+    description="Leadership structure of NBBEU 2025-2027, elected through members deliberation to guide the unions strategic direction."
 >
     <section class="page-header">
         <div class="max-w-7xl mx-auto px-6">
-            <a href="{{ route('home') }}" class="page-header__crumb">← Kembali ke Laman Utama</a>
-            <h1>Struktur Kepimpinan 2025-2027</h1>
-            <p>Bertanggungjawab terhadap operasi harian dan perwakilan rasmi kesatuan.</p>
+            <a href="{{ route('home') }}" class="page-header__crumb">← Back to Home</a>
+            <h1>Leadership Structure 2025-2027</h1>
+            <p>Responsible for the day-to-day operations and official representation of the union.</p>
         </div>
     </section>
 
     <section class="py-16">
         <div class="max-w-7xl mx-auto px-6">
             <div class="head-numbered scroll-reveal">
-                <span class="head-numbered__label">01 — Eksekutif</span>
+                <span class="head-numbered__label">01 — Executive</span>
                 <div>
-                    <h2>Jawatankuasa Eksekutif</h2>
-                    <p>Bertanggungjawab terhadap operasi harian dan perwakilan rasmi kesatuan.</p>
+                    <h2>Executive Committee</h2>
+                    <p>Responsible for the day-to-day operations and official representation of the union.</p>
                 </div>
             </div>
 
             @if ($orgChart->isEmpty())
-                <p class="text-nb-ink-muted font-sans text-sm">Struktur organisasi akan dikemaskini tidak lama lagi.</p>
+                <p class="text-nb-ink-muted font-sans text-sm">The organisation structure will be updated soon.</p>
             @elseif ($orgChartTree->count() === 1)
                 <div id="org-chart-tree" class="org-chart-tree scroll-reveal" data-tree="{{ json_encode($orgChartTree->first()) }}"></div>
             @else

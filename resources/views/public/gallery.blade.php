@@ -1,20 +1,20 @@
 <x-site-layout
-    title="Galeri — NBBEU"
-    description="Galeri foto aktiviti dan program North Borneo Banking Executive Union (NBBEU)."
+    title="Gallery — NBBEU"
+    description="Photo gallery of North Borneo Banking Executive Union (NBBEU) activities and programs."
 >
     <section class="page-header">
         <div class="max-w-7xl mx-auto px-6">
-            <a href="{{ route('home') }}" class="page-header__crumb">← Kembali ke Laman Utama</a>
-            <h1>Galeri</h1>
-            <p>Koleksi foto aktiviti dan program NBBEU.</p>
+            <a href="{{ route('home') }}" class="page-header__crumb">← Back to Home</a>
+            <h1>Gallery</h1>
+            <p>A collection of NBBEU activity and program photos.</p>
         </div>
     </section>
 
     <section class="py-16">
         <div class="max-w-7xl mx-auto px-6">
             @if ($categories->isNotEmpty())
-                <div class="filter-chips mb-8" role="group" aria-label="Filter kategori">
-                    <a href="{{ route('gallery.index') }}" class="filter-chip @if (! $category) is-active @endif">Semua</a>
+                <div class="filter-chips mb-8" role="group" aria-label="Filter by category">
+                    <a href="{{ route('gallery.index') }}" class="filter-chip @if (! $category) is-active @endif">All</a>
                     @foreach ($categories as $key)
                         <a href="{{ route('gallery.index', ['category' => $key]) }}" class="filter-chip @if ($category === $key) is-active @endif">{{ $key }}</a>
                     @endforeach
@@ -22,7 +22,7 @@
             @endif
 
             @if ($items->isEmpty())
-                <p class="text-nb-ink-muted font-sans text-sm">Belum ada foto galeri.</p>
+                <p class="text-nb-ink-muted font-sans text-sm">No gallery photos yet.</p>
             @else
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 scroll-reveal">
                     @foreach ($items as $item)

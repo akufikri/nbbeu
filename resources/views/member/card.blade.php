@@ -61,7 +61,7 @@
                         </div>
 
                         <a href="{{ route('member.documents.card') }}" class="mt-4 inline-block px-4 py-2 text-sm rounded-sm bg-nbbeu-navy text-white hover:bg-nbbeu-gold hover:text-nbbeu-navy-deep">
-                            Download Kad Ahli
+                            Download Member Card
                         </a>
                     </div>
                 </di>

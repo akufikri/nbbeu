@@ -1,14 +1,14 @@
 <x-mail::message>
-# Notis NBBEU
+# Notice from NBBEU
 
-Permohonan keahlian anda di **North Borneo Banking Executive Union (NBBEU)** telah diluluskan.
+Your membership application at **North Borneo Banking Executive Union (NBBEU)** has been approved.
 
-Sila tekan butang dibawah untuk selesaikan bayaran pendaftaran.
+Please click the button below to complete your registration payment.
 
 <x-mail::button :url="$billUrl">
-Proses Seterusnya
+Proceed
 </x-mail::button>
 
-Terima kasih,<br>
-Admin NBBEU
+Thank you,<br>
+NBBEU Admin
 </x-mail::message>

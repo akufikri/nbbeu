@@ -31,7 +31,7 @@ class LeadershipSeeder extends Seeder
             ['name' => 'Ruzina Binti Lamau', 'position' => 'Timbalan Setiausaha Agung'],
             ['name' => 'Emmanuel Sylvester', 'position' => 'Bendahari Agung'],
             ['name' => 'Zahaibuddin Bin Cappi', 'position' => 'Timbalan Bendahari Agung'],
-            ['name' => 'Din Bin Badaruddin', 'position' => 'Ahli Jawatankuasa'],
+            ['name' => 'Din Bin Badaruddin', 'position' => 'Committee Member'],
         ];
 
         foreach ($members as $index => $member) {
