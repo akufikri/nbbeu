@@ -1,6 +1,13 @@
+@php
+    $postOgImage = ($post->hero_image ?? $post->cover_image)
+        ? \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->hero_image ?? $post->cover_image)
+        : null;
+@endphp
 <x-site-layout
     :title="$post->title . ' — NBBEU'"
     :description="$post->excerpt ?? $post->title"
+    :ogImage="$postOgImage"
+    :ogTitle="$post->title . ' — North Borneo Banking Executive Union'"
 >
     <article class="py-16 px-6">
         <div class="max-w-7xl mx-auto">

@@ -241,6 +241,16 @@ h1, h2, h3, h4 {
   margin-bottom: var(--space-md);
 }
 
+.hero-marquee__tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.75rem);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-muted);
+  margin-top: var(--space-md);
+}
+
 .hero-marquee__headline {
   font-size: clamp(2.5rem, 3.2vw + 1.75rem, 5.5rem);
   font-weight: 600;

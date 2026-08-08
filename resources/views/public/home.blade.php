@@ -1,13 +1,14 @@
 <x-site-layout
-    title="NBBEU — North Borneo Banking Executive Union"
-    description="Solidariti, Profesionalisme, Kesejahteraan. NBBEU memperjuangkan hak, kebajikan dan pembangunan profesional eksekutif perbankan di seluruh Sabah."
+    title="NBBEU | Kesatuan Eksekutif Perbankan Sabah, Malaysia"
+    description="NBBEU ialah kesatuan eksekutif perbankan di Sabah, Malaysia. Kami memperjuangkan hak, kebajikan dan pembangunan profesional ahli. Sertai kami."
 >
     <header id="hero" class="hero-marquee" data-count-trigger>
         <div class="max-w-7xl mx-auto px-6">
             <div class="hero-marquee__row scroll-reveal">
                 <div class="hero-marquee__top">
                     <p class="hero-stat__eyebrow">North Borneo Banking Executive Union (NBBEU)</p>
-                    <h1 class="hero-marquee__headline">Solidariti, Profesionalisme, Kesejahteraan</h1>
+                    <h1 class="hero-marquee__headline">Kesatuan Eksekutif Perbankan Sabah</h1>
+                    <p class="hero-marquee__tagline">Solidariti, Profesionalisme, Kesejahteraan</p>
                     <div class="hero-stat__actions mt-4">
                         <a href="#program" class="cta-outline">Sertai Keahlian</a>
                         <a href="#tentang-kami" class="cta-text">Ketahui lebih lanjut →</a>

@@ -1,16 +1,56 @@
 @props([
-    'title' => 'NBBEU — North Borneo Banking Executive Union',
-    'description' => "NBBEU upholds the highest professional standards, facilitates strategic dialogue, and protects the collective interests of banking industry leaders across North Borneo.",
+    'title' => 'NBBEU | Kesatuan Eksekutif Perbankan Sabah, Malaysia',
+    'description' => 'NBBEU ialah kesatuan eksekutif perbankan di Sabah, Malaysia. Kami memperjuangkan hak, kebajikan dan pembangunan profesional bagi eksekutif perbankan.',
+    'canonical' => url()->current(),
+    'ogTitle' => 'NBBEU | North Borneo Banking Executive Union, Sabah',
+    'ogDescription' => 'NBBEU ialah kesatuan eksekutif perbankan di Sabah, Malaysia — memperjuangkan hak, kebajikan dan pembangunan profesional ahli.',
+    'ogImage' => 'https://nbbeu.org/assets/images/og-image.jpg',
     'hideNav' => false,
 ])
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="ms" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ $canonical }}">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ $canonical }}">
+    <meta property="og:title" content="{{ $ogTitle }}">
+    <meta property="og:description" content="{{ $ogDescription }}">
+    <meta property="og:image" content="{{ $ogImage ?: 'https://nbbeu.org/assets/images/og-image.jpg' }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="North Borneo Banking Executive Union">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $ogTitle }}">
+    <meta name="twitter:description" content="{{ $ogDescription }}">
+    <meta name="twitter:image" content="{{ $ogImage ?: 'https://nbbeu.org/assets/images/og-image.jpg' }}">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "{{ url('/') }}#organization",
+        "name": "North Borneo Banking Executive Union",
+        "alternateName": "NBBEU",
+        "url": "{{ url('/') }}",
+        "logo": { "@type": "ImageObject", "url": "{{ asset('assets/images/logo.png') }}" },
+        "foundingDate": "2024",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Lot 1, Block A, Jalan Ikan Juara 1, Tingkat 2, Sadong Jaya",
+            "postalCode": "88818",
+            "addressLocality": "Kota Kinabalu",
+            "addressRegion": "Sabah",
+            "addressCountry": "MY"
+        },
+        "email": "nbbeusabah@gmail.com",
+        "telephone": "+60-165830034"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
