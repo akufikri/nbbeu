@@ -31,7 +31,7 @@
     <meta name="twitter:image" content="{{ $ogImage ?: 'https://nbbeu.org/assets/images/og-image.jpg' }}">
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
+        "@@context": "https://schema.org",
         "@type": "Organization",
         "@id": "{{ url('/') }}#organization",
         "name": "North Borneo Banking Executive Union",
@@ -175,8 +175,8 @@
         <div class="max-w-7xl mx-auto px-6 colophon">
             <p class="text-white"><strong>NORTH BORNEO BANKING EXECUTIVE UNION (NBBEU)</strong></p>
             <p class="mt-6">
-                Lot 1, Block A, Jalan Ikan Juara 1, Tingkat 2, Sadong Jaya, 88818 Kota Kinabalu, Sabah.<br>
-                Email: nbbeusabah@gmail.com · Phone: +60165830034<br>
+                {{ \App\Models\Setting::get('contact_address', 'Lot 1, Block A, Jalan Ikan Juara 1, Tingkat 2, Sadong Jaya, 88818 Kota Kinabalu, Sabah.') }}<br>
+                Email: {{ \App\Models\Setting::get('contact_email', 'nbbeusabah@gmail.com') }} · Phone: {{ \App\Models\Setting::get('contact_phone', '+60165830034') }}<br>
                 Office Hours: Monday - Friday, 9:00 am - 5:00 pm
             </p>
             <p class="mt-6 colophon__links">
