@@ -4,6 +4,7 @@ namespace App\Filament\Resources\CertificateHistory\Tables;
 
 use App\Actions\Membership\GenerateCertificate;
 use Filament\Actions\Action;
+use Filament\Support\Enums\Width;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -33,6 +34,7 @@ class CertificateHistoryTable
                     ->label('Preview')
                     ->icon('heroicon-o-eye')
                     ->modalHeading('Certificate Preview')
+                    ->modalWidth(Width::SevenExtraLarge)
                     ->modalContent(fn ($record) => view('filament.modals.pdf-preview', [
                         'url' => route('admin.documents.certificates.preview', $record),
                         'aspectRatio' => '297 / 210',
