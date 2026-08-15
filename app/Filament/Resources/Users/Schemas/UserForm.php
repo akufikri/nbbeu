@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\Users\Schemas;
 
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -30,12 +29,6 @@ class UserForm
                 TextInput::make('company')
                     ->placeholder('Company / bank name')
                     ->required(),
-                Select::make('roles')
-                    ->placeholder('Select role')
-                    ->relationship('roles', 'name')
-                    ->multiple()
-                    ->preload(),
-                DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->placeholder('Leave blank to keep unchanged')
                     ->password()
@@ -48,9 +41,6 @@ class UserForm
                     ->dehydrated(false)
                     ->helperText('Change status via the Approve/Reject action in the table, not here.')
                     ->required(),
-                TextInput::make('member_no')
-                    ->disabled()
-                    ->dehydrated(false),
                 Textarea::make('rejection_reason')
                     ->disabled()
                     ->dehydrated(false)
@@ -58,7 +48,6 @@ class UserForm
                 DateTimePicker::make('approved_at')
                     ->disabled()
                     ->dehydrated(false),
-                DatePicker::make('renewal_expires_at'),
             ]);
     }
 }

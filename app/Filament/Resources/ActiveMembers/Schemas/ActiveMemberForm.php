@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\ActiveMembers\Schemas;
 
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -28,9 +27,6 @@ class ActiveMemberForm
                 TextInput::make('company')
                     ->placeholder('Company / bank name')
                     ->required(),
-                TextInput::make('member_no')
-                    ->disabled()
-                    ->dehydrated(false),
                 Select::make('member_status')
                     ->label('Status')
                     ->options([
@@ -39,7 +35,6 @@ class ActiveMemberForm
                     ])
                     ->default('active')
                     ->required(),
-                DatePicker::make('renewal_expires_at'),
             ]);
     }
 }

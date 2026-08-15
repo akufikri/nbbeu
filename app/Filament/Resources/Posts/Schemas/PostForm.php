@@ -28,11 +28,24 @@ class PostForm
                     ->placeholder('Post title')
                     ->required()
                     ->live(onBlur: true)
-                    ->afterStateUpdated(fn ($state, $set) => $set('slug', Str::slug($state))),
+                    ->afterStateUpdated(function ($state, $set, $get) {
+                        $set('slug', Str::slug($state));
+                        if (! $get('meta_title')) {
+                            $set('meta_title', $state);
+                        }
+                    }),
                 TextInput::make('slug')
                     ->placeholder('post-title')
                     ->required()
                     ->unique(ignoreRecord: true),
+                TextInput::make('meta_title')
+                    ->placeholder('SEO title (auto-filled from title)')
+                    ->helperText('Defaults to post title if left blank.'),
+                Textarea::make('meta_description')
+                    ->placeholder('SEO description (auto-filled from excerpt)')
+                    ->maxLength(500)
+                    ->helperText('Defaults to excerpt if left blank.')
+                    ->columnSpanFull(),
                 Select::make('category')
                     ->placeholder('Select category')
                     ->options(Post::CATEGORIES),

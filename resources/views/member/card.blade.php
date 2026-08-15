@@ -11,45 +11,28 @@
                 @if (! $memberCard)
                     <p class="text-sm text-gray-600">Your member card has not been generated yet.</p>
                 @else
-                <di class="flex items-center justify-center">
-                        <div>
-                        <div class="flex flex-wrap gap-6">
-                            <div class="w-full max-w-xl" style="container-type: inline-size;">
-                                <div
-                                    class="relative w-full rounded-lg overflow-hidden shadow-md"
-                                    style="aspect-ratio: 340 / 214; background-image: url('{{ asset('assets/illustrations/front-kad-ahli.png') }}'); background-size: cover;"
-                                >
-                                    <div class="absolute overflow-hidden" style="left: 69%; top: 16.82%; width: 20.30%; height: 35.42%;">
-                                        @if ($photoUrl)
-                                            <img src="{{ $photoUrl }}" alt="" class="w-full h-full object-cover">
-                                        @endif
-                                    </div>
-
-                                    <div class="absolute overflow-hidden whitespace-nowrap text-ellipsis" style="left: 16.41%; width: 32%; top: 17.5%; font-size: 2.6cqw; color: #16305C;">
-                                        {{ $user->name }}
-                                    </div>
-                                    <div class="absolute overflow-hidden whitespace-nowrap text-ellipsis" style="left: 16.41%; width: 32%; top: 30.1%; font-size: 2.6cqw; color: #16305C;">
-                                        {{ $user->phone }}
-                                    </div>
-                                    <div class="absolute overflow-hidden whitespace-nowrap text-ellipsis" style="left: 16.41%; width: 32%; top: 43.1%; font-size: 2.6cqw; color: #16305C;">
-                                        {{ $user->email }}
-                                    </div>
-                                    <div class="absolute overflow-hidden whitespace-nowrap text-ellipsis" style="left: 16.41%; width: 32%; top: 56.4%; font-size: 2.6cqw; color: #16305C;">
-                                        {{ $location }}
-                                    </div>
-
-                                    <div class="absolute" style="left: 72.5%; top: 54.5%; width: 12%;">
-                                        <img src="{{ $qrDataUri }}" alt="Member card QR code" class="w-full h-auto">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="w-full max-w-xl">
-                                <img src="{{ asset('assets/illustrations/back-kad-ahli.png') }}" alt="Member card back" class="w-full h-auto rounded-lg shadow-md" style="aspect-ratio: 340 / 214;">
+                    <div class="flex flex-col items-center">
+                        {{-- Card preview: image template + text overlay --}}
+                        <div class="relative w-64" style="aspect-ratio: 845 / 985;">
+                            <img src="{{ asset('assets/illustrations/front-kad-ahli-new.png') }}"
+                                 alt="Member card"
+                                 class="w-full h-full object-cover rounded-xl shadow-xl">
+                            {{-- Text overlay in cream section (~top 66.6%) --}}
+                            <div class="absolute inset-x-0 flex flex-col items-center text-center px-3"
+                                 style="top: 69.5%; gap: 4%;">
+                                <p class="font-bold leading-tight text-xs tracking-wide" style="color:#3B2500;">
+                                    {{ strtoupper($user->name) }}
+                                </p>
+                                <p class="text-xs" style="color:#3B2500; margin-top:4%;">
+                                    Member ID {{ $memberCard->card_number }}
+                                </p>
+                                <p class="text-xs" style="color:#5C4000; margin-top:4%;">
+                                    www.nbbeu.org.my
+                                </p>
                             </div>
                         </div>
 
-                        <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm max-w-xl">
+                        <div class="mt-6 grid sm:grid-cols-2 gap-4 text-sm w-64">
                             <div>
                                 <p class="text-gray-500">Member No.</p>
                                 <p class="font-mono font-medium">{{ $memberCard->card_number }}</p>
@@ -60,11 +43,11 @@
                             </div>
                         </div>
 
-                        <a href="{{ route('member.documents.card') }}" class="mt-4 inline-block px-4 py-2 text-sm rounded-sm bg-nbbeu-navy text-white hover:bg-nbbeu-gold hover:text-nbbeu-navy-deep">
+                        <a href="{{ route('member.documents.card') }}"
+                           class="mt-4 inline-block px-4 py-2 text-sm rounded-sm bg-nbbeu-navy text-white hover:bg-nbbeu-gold hover:text-nbbeu-navy-deep">
                             Download Member Card
                         </a>
                     </div>
-                </di>
                 @endif
             </div>
         </div>

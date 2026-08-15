@@ -56,7 +56,7 @@
             <button type="submit" class="btn-submit">Sign In</button>
 
             <p class="form-aside">
-                Not a member yet? <a href="{{ route('home') }}#benefits">Apply for membership</a>.
+                Not a member yet? <a href="{{ route('registration.create') }}">Apply for membership</a>.
                 @if (Route::has('password.request'))
                     Forgot your password? <a href="{{ route('password.request') }}">Reset here</a>.
                 @endif

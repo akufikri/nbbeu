@@ -2,12 +2,14 @@
     $postOgImage = ($post->hero_image ?? $post->cover_image)
         ? \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->hero_image ?? $post->cover_image)
         : null;
+    $metaTitle = $post->meta_title ?: $post->title;
+    $metaDesc  = $post->meta_description ?: ($post->excerpt ?? $post->title);
 @endphp
 <x-site-layout
-    :title="$post->title . ' — NBBEU'"
-    :description="$post->excerpt ?? $post->title"
+    :title="$metaTitle . ' — NBBEU'"
+    :description="$metaDesc"
     :ogImage="$postOgImage"
-    :ogTitle="$post->title . ' — North Borneo Banking Executive Union'"
+    :ogTitle="$metaTitle . ' — North Borneo Banking Executive Union'"
 >
     <article class="py-16 px-6">
         <div class="max-w-7xl mx-auto">

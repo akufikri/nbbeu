@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['author_id', 'title', 'slug', 'excerpt', 'category', 'content', 'cover_image', 'hero_image', 'status', 'published_at'])]
+#[Fillable(['author_id', 'title', 'slug', 'meta_title', 'meta_description', 'excerpt', 'category', 'content', 'cover_image', 'hero_image', 'status', 'published_at'])]
 class Post extends Model
 {
     public const CATEGORIES = [

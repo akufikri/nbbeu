@@ -4,7 +4,6 @@ namespace App\Actions\Membership;
 
 use App\Models\MemberCard;
 use App\Models\User;
-use Endroid\QrCode\Builder\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -28,21 +27,12 @@ class GenerateMemberCard
             ]
         );
 
-        $qrDataUri = (new Builder(
-            data: route('verify.card', $memberCard->qr_token),
-            size: 220,
-            margin: 0,
-        ))->build()->getDataUri();
-
         $pdf = app('dompdf.wrapper')
             ->loadView('pdf.member-card', [
                 'user' => $user,
-                'qrDataUri' => $qrDataUri,
                 'memberCard' => $memberCard,
-                'photoUrl' => $this->photoDataUri($user),
-                'location' => $user->memberProfile?->residential_address ?? '-',
             ])
-            ->setPaper([0, 0, 340, 214]);
+            ->setPaper([0, 0, 253, 295]);
 
         $filePath = "cards/{$user->member_no}.pdf";
         Storage::put($filePath, $pdf->output());
@@ -52,20 +42,4 @@ class GenerateMemberCard
         return $memberCard;
     }
 
-    /**
-     * dompdf doesn't fetch remote images by default (isRemoteEnabled off),
-     * so the Cloudinary-hosted profile photo has to be embedded as a data
-     * URI instead of linked by URL — same approach already used for the QR.
-     */
-    protected function photoDataUri(User $user): ?string
-    {
-        if (! $user->photo) {
-            return null;
-        }
-
-        $contents = Storage::disk('cloudinary')->get($user->photo);
-        $mimeType = Storage::disk('cloudinary')->mimeType($user->photo);
-
-        return 'data:'.$mimeType.';base64,'.base64_encode($contents);
-    }
 }
