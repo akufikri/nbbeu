@@ -17,16 +17,14 @@ class RenderMemberCardImage
     {
         $canvas = imagecreatefrompng(public_path('assets/illustrations/front-kad-ahli-new.png'));
 
-        $brown  = imagecolorallocate($canvas, 0x3B, 0x25, 0x00);
-        $dbrown = imagecolorallocate($canvas, 0x5C, 0x3D, 0x00);
+        $brown = imagecolorallocate($canvas, 0x3B, 0x25, 0x00);
 
         $bold    = base_path('vendor/dompdf/dompdf/lib/fonts/DejaVuSans-Bold.ttf');
         $regular = base_path('vendor/dompdf/dompdf/lib/fonts/DejaVuSans.ttf');
 
         $name = strtoupper($user->name);
-        $this->drawCentered($canvas, $bold,    26, $brown,  Str::limit($name, 30, ''), 845, 723);
-        $this->drawCentered($canvas, $regular, 21, $brown,  'Member ID '.$memberCard->card_number, 845, 778);
-        $this->drawCentered($canvas, $regular, 17, $dbrown, 'www.nbbeu.org.my', 845, 838);
+        $this->drawCentered($canvas, $bold,    26, $brown, Str::limit($name, 30, ''), 845, 723);
+        $this->drawCentered($canvas, $regular, 21, $brown, 'Member ID '.$memberCard->card_number, 845, 778);
 
         ob_start();
         imagepng($canvas);

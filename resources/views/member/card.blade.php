@@ -26,9 +26,6 @@
                                 <p class="text-xs" style="color:#3B2500; margin-top:4%;">
                                     Member ID {{ $memberCard->card_number }}
                                 </p>
-                                <p class="text-xs" style="color:#5C4000; margin-top:4%;">
-                                    www.nbbeu.org.my
-                                </p>
                             </div>
                         </div>
 

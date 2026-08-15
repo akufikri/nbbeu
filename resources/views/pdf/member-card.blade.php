@@ -18,7 +18,6 @@
         }
         .f-name { top: 204px; font-size: 9px; font-weight: bold; letter-spacing: 0.5px; }
         .f-id   { top: 225px; font-size: 8px; }
-        .f-web  { top: 244px; font-size: 7px; color: #5C4000; }
     </style>
 </head>
 <body>
@@ -27,7 +26,6 @@
         {{-- dompdf clips hard — truncate server-side --}}
         <div class="field f-name">{{ Str::upper(Str::limit($user->name, 30, '')) }}</div>
         <div class="field f-id">Member ID {{ $memberCard->card_number }}</div>
-        <div class="field f-web">www.nbbeu.org.my</div>
     </div>
 </body>
 </html>

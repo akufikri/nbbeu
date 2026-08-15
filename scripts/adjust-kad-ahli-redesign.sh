@@ -43,7 +43,6 @@ class RenderMemberCardImage
         $canvas = imagecreatefrompng(public_path('assets/illustrations/front-kad-ahli-new.png'));
 
         $brown  = imagecolorallocate($canvas, 0x3B, 0x25, 0x00);
-        $dbrown = imagecolorallocate($canvas, 0x5C, 0x3D, 0x00);
 
         $bold    = base_path('vendor/dompdf/dompdf/lib/fonts/DejaVuSans-Bold.ttf');
         $regular = base_path('vendor/dompdf/dompdf/lib/fonts/DejaVuSans.ttf');
@@ -51,7 +50,7 @@ class RenderMemberCardImage
         $name = strtoupper($user->name);
         $this->drawCentered($canvas, $bold,    26, $brown,  Str::limit($name, 30, ''), 845, 723);
         $this->drawCentered($canvas, $regular, 21, $brown,  'Member ID '.$memberCard->card_number, 845, 778);
-        $this->drawCentered($canvas, $regular, 17, $dbrown, 'www.nbbeu.org.my', 845, 838);
+
 
         ob_start();
         imagepng($canvas);
@@ -96,7 +95,6 @@ cat > resources/views/pdf/member-card.blade.php <<'BLADE'
         }
         .f-name { top: 204px; font-size: 9px; font-weight: bold; letter-spacing: 0.5px; }
         .f-id   { top: 225px; font-size: 8px; }
-        .f-web  { top: 244px; font-size: 7px; color: #5C4000; }
     </style>
 </head>
 <body>
@@ -104,7 +102,6 @@ cat > resources/views/pdf/member-card.blade.php <<'BLADE'
         <img class="card-bg" src="{{ public_path('assets/illustrations/front-kad-ahli-new.png') }}">
         <div class="field f-name">{{ Str::upper(Str::limit($user->name, 30, '')) }}</div>
         <div class="field f-id">Member ID {{ $memberCard->card_number }}</div>
-        <div class="field f-web">www.nbbeu.org.my</div>
     </div>
 </body>
 </html>
@@ -265,9 +262,6 @@ cat > resources/views/member/card.blade.php <<'BLADE'
                                 </p>
                                 <p class="text-xs" style="color:#3B2500; margin-top:4%;">
                                     Member ID {{ $memberCard->card_number }}
-                                </p>
-                                <p class="text-xs" style="color:#5C4000; margin-top:4%;">
-                                    www.nbbeu.org.my
                                 </p>
                             </div>
                         </div>
