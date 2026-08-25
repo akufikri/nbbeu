@@ -50,6 +50,11 @@ class MembershipOverview extends StatsOverviewWidget
                 ->count())
                 ->icon(Heroicon::OutlinedBellAlert)
                 ->color('warning'),
+            Stat::make('Digantung (Suspended)', User::where('status', 'approved')
+                ->where('member_status', 'suspended')
+                ->count())
+                ->icon(Heroicon::OutlinedNoSymbol)
+                ->color('danger'),
         ];
     }
 }

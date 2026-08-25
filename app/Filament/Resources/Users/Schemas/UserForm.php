@@ -41,6 +41,21 @@ class UserForm
                     ->dehydrated(false)
                     ->helperText('Change status via the Approve/Reject action in the table, not here.')
                     ->required(),
+                Select::make('member_status')
+                    ->label('Member Status')
+                    ->options([
+                        'active'    => 'Aktif',
+                        'retired'   => 'Bersara',
+                        'suspended' => 'Digantung',
+                    ])
+                    ->default('active')
+                    ->helperText('Ahli digantung tidak boleh log masuk ke portal.'),
+                TextInput::make('memberProfile.union_branch')
+                    ->label('Cawangan Kesatuan')
+                    ->placeholder('Cth: Cawangan Sabah')
+                    ->dehydrated(false)
+                    ->disabled()
+                    ->helperText('Kemaskini melalui profil ahli.'),
                 Textarea::make('rejection_reason')
                     ->disabled()
                     ->dehydrated(false)

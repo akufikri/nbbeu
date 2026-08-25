@@ -17,10 +17,11 @@
                         <table class="min-w-full text-sm text-left">
                             <thead>
                                 <tr class="text-gray-500 border-b">
-                                    <th class="py-2 pr-4">Amount</th>
-                                    <th class="py-2 pr-4">Purpose</th>
+                                    <th class="py-2 pr-4">Jumlah</th>
+                                    <th class="py-2 pr-4">Tujuan</th>
                                     <th class="py-2 pr-4">Status</th>
-                                    <th class="py-2 pr-4">Paid At</th>
+                                    <th class="py-2 pr-4">Tarikh Bayar</th>
+                                    <th class="py-2 pr-4">Resit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,6 +39,16 @@
                                             @endif
                                         </td>
                                         <td class="py-2 pr-4">{{ $payment->paid_at?->format('d M Y') ?? '-' }}</td>
+                                        <td class="py-2 pr-4">
+                                            @if ($payment->status === 'paid')
+                                                <a href="{{ route('member.payments.receipt', $payment) }}"
+                                                   class="text-xs text-blue-600 hover:underline" target="_blank">
+                                                    Muat Turun
+                                                </a>
+                                            @else
+                                                <span class="text-xs text-gray-400">-</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

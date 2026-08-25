@@ -29,11 +29,6 @@ class User extends Authenticatable implements FilamentUser
     // regardless of which guard the current request is authenticated on.
     protected string $guard_name = 'web';
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
@@ -77,6 +72,11 @@ class User extends Authenticatable implements FilamentUser
     public function approvedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function isSuspended(): bool
+    {
+        return $this->member_status === 'suspended';
     }
 
     public function isAdmin(): bool

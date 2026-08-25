@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'postal_address', 'residential_address', 'occupation', 'position', 'employer_name',
     'employer_address', 'employment_date', 'bank_name', 'bank_branch', 'bank_address',
     'office_tel', 'office_fax', 'present_salary', 'salary_increment_date',
-    'proposed_by_name', 'seconded_by_name', 'declaration_accepted_at', 'signature_path',
+    'proposed_by_name', 'seconded_by_name', 'declaration_accepted_at', 'signature_path', 'union_branch',
 ])]
 class MemberProfile extends Model
 {

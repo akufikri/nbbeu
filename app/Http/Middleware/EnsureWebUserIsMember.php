@@ -23,8 +23,12 @@ class EnsureWebUserIsMember
     {
         $user = Auth::guard('web')->user();
 
-        if ($user && ! $user->hasRole('member')) {
-            Auth::guard('web')->logout();
+        if ($user) {
+            if (! $user->hasRole('member') || $user->isSuspended()) {
+                Auth::guard('web')->logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+            }
         }
 
         return $next($request);

@@ -54,7 +54,9 @@ Route::middleware('auth:web')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/payments', [PaymentHistoryController::class, 'index'])->name('member.payments');
+    Route::get('/payments/{payment}/receipt', [PaymentHistoryController::class, 'receipt'])->name('member.payments.receipt');
 
     Route::prefix('member')->name('member.')->group(function () {
         Route::get('/card', [DocumentController::class, 'cardPage'])->name('card');
