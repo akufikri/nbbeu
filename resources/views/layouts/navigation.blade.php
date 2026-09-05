@@ -26,6 +26,9 @@
                     <x-nav-link :href="route('member.payments')" :active="request()->routeIs('member.payments')">
                         {{ __('Payment History') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('member.documents.rulebook')">
+                        {{ __('Download Rulebook') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -91,6 +94,9 @@
             @endif
             <x-responsive-nav-link :href="route('member.payments')" :active="request()->routeIs('member.payments')">
                 {{ __('Payment History') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('member.documents.rulebook')">
+                {{ __('Download Rulebook') }}
             </x-responsive-nav-link>
         </div>
 

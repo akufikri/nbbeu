@@ -15,17 +15,20 @@ trait BuildsAnalyticsQuery
             ->with('memberProfile')
             ->when($filters['member_status'] ?? '', fn (Builder $q, $v) => $q->where('member_status', $v));
 
-        $hasProfileFilter = ($filters['gender'] ?? '') || ($filters['race'] ?? '') || ($filters['employer_name'] ?? '');
-        if ($hasProfileFilter) {
-            $query->whereHas('memberProfile', function (Builder $q) use ($filters) {
-                if ($filters['gender'] ?? '') {
-                    $q->where('gender', $filters['gender']);
-                }
-                if ($filters['race'] ?? '') {
-                    $q->where('race', $filters['race']);
-                }
-                if ($filters['employer_name'] ?? '') {
-                    $q->where('employer_name', $filters['employer_name']);
+        $profileFilters = array_filter([
+            'gender'            => $filters['gender'] ?? '',
+            'race'              => $filters['race'] ?? '',
+            'employer_name'     => $filters['employer_name'] ?? '',
+            'education_level'   => $filters['education_level'] ?? '',
+            'employment_status' => $filters['employment_status'] ?? '',
+            'work_state'        => $filters['work_state'] ?? '',
+            'position'          => $filters['position'] ?? '',
+        ]);
+
+        if ($profileFilters) {
+            $query->whereHas('memberProfile', function (Builder $q) use ($profileFilters) {
+                foreach ($profileFilters as $col => $val) {
+                    $q->where($col, $val);
                 }
             });
         }
@@ -39,6 +42,20 @@ trait BuildsAnalyticsQuery
                     '35-45' => $q->whereBetween('date_of_birth', [$now->copy()->subYears(46), $now->copy()->subYears(35)]),
                     '45-55' => $q->whereBetween('date_of_birth', [$now->copy()->subYears(56), $now->copy()->subYears(45)]),
                     '55+'   => $q->where('date_of_birth', '<', $now->copy()->subYears(55)),
+                    default => null,
+                };
+            });
+        }
+
+        if ($servicePeriod = ($filters['service_period'] ?? '')) {
+            $now = now();
+            $query->whereHas('memberProfile', function (Builder $q) use ($servicePeriod, $now) {
+                match ($servicePeriod) {
+                    '<1'    => $q->where('employment_date', '>', $now->copy()->subYear()),
+                    '1-5'   => $q->whereBetween('employment_date', [$now->copy()->subYears(5), $now->copy()->subYear()]),
+                    '5-10'  => $q->whereBetween('employment_date', [$now->copy()->subYears(10), $now->copy()->subYears(5)]),
+                    '10-20' => $q->whereBetween('employment_date', [$now->copy()->subYears(20), $now->copy()->subYears(10)]),
+                    '20+'   => $q->where('employment_date', '<', $now->copy()->subYears(20)),
                     default => null,
                 };
             });

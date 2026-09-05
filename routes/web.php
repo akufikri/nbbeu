@@ -64,6 +64,7 @@ Route::middleware('auth:web')->group(function () {
         Route::get('/documents/card', [DocumentController::class, 'card'])->name('documents.card');
         Route::get('/documents/certificate', [DocumentController::class, 'certificate'])->name('documents.certificate');
         Route::get('/documents/certificate/preview', [DocumentController::class, 'certificatePreview'])->name('documents.certificate.preview');
+        Route::get('/documents/rulebook', [DocumentController::class, 'rulebook'])->name('documents.rulebook');
         Route::get('/renewal', [RenewalController::class, 'index'])->name('renewal.index');
         Route::post('/renewal', [RenewalController::class, 'store'])->name('renewal');
         Route::get('/union-dues', [UnionDuesController::class, 'index'])->name('union-dues');

@@ -69,4 +69,9 @@ class DocumentController extends Controller
             'Content-Disposition' => 'inline',
         ]);
     }
+
+    public function rulebook(): StreamedResponse
+    {
+        return Storage::download('documents/rulebook.pdf', 'NBBEU-Rulebook.pdf');
+    }
 }

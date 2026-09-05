@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[Fillable([
     'user_id', 'gender', 'race', 'race_sub_group', 'date_of_birth', 'place_of_birth', 'ic_no',
-    'postal_address', 'residential_address', 'occupation', 'position', 'employer_name',
-    'employer_address', 'employment_date', 'bank_name', 'bank_branch', 'bank_address',
+    'postal_address', 'residential_address', 'occupation', 'position', 'education_level', 'employment_status',
+    'employer_name', 'employer_address', 'work_state', 'employment_date', 'bank_name', 'bank_branch', 'bank_address',
     'office_tel', 'office_fax', 'present_salary', 'salary_increment_date',
     'proposed_by_name', 'seconded_by_name', 'declaration_accepted_at', 'signature_path', 'union_branch',
 ])]
